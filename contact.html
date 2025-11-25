@@ -148,7 +148,7 @@
               <input type="email" name="email" placeholder="Your Email">
             </div>
             <div class="form-group">
-              <textarea name="message" placehodler="Your Message"></textarea> 
+              <textarea name="message" placeholder="Your Message"></textarea> 
             </div>
             <button type="submit">Submit Message</button>
           </form>
@@ -190,5 +190,14 @@
   </footer>
 
   <script src="app.js"></script>
+  <script>
+  const textarea = document.querySelector('textarea');
+
+  textarea.addEventListener('input', () => {
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
+  });
+</script>
+
 </body>
 </html>

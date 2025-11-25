@@ -194,3 +194,10 @@ button:hover{
   margin-bottom: 10px;
   color:#555;
 }
+
+textarea {
+  resize: none; 
+  overflow: hidden; 
+  font-family: inherit;
+  font-size: inherit;
+}
