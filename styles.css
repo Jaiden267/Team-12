@@ -172,7 +172,7 @@ input:focus, textarea:focus{
 button{
  display: inline-block;
  padding: 12px 24px;
- background-color: #4caf50;
+ background-color: black;
  color: #fff;
  border: none;
  cursor: pointer;
@@ -180,7 +180,7 @@ button{
 }
 
 button:hover{
-  background-color: #45a049;
+  background-color: #333;
 }
 
 
