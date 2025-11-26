@@ -449,3 +449,154 @@ textarea {
   font-size: inherit;
 }
 /* End of Contact CSS */
+
+
+/* sign in page css code */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Utility Strip */
+.utility-strip {
+  background: #f3f3f3;
+  padding: 6px 0;
+  font-size: 13px;
+}
+
+.utility-strip .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.utility-strip .link {
+  margin-left: 15px;
+  color: black;
+  text-decoration: none;
+}
+
+/* Header (logo and navigation bar)*/
+.site-header {
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 12px 0;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo */
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  gap: 10px;
+}
+
+.brand-img {
+  height: 45px;
+}
+
+.wordmark {
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* Nav */
+.menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu li {
+  display: inline-block;
+}
+
+.home-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+/* Sign In Layout */
+.contact {
+  padding: 50px 0;
+  background: #fafafa;
+}
+
+.signin-container {
+  max-width: 400px;
+  text-align: center;
+}
+
+.contact-form {
+  margin-top: 20px;
+}
+/* input area for the information required for sign in (email,password) */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: #e8e8e8;
+}
+/* forgot password link */
+.forgot-password {
+  display: block;
+  margin-bottom: 15px;
+  color: #0073e6;
+  text-decoration: none;
+}
+/* submit button */
+.submitbtn {
+  width: 100%;
+  background: black;
+  color: white;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.signup-text {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+/* footer */
+.site-footer {
+  background: #f3f3f3;
+  padding: 40px 0;
+  margin-top: 40px;
+}
+
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer-grid a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  margin: 4px 0;
+}
+
+.footer-bottom {
+  text-align:right;
+  margin-top: 25px;
+  font-size: 14px;
+}
+/* end of sign in page css code */
