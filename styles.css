@@ -7,6 +7,18 @@
   --brand:#111; /* our brand color */
   --sale:#c60000; /* sale color */
 }
+/* these colors are the opposite to the main website theme so it works and combines to allow to do dark mode by choosing oppsite colu */
+.darkmode {
+  --bg: #0c0f14;        
+  --ink: #ffffff;     
+  --ink-2: #c4c4c4;     
+  --ink-3: #8f8f8f;     
+  --line: #2b2f36;       
+  --brand: #ffffff;      
+  --sale: #ff4d4d;       
+}
+
+
 
 *{ 
   box-sizing:border-box
@@ -39,7 +51,7 @@ body{
 
 /* light grey background for the top bar*/
 .utility-strip{
-  background:#f5f5f5; 
+  background:var(--bg); 
   border-bottom:1px solid var(--line); 
   font-size:13px; 
 }
@@ -187,16 +199,16 @@ body{
 
 .mega{
   position:absolute; 
-  top:100%; /* position below the header */
+  top:100%; 
   left:50%; 
   transform:translateX(-50%);          
-  width:min(1100px, calc(100vw - 32px)); /* max width and responsive padding */       
-  background:#fff; 
+  width:min(1100px, calc(100vw - 32px));       
+  background:var(--bg); 
   border:1px solid var(--line);
   border-top:none;
-  box-shadow:0 10px 30px rgba(0,0,0,.08); /* subtle shadow for depth */
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
   display:none; 
-  grid-template-columns: repeat(4, minmax(0,1fr)); /* 4 equal columns */
+  grid-template-columns: repeat(4, minmax(0,1fr)); 
   gap:24px; 
   padding:20px; 
   margin-top:1px; 
@@ -228,10 +240,11 @@ body{
   }
 
 /* search bar style */
-.searchbar{ border-top:1px solid var(--line); 
+.searchbar{ 
+  border-top:1px solid var(--line); 
   border-bottom:1px solid var(--line); 
   padding:10px 0; 
-  background:#fff 
+  background:var(--bg);
 } 
 
 #searchForm{ 
@@ -244,7 +257,9 @@ body{
   padding:12px 12px; 
   border:1px solid var(--line); 
   border-radius:8px; 
-  font-size:16px 
+  font-size:16px;
+  background:var(--bg);
+  color:var(--ink);
 } 
 
 .btn{
@@ -254,16 +269,17 @@ body{
   padding:10px 16px; 
   border:1px solid var(--ink); 
   border-radius:999px; 
-  background:#fff; 
+  background:var(--bg); 
   cursor:pointer; 
   text-decoration:none; 
   color:var(--ink); 
   font-weight:600;
 }
 
-.btn.primary{ background:var(--ink); 
-  color:#fff; 
-  border-color:var(--ink) 
+.btn.primary{ 
+  background:var(--ink); 
+  color:var(--bg); 
+  border-color:var(--ink); 
 }
 
 .search-hint{
@@ -272,8 +288,9 @@ body{
   margin-top:6px 
 }
 
-.hero{ border-bottom:1px solid var(--line);
-  background:linear-gradient(120deg,#f9f9fb, #f4f4f8) 
+.hero{ 
+  border-bottom:1px solid var(--line);
+  background:var(--bg);
 } 
 
 .hero-inner{ display:grid; 
@@ -306,37 +323,34 @@ body{
    height:280px; 
    border-radius:18px; 
    border:1px solid var(--line);
-  background: radial-gradient(180px 120px at 70% 40%, #ddd, transparent 60%), radial-gradient(220px 160px at 30% 60%, #e9e9e9, transparent 60%), #fff;
+   background:var(--bg);
 }
 
 /* dark footer background */
 .site-footer{ 
-  background:#111; 
-  color:#ddd; 
+  background:var(--bg); 
+  color:var(--ink); 
   margin-top:40px; 
   padding:32px 0
  } 
 
- /* 3 column grid for footer */
 .footer-grid{ 
   display:grid; 
   grid-template-columns:repeat(3,1fr); 
   gap:24px 
 } 
 
- /* footer headings */
 .site-footer h5{ 
   margin:0 0 8px; 
   text-transform:uppercase; 
   font-size:13px; 
   letter-spacing:.08em; 
-  color:#aaa 
+  color:var(--ink-2);
 }
 
-  /* footer links */
 .site-footer a{ 
   display:block; 
-  color:#ddd; 
+  color:var(--ink); 
   text-decoration:none; 
   padding:6px 0; 
   font-size:14px 
@@ -346,18 +360,17 @@ body{
   text-decoration:underline 
 } 
 
-/* bottom footer text */
 .footer-bottom{ 
-  border-top:1px solid #2a2a2a;
+  border-top:1px solid var(--line);
   margin-top:16px; 
   padding-top:12px; 
   font-size:13px; 
-  color:#aaa 
+  color:var(--ink-3);
 } 
 
 @media (max-width: 980px){
   .header-inner{ grid-template-columns:auto 1fr auto } 
-  .menu{ display:none } /* hide menu on smaller screens */
+  .menu{ display:none }
   .hamburger{ display:inline-block }
   .mega{ position:static; border:none; box-shadow:none; padding:12px 0; max-width:100%; width:100%; margin:0 }
   .mega-col a{ padding:8px 0 }
@@ -371,7 +384,7 @@ body{
 /* Start of Contact CSS */
 .contact{
   min-height: 100vh;
-  background:linear-gradient(120deg,#f9f9fb, #f4f4f8);
+  background:var(--bg);
   padding: 50px;
   text-align: center;
 }
@@ -379,7 +392,7 @@ body{
 .container h2{
   font-size: 36px;
   margin-bottom: 40px;
-  color: #333;
+  color: var(--ink);
 }
 
 .container.wrapper{
@@ -395,7 +408,7 @@ body{
 .contact-form h3{
   font-size: 24px;
   margin-bottom: 20px;
-  color:#333;
+  color:var(--ink);
 }
 
 .form-group{
@@ -406,40 +419,41 @@ input, textarea{
   width: 100%;
   padding: 12px;
   border-radius: 8px;
-  border: none;
-  background-color: #ddd;
+  border: 1px solid var(--line);
+  background-color: var(--bg);
+  color:var(--ink);
   font-size: 16px;
 }
 
 input:focus, textarea:focus{
   outline: none;
-  box-shadow: 0 0 8px #bbb;
+  box-shadow: 0 0 8px var(--ink-3);
 }
 
 button{
  display: inline-block;
  padding: 12px 24px;
- background-color: black;
- color: #fff;
+ background-color: var(--ink);
+ color: var(--bg);
  border: none;
  cursor: pointer;
  transition: 0.3s ease;
 }
 
 .submitbtn:hover{
-  background-color: #333;
+  background-color: var(--ink-2);
 }
 
 
 .contact-info h3{
   font-size: 24px;
   margin-bottom: 20px;
-  color:#333;
+  color:var(--ink);
 }
 
 .contact-info p{
   margin-bottom: 10px;
-  color:#555;
+  color:var(--ink-2);
 }
 
 textarea {
@@ -460,7 +474,7 @@ textarea {
 
 /* Utility Strip */
 .utility-strip {
-  background: #f3f3f3;
+  background: var(--bg);
   padding: 6px 0;
   font-size: 13px;
 }
@@ -473,14 +487,14 @@ textarea {
 
 .utility-strip .link {
   margin-left: 15px;
-  color: black;
+  color: var(--ink);
   text-decoration: none;
 }
 
 /* Header (logo and navigation bar)*/
 .site-header {
-  background: white;
-  border-bottom: 1px solid #e0e0e0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
   padding: 12px 0;
 }
 
@@ -495,7 +509,7 @@ textarea {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: black;
+  color: var(--ink);
   gap: 10px;
 }
 
@@ -528,7 +542,7 @@ textarea {
 /* Sign In Layout */
 .contact {
   padding: 50px 0;
-  background: #fafafa;
+  background: var(--bg);
 }
 
 .signin-container {
@@ -539,7 +553,8 @@ textarea {
 .contact-form {
   margin-top: 20px;
 }
-/* input area for the information required for sign in (email,password) */
+
+/* input area */
 .form-group {
   margin-bottom: 15px;
 }
@@ -548,21 +563,24 @@ textarea {
   width: 100%;
   padding: 12px;
   border-radius: 5px;
-  border: 1px solid #ccc;
-  background: #e8e8e8;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color:var(--ink);
 }
+
 /* forgot password link */
 .forgot-password {
   display: block;
   margin-bottom: 15px;
-  color: #0073e6;
+  color: var(--ink);
   text-decoration: none;
 }
+
 /* submit button */
 .submitbtn {
   width: 100%;
-  background: black;
-  color: white;
+  background: var(--ink);
+  color: var(--bg);
   padding: 12px;
   border: none;
   cursor: pointer;
@@ -572,11 +590,12 @@ textarea {
 .signup-text {
   margin-top: 15px;
   font-size: 14px;
+  color:var(--ink-2);
 }
 
 /* footer */
 .site-footer {
-  background: #f3f3f3;
+  background: var(--bg);
   padding: 40px 0;
   margin-top: 40px;
 }
@@ -590,7 +609,7 @@ textarea {
 .footer-grid a {
   display: block;
   text-decoration: none;
-  color: black;
+  color: var(--ink);
   margin: 4px 0;
 }
 
@@ -598,33 +617,44 @@ textarea {
   text-align:right;
   margin-top: 25px;
   font-size: 14px;
+  color:var(--ink-2);
 }
 /* end of sign in page css code */
 
 /*light-dark mode */
 #theme-switch{
+
   height: 50px;
   width: 50px;
   padding: 0;
   border-radius: 50%;
-  background-color: var(--base-variant);
+  background-color: var(--bg);
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
   top: 0px;
-  left: 20px;
+  right: 20px;
 }
-/*will display and hide other icon while in use for example night icon if its light mode and day icon if dark mode is on*/
-#theme-switch svg:last-child{
-  display: none;
-}
-/*will make moon icon visible while its light mode*/
-.darkmode #theme-switch svg:first-child{
-  display: none;
-}
-/*will make sun icon visible while its light mode*/
-/*this logic is used so only 1 icon is dislayed*/
-.darkmode #theme-switch svg:last :last-child{
+/* Default (light mode): show SUN */
+#theme-switch .sun {
   display: block;
 }
+
+
+/* DARK MODE: show MOON, hide SUN */
+.darkmode #theme-switch .sun {
+  display: none;
+}
+.darkmode #theme-switch .moon {
+  display: block;
+}
+
+/* Make both SVGs take the theme color */
+#theme-switch svg {
+  fill: var(--ink);
+  stroke: var(--ink);
+}
+
+
+
