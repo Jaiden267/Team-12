@@ -449,3 +449,58 @@ textarea {
   font-size: inherit;
 }
 /* End of Contact CSS */
+
+/* About us page css */
+.aboutusmainbuild{
+  padding: 60px;
+}
+.aboutusmaintext{
+  max-width: 1250px;
+  margin: auto;
+}
+.aboutusheader {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.aboutusheader h1 {
+  font-size: 50px;
+  margin-bottom: 16px;
+  color: black;
+}
+.aboutusheader .subheading {
+  font-size: 28px;
+  color: grey;
+}
+.ourjourneycontent {
+  margin-bottom: 40px;
+}
+.ourjourneycontent h2 {
+  font-size: 28px;
+  margin-bottom: 2px;
+  color: black;
+  border-bottom: 2px;
+  display: inline-block;
+}
+.ourjourneycontent p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #1a1a1a;
+  margin-bottom: 18px;
+}
+.onelinersgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));
+  gap: 44px;
+  margin-top: 40px;
+  text-align: center;
+}
+.onelinersitem h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+.onelinersitem p {
+  font-size: 15px;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
