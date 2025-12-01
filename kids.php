@@ -14,25 +14,27 @@ require_once 'db_connect.php';
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="utility-strip">
-    <div class="container">
-      <span>FREE DELIVERY & RETURNS</span>
-      <a href="contact.php" class="link">Contact Us</a>
+ <div class="utility-strip">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+        
+        
+        <span>FREE DELIVERY & RETURNS</span>
 
-<?php if (isset($_SESSION['user_id'])): ?>
+        
+        <div style="display:flex; gap:15px; align-items:center;">
+            <a href="contact.php" class="link">Contact Us</a>
 
-    <span class="link">Hello, <?= htmlspecialchars($_SESSION['first_name']); ?></span>
-    <a href="logout.php" class="link">Logout</a>
-
-<?php else: ?>
-
-    <a href="register.php" class="link">Register</a>
-    <a href="signin.php" class="link">Sign In</a>
-
-<?php endif; ?>
+            <?php if(isset($_SESSION['user_id'])): ?>
+                <span class="link">Hello, <?= htmlspecialchars($_SESSION['first_name']); ?></span>
+                <a href="logout.php" class="link">Logout</a>
+            <?php else: ?>
+                <a href="register.php" class="link">Register</a>
+                <a href="signin.php" class="link">Sign In</a>
+            <?php endif; ?>
+        </div>
 
     </div>
-  </div>
+</div>
 
   <!-- Header including brand, navigation and actions -->
   <header class="site-header">

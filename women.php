@@ -17,10 +17,10 @@ require_once 'db_connect.php';
 <div class="utility-strip">
     <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
         
-        <!-- LEFT SIDE -->
+        
         <span>FREE DELIVERY & RETURNS</span>
 
-        <!-- RIGHT SIDE -->
+        
         <div style="display:flex; gap:15px; align-items:center;">
             <a href="contact.php" class="link">Contact Us</a>
 
