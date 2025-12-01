@@ -163,7 +163,7 @@ require_once 'db_connect.php';
         <div class="contact-info"></div>
         <h3>Contact Information</h3>
         <p>+44 7341 371665</p>
-        <p>240200938@aston.ac.uk</p>
+        <p>lunare.clothing@mail.com</p>
         <p>2A Aston Street, Birmingham</p>
       </div>
     </div>
