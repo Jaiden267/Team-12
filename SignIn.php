@@ -169,22 +169,25 @@ require_once 'db_connect.php';
       <div class="contact-form">
         <h3>Welcome Back</h3>
 
-        <form>
+        <form method="POST" action="login_process.php">
           <div class="form-group">
-            <input type="email" placeholder="Email Address" required>
+              <input type="email" name="email" placeholder="Email Address" required>
           </div>
 
           <div class="form-group">
-            <input type="password" placeholder="Password" required>
+              <input type="password" name="password" placeholder="Password" required>
           </div>
 
           <a class="forgot-password" href="#">Forgot your password?</a>
+
           <button type="submit" class="submitbtn">Sign In</button>
 
-          <p class="signup-text">Don't have an account?
-            <a href="register.php">Sign up</a>
+          <p class="signup-text">
+              Don't have an account?
+              <a href="register.php">Sign up</a>
           </p>
         </form>
+
       </div>
 
     </div>

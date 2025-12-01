@@ -162,31 +162,39 @@ require_once 'db_connect.php';
       <div class="contact-form">
         <h3>Register</h3>
 
-        <form>
-            <!-- First Name -->
-          <div class="form-group">
-            <input type="text" placeholder="First Name" required>
-          </div>
-          <!-- Last Name -->
-          <div class="form-group">
-            <input type="text" placeholder="Last Name" required>
-          </div>
-          <!-- Email -->
-          <div class="form-group">
-            <input type="email" placeholder="Email Address" required>
-          </div>
-           <!-- Password -->
-          <div class="form-group">
-            <input type="password" placeholder="Password" required>
-          </div>
-          <!-- Confirm Password -->
-          <div class="form-group">
-            <input type="password" placeholder="Confirm Password" required>
-          </div><button type="submit" class="submitbtn">Create Account</button>
-          <p class="signup-text">Already have an account?
-            <a href="signin.php">Sign In</a>
-          </p>
-        </form>
+       <form method="POST" action="register_process.php">
+    <!-- First Name -->
+    <div class="form-group">
+        <input type="text" name="first_name" placeholder="First Name" required>
+    </div>
+
+    <!-- Last Name -->
+    <div class="form-group">
+        <input type="text" name="last_name" placeholder="Last Name" required>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+        <input type="email" name="email" placeholder="Email Address" required>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+        <input type="password" name="password" placeholder="Password" required>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="form-group">
+        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+    </div>
+
+    <button type="submit" class="submitbtn">Create Account</button>
+
+    <p class="signup-text">Already have an account?
+        <a href="signin.php">Sign In</a>
+    </p>
+</form>
+
       </div>
 
     </div>
