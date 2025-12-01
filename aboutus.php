@@ -18,7 +18,7 @@ require_once 'db_connect.php';
       <span>FREE DELIVERY & RETURNS</span>
       <a href="#" class="link">Contact Us</a>
       <a href="#" class="link">Register</a>
-      <a href="#" class="link">Sign In</a>
+      <a href="SignIn.php" class="link">Sign In</a>
     </div>
   </div>
 

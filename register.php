@@ -19,7 +19,7 @@ require_once 'db_connect.php';
       <div>
         <a href="contact.php" class="link">Contact Us</a>
         <a href="register.php" class="link">Register</a>
-        <a href="SignIn.php" class="link">Sign In</a>
+        <a href="signin.php" class="link">Sign In</a>
       </div>
     </div>
   </div>
