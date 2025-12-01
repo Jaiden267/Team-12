@@ -143,18 +143,22 @@ require_once 'db_connect.php';
       <div class="contact-wrapper">
         <div class="contact-form">
           <h3>Send us a message</h3>
-          <form>
+          <form method="POST" action="contact_process.php">
             <div class="form-group">
-              <input type="text" name="name" placeholder="Your Name">
+              <input type="text" name="name" placeholder="Your Name" required>
             </div>
+
             <div class="form-group">
-              <input type="email" name="email" placeholder="Your Email">
+              <input type="email" name="email" placeholder="Your Email" required>
             </div>
+
             <div class="form-group">
-              <textarea name="message" placeholder="Your Message"></textarea> 
+              <textarea name="message" placeholder="Your Message" required></textarea>
             </div>
+
             <button class="submitbtn" type="submit">Submit Message</button>
           </form>
+
         </div>
         <div class="contact-info"></div>
         <h3>Contact Information</h3>
