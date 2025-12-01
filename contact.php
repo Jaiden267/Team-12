@@ -1,3 +1,6 @@
+<?php
+require_once 'db_connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +16,9 @@
   <div class="utility-strip">
     <div class="container">
       <span>FREE DELIVERY & RETURNS</span>
-      <a href="#" class="link">Contact Us</a>
-      <a href="#" class="link">Register</a>
-      <a href="#" class="link">Sign In</a>
+      <a href="contact.php" class="link">Contact Us</a>
+      <a href="register.php" class="link">Register</a>
+      <a href="signin.php" class="link">Sign In</a>
     </div>
   </div>
 
@@ -23,7 +26,7 @@
   <header class="site-header">
     <!-- Brand logo that links to the home page -->
     <div class="container header-inner">
-      <a href="index.html" class="brand" aria-label="Lunare Clothing Home"> 
+      <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
         
         <span class="wordmark">LUNARE CLOTHING</span>
@@ -134,122 +137,55 @@
     </div>
   </header>
 
-  <div class="page-header"><div class="container"><h1>Men — T-Shirts</h1></div></div>
-
-  <section class="products">
-    <div class="container">
-      <div class="product-grid">
-        <article class="product-card">
-          <img class="product-img" src="" alt="LC Classic Tee">
-          <h3 class="product-title">LC Classic Tee</h3>
-          <div class="product-price">£19.99</div>
-
-          <form class="opts add-to-cart-form" data-sku="MEN-TEE-001" data-name="LC Classic Tee" data-price="19.99" data-image="">
-            <div class="row">
-              <label>Colour</label>
-              <div class="swatches">
-                <input type="radio" name="color" value="black" hidden checked>
-                <span class="swatch active" data-color="black" title="Black"></span>
-                <input type="radio" name="color" value="white" hidden>
-                <span class="swatch" data-color="white" title="White"></span>
-              </div>
+  <section class ="contact">
+    <div class = container>
+      <h2>Contact Us</h2>
+      <div class="contact-wrapper">
+        <div class="contact-form">
+          <h3>Send us a message</h3>
+          <form>
+            <div class="form-group">
+              <input type="text" name="name" placeholder="Your Name">
             </div>
-
-            <div class="row">
-              <label for="size1">Size</label>
-              <select id="size1" class="select" name="size">
-                <option>S</option><option selected>M</option><option>L</option><option>XL</option>
-              </select>
-              <label for="qty1">Qty</label>
-              <input id="qty1" class="qty" type="number" name="qty" value="1" min="1">
+            <div class="form-group">
+              <input type="email" name="email" placeholder="Your Email">
             </div>
-
-            <button class="add-btn" type="submit">Add to cart</button>
+            <div class="form-group">
+              <textarea name="message" placeholder="Your Message"></textarea> 
+            </div>
+            <button class="submitbtn" type="submit">Submit Message</button>
           </form>
-        </article>
-
-        <article class="product-card">
-          <img class="product-img" src="" alt="LC Stone Tee">
-          <h3 class="product-title">LC Stone Tee</h3>
-          <div class="product-price">£21.99</div>
-
-          <form class="opts add-to-cart-form" data-sku="MEN-TEE-002" data-name="LC Stone Tee" data-price="21.99" data-image="">
-            <div class="row">
-              <label>Colour</label>
-              <div class="swatches">
-                <input type="radio" name="color" value="stone" hidden checked>
-                <span class="swatch active" data-color="stone" title="Stone"></span>
-                <input type="radio" name="color" value="black" hidden>
-                <span class="swatch" data-color="black" title="Black"></span>
-              </div>
-            </div>
-
-            <div class="row">
-              <label for="size2">Size</label>
-              <select id="size2" class="select" name="size">
-                <option>S</option><option selected>M</option><option>L</option><option>XL</option>
-              </select>
-              <label for="qty2">Qty</label>
-              <input id="qty2" class="qty" type="number" name="qty" value="1" min="1">
-            </div>
-
-            <button class="add-btn" type="submit">Add to cart</button>
-          </form>
-        </article>
-
-        <article class="product-card">
-          <img class="product-img" src="" alt="LC Pink Tee">
-          <h3 class="product-title">LC Pink Tee</h3>
-          <div class="product-price">£18.49</div>
-
-          <form class="opts add-to-cart-form" data-sku="MEN-TEE-003" data-name="LC Pink Tee" data-price="18.49" data-image="">
-            <div class="row">
-              <label>Colour</label>
-              <div class="swatches">
-                <input type="radio" name="color" value="pink" hidden checked>
-                <span class="swatch active" data-color="pink" title="Pink"></span>
-                <input type="radio" name="color" value="white" hidden>
-                <span class="swatch" data-color="white" title="White"></span>
-              </div>
-            </div>
-
-            <div class="row">
-              <label for="size3">Size</label>
-              <select id="size3" class="select" name="size">
-                <option>S</option><option selected>M</option><option>L</option><option>XL</option>
-              </select>
-              <label for="qty3">Qty</label>
-              <input id="qty3" class="qty" type="number" name="qty" value="1" min="1">
-            </div>
-
-            <button class="add-btn" type="submit">Add to cart</button>
-          </form>
-        </article>
+        </div>
+        <div class="contact-info"></div>
+        <h3>Contact Information</h3>
+        <p>+44 7341 371665</p>
+        <p>240200938@aston.ac.uk</p>
+        <p>2A Aston Street, Birmingham</p>
       </div>
     </div>
   </section>
 
-   <footer class="site-footer">
+  <footer class="site-footer">
     <div class="container footer-grid">
       <div>
         <h5>Support</h5>
-        <a href="#">Help</a>
-        <a href="#">Delivery</a>
-        <a href="#">Returns</a>
-        <a href="contact.html">Contact Us</a>
+        <a href="help.php">Help</a>
+        <a href="delivery.php">Delivery</a>
+        <a href="returns.php">Returns</a>
+        <a href="contact.php">Contact Us</a>
       </div>
       <div>
         <h5>About</h5>
-        <a href="aboutus.html">About Us</a>
-        <a href="#">Company</a>
-        <a href="#">Sustainability</a>
-        <a href="#">Careers</a>
+        <a href="aboutus.php">About Us</a>
+        <a href="company.php">Company</a>
+        <a href="sustainability.php">Sustainability</a>
+        <a href="careers.php">Careers</a>
       </div>
       <div>
         <h5>Legal</h5>
-        <a href="#">Terms</a>
-        <a href="#">Privacy</a>
-        <a href="#">Cookies</a>
+        <a href="terms.php">Terms</a>
+        <a href="privacy.php">Privacy</a>
+        <a href="cookies.php">Cookies</a>
       </div>
     </div>
     <div class="container footer-bottom">
@@ -258,5 +194,14 @@
   </footer>
 
   <script src="app.js"></script>
+  <script>
+  const textarea = document.querySelector('textarea');
+
+  textarea.addEventListener('input', () => {
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
+  });
+</script>
+
 </body>
 </html>
