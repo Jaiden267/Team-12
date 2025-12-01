@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'db_connect.php';
 ?>
 <!DOCTYPE html>
@@ -16,9 +17,20 @@ require_once 'db_connect.php';
   <div class="utility-strip">
     <div class="container">
       <span>FREE DELIVERY & RETURNS</span>
-      <a href="#" class="link">Contact Us</a>
-      <a href="#" class="link">Register</a>
-      <a href="SignIn.php" class="link">Sign In</a>
+      <a href="contact.php" class="link">Contact Us</a>
+
+<?php if (isset($_SESSION['user_id'])): ?>
+
+    <span class="link">Hello, <?= htmlspecialchars($_SESSION['first_name']); ?></span>
+    <a href="logout.php" class="link">Logout</a>
+
+<?php else: ?>
+
+    <a href="register.php" class="link">Register</a>
+    <a href="signin.php" class="link">Sign In</a>
+
+<?php endif; ?>
+
     </div>
   </div>
 

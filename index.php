@@ -1,8 +1,6 @@
 <?php
-require_once 'db_connect.php';
-?>
-<?php
 session_start();
+require_once 'db_connect.php';
 ?>
 
 <!DOCTYPE html>
@@ -23,15 +21,19 @@ session_start();
     <div class="container">
       <span>FREE DELIVERY & RETURNS</span>
       <a href="contact.php" class="link">Contact Us</a>
-      <?php if(isset($_SESSION['user_id'])): ?>
-    <!-- SHOW WHEN LOGGED IN -->
-    <span class="link">Hello, <?= $_SESSION['first_name']; ?></span>
+
+<?php if (isset($_SESSION['user_id'])): ?>
+
+    <span class="link">Hello, <?= htmlspecialchars($_SESSION['first_name']); ?></span>
     <a href="logout.php" class="link">Logout</a>
-    <?php else: ?>
-      <!-- SHOW WHEN LOGGED OUT -->
-      <a href="register.php" class="link">Register</a>
-      <a href="signin.php" class="link">Sign In</a>
-    <?php endif; ?>
+
+<?php else: ?>
+
+    <a href="register.php" class="link">Register</a>
+    <a href="signin.php" class="link">Sign In</a>
+
+<?php endif; ?>
+
 
     </div>
   </div>
