@@ -1,52 +1,59 @@
 <?php
 require_once 'db_connect.php';
 
-$first = trim($_POST['first_name']);
-$last = trim($_POST['last_name']);
-$email = trim($_POST['email']);
-$password = trim($_POST['password']);
-$confirm = trim($_POST['confirm_password']);
+// Check if form was submitted
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-// Validation
-if (!$first || !$last || !$email || !$password || !$confirm) {
-    echo "<script>alert('All fields are required.'); window.location.href='register.php';</script>";
-    exit();
+    // Get form data
+    $first = trim($_POST['first_name']);
+    $last = trim($_POST['last_name']);
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
+    $confirm = $_POST['confirm_password'];
+
+    // Validate required fields
+    if (empty($first) || empty($last) || empty($email) || empty($password) || empty($confirm)) {
+        echo "<script>alert('All fields are required.'); window.history.back();</script>";
+        exit;
+    }
+
+    // Check password match
+    if ($password !== $confirm) {
+        echo "<script>alert('Passwords do not match.'); window.history.back();</script>";
+        exit;
+    }
+
+    // Password policy (example: 8 chars, 1 number, 1 letter)
+    if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $password)) {
+        echo "<script>alert('Password must be at least 8 characters long and contain at least one number.'); window.history.back();</script>";
+        exit;
+    }
+
+    // Hash password
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+    // Insert into database
+    $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password_hash) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $first, $last, $email, $password_hash);
+
+    if ($stmt->execute()) {
+
+        // SUCCESS — redirect home
+        echo "<script>
+                alert('Registration successful! Welcome to Lunare Clothing.');
+                window.location.href = 'index.php';
+              </script>";
+        exit;
+
+    } else {
+
+        // ERROR — likely email already exists
+        echo "<script>
+                alert('Error: Email already registered.');
+                window.history.back();
+              </script>";
+        exit;
+    }
 }
-
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo "<script>alert('Invalid email format.'); window.location.href='register.php';</script>";
-    exit();
-}
-
-if ($password !== $confirm) {
-    echo "<script>alert('Passwords do not match.'); window.location.href='register.php';</script>";
-    exit();
-}
-
-// Password Policy: 8+ chars, 1 uppercase, 1 number
-if (!preg_match('/^(?=.*[A-Z])(?=.*\d).{8,}$/', $password)) {
-    echo "<script>alert('Password must be at least 8 characters, include 1 uppercase letter and 1 number.'); window.location.href='register.php';</script>";
-    exit();
-}
-
-// Hash Password
-$hashed = password_hash($password, PASSWORD_DEFAULT);
-
-// Insert into Database
-$sql = "INSERT INTO users (first_name, last_name, email, password_hash, role)
-        VALUES (?, ?, ?, ?, 'customer')";
-$stmt = $conn->prepare($sql);
-
-if (!$stmt) {
-    die("SQL Error: " . $conn->error);
-}
-
-$stmt->bind_param("ssss", $first, $last, $email, $hashed);
-
-if (!$stmt->execute()) {
-    echo "<script>alert('Email already registered.'); window.location.href='register.php';</script>";
-    exit();
-}
-
-echo "<script>alert('Account created successfully!'); window.location.href='signin.php';</script>";
 ?>
+
