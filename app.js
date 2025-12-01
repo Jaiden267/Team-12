@@ -121,3 +121,56 @@ document.addEventListener('click', function(e){
   const radio = wrap.querySelector(`input[type="radio"][value="${sw.dataset.color}"]`);
   if (radio) radio.checked = true;
 });
+
+// Validation for contact form
+document.addEventListener("DOMContentLoaded", () => {
+  const contactForm = document.querySelector(".contact-form form");
+  if (!contactForm) return;
+
+  contactForm.addEventListener("submit", function (e) {
+    const nameInput = contactForm.querySelector("input[name='name']");
+    const emailInput = contactForm.querySelector("input[name='email']");
+    const messageInput = contactForm.querySelector("textarea[name='message']");
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const message = messageInput.value.trim();
+
+    // Email regex pattern
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    let errors = [];
+
+    // Reset borders
+    nameInput.style.border = "";
+    emailInput.style.border = "";
+    messageInput.style.border = "";
+
+    // Validate name
+    if (name.length < 2) {
+      errors.push("• Name must be at least 2 characters");
+      nameInput.style.border = "2px solid red";
+    }
+
+    // Validate email
+    if (!emailRegex.test(email)) {
+      errors.push("• Enter a valid email address");
+      emailInput.style.border = "2px solid red";
+    }
+
+    // Validate message
+    if (message.length < 5) {
+      errors.push("• Message must be at least 5 characters long");
+      messageInput.style.border = "2px solid red";
+    }
+
+    // If there are ANY errors → show one popup message
+    if (errors.length > 0) {
+      e.preventDefault(); // stop form submission
+
+      alert("Please fix the following:\n\n" + errors.join("\n"));
+      return false;
+    }
+  });
+});
+// Enf of contact form validation
