@@ -1,3 +1,6 @@
+<?php
+require_once 'db_connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +26,7 @@
   <header class="site-header">
     <!-- Brand logo that links to the home page -->
     <div class="container header-inner">
-      <a href="index.html" class="brand" aria-label="Lunare Clothing Home"> 
+      <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
         
         <span class="wordmark">LUNARE CLOTHING</span>
@@ -134,48 +137,75 @@
     </div>
   </header>
 
-
-  <div class="page-header"><div class="container"><h1>Kids — T-Shirts</h1></div></div>
+  <div class="page-header"><div class="container"><h1>Men — T-Shirts</h1></div></div>
 
   <section class="products">
     <div class="container">
       <div class="product-grid">
-
         <article class="product-card">
-          <img class="product-img" src=" " alt="LC Kids Tee">
-          <h3 class="product-title">LC Kids Tee</h3>
-          <div class="product-price">£12.99</div>
-          <form class="opts add-to-cart-form"
-                data-sku="KID-TEE-001" data-name="LC Kids Tee"
-                data-price="12.99" data-image=" ">
+          <img class="product-img" src="" alt="LC Classic Tee">
+          <h3 class="product-title">LC Classic Tee</h3>
+          <div class="product-price">£19.99</div>
+
+          <form class="opts add-to-cart-form" data-sku="MEN-TEE-001" data-name="LC Classic Tee" data-price="19.99" data-image="">
             <div class="row">
               <label>Colour</label>
               <div class="swatches">
-                <input type="radio" name="color" value="white" hidden checked>
-                <span class="swatch active" data-color="white" title="White"></span>
-                <input type="radio" name="color" value="black" hidden>
-                <span class="swatch" data-color="black" title="Black"></span>
+                <input type="radio" name="color" value="black" hidden checked>
+                <span class="swatch active" data-color="black" title="Black"></span>
+                <input type="radio" name="color" value="white" hidden>
+                <span class="swatch" data-color="white" title="White"></span>
               </div>
             </div>
+
             <div class="row">
-              <label for="ksize1">Size</label>
-              <select id="ksize1" class="select" name="size">
-                <option>XS</option><option selected>S</option><option>M</option>
+              <label for="size1">Size</label>
+              <select id="size1" class="select" name="size">
+                <option>S</option><option selected>M</option><option>L</option><option>XL</option>
               </select>
-              <label for="kqty1">Qty</label>
-              <input id="kqty1" class="qty" type="number" name="qty" value="1" min="1">
+              <label for="qty1">Qty</label>
+              <input id="qty1" class="qty" type="number" name="qty" value="1" min="1">
             </div>
+
             <button class="add-btn" type="submit">Add to cart</button>
           </form>
         </article>
 
         <article class="product-card">
-          <img class="product-img" src=" " alt="LC Kids Tee 2">
-          <h3 class="product-title">LC Kids Tee 2</h3>
-          <div class="product-price">£13.49</div>
-          <form class="opts add-to-cart-form"
-                data-sku="KID-TEE-002" data-name="LC Kids Tee 2"
-                data-price="13.49" data-image=" ">
+          <img class="product-img" src="" alt="LC Stone Tee">
+          <h3 class="product-title">LC Stone Tee</h3>
+          <div class="product-price">£21.99</div>
+
+          <form class="opts add-to-cart-form" data-sku="MEN-TEE-002" data-name="LC Stone Tee" data-price="21.99" data-image="">
+            <div class="row">
+              <label>Colour</label>
+              <div class="swatches">
+                <input type="radio" name="color" value="stone" hidden checked>
+                <span class="swatch active" data-color="stone" title="Stone"></span>
+                <input type="radio" name="color" value="black" hidden>
+                <span class="swatch" data-color="black" title="Black"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <label for="size2">Size</label>
+              <select id="size2" class="select" name="size">
+                <option>S</option><option selected>M</option><option>L</option><option>XL</option>
+              </select>
+              <label for="qty2">Qty</label>
+              <input id="qty2" class="qty" type="number" name="qty" value="1" min="1">
+            </div>
+
+            <button class="add-btn" type="submit">Add to cart</button>
+          </form>
+        </article>
+
+        <article class="product-card">
+          <img class="product-img" src="" alt="LC Pink Tee">
+          <h3 class="product-title">LC Pink Tee</h3>
+          <div class="product-price">£18.49</div>
+
+          <form class="opts add-to-cart-form" data-sku="MEN-TEE-003" data-name="LC Pink Tee" data-price="18.49" data-image="">
             <div class="row">
               <label>Colour</label>
               <div class="swatches">
@@ -185,14 +215,16 @@
                 <span class="swatch" data-color="white" title="White"></span>
               </div>
             </div>
+
             <div class="row">
-              <label for="ksize2">Size</label>
-              <select id="ksize2" class="select" name="size">
-                <option>XS</option><option selected>S</option><option>M</option>
+              <label for="size3">Size</label>
+              <select id="size3" class="select" name="size">
+                <option>S</option><option selected>M</option><option>L</option><option>XL</option>
               </select>
-              <label for="kqty2">Qty</label>
-              <input id="kqty2" class="qty" type="number" name="qty" value="1" min="1">
+              <label for="qty3">Qty</label>
+              <input id="qty3" class="qty" type="number" name="qty" value="1" min="1">
             </div>
+
             <button class="add-btn" type="submit">Add to cart</button>
           </form>
         </article>
@@ -200,18 +232,18 @@
     </div>
   </section>
 
-  <footer class="site-footer">
+   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
         <h5>Support</h5>
         <a href="#">Help</a>
         <a href="#">Delivery</a>
         <a href="#">Returns</a>
-        <a href="contact.html">Contact Us</a>
+        <a href="contact.php">Contact Us</a>
       </div>
       <div>
         <h5>About</h5>
-        <a href="aboutus.html">About Us</a>
+        <a href="aboutus.php">About Us</a>
         <a href="#">Company</a>
         <a href="#">Sustainability</a>
         <a href="#">Careers</a>

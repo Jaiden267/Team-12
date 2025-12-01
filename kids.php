@@ -1,3 +1,6 @@
+<?php
+require_once 'db_connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +16,9 @@
   <div class="utility-strip">
     <div class="container">
       <span>FREE DELIVERY & RETURNS</span>
-      <a href="contact.html" class="link">Contact Us</a>
-      <a href="register.html" class="link">Register</a>
-      <a href="signin.html" class="link">Sign In</a>
+      <a href="#" class="link">Contact Us</a>
+      <a href="#" class="link">Register</a>
+      <a href="#" class="link">Sign In</a>
     </div>
   </div>
 
@@ -23,7 +26,7 @@
   <header class="site-header">
     <!-- Brand logo that links to the home page -->
     <div class="container header-inner">
-      <a href="index.html" class="brand" aria-label="Lunare Clothing Home"> 
+      <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
         
         <span class="wordmark">LUNARE CLOTHING</span>
@@ -134,30 +137,68 @@
     </div>
   </header>
 
-  <section class ="contact">
-    <div class = container>
-      <h2>Contact Us</h2>
-      <div class="contact-wrapper">
-        <div class="contact-form">
-          <h3>Send us a message</h3>
-          <form>
-            <div class="form-group">
-              <input type="text" name="name" placeholder="Your Name">
+
+  <div class="page-header"><div class="container"><h1>Kids — T-Shirts</h1></div></div>
+
+  <section class="products">
+    <div class="container">
+      <div class="product-grid">
+
+        <article class="product-card">
+          <img class="product-img" src=" " alt="LC Kids Tee">
+          <h3 class="product-title">LC Kids Tee</h3>
+          <div class="product-price">£12.99</div>
+          <form class="opts add-to-cart-form"
+                data-sku="KID-TEE-001" data-name="LC Kids Tee"
+                data-price="12.99" data-image=" ">
+            <div class="row">
+              <label>Colour</label>
+              <div class="swatches">
+                <input type="radio" name="color" value="white" hidden checked>
+                <span class="swatch active" data-color="white" title="White"></span>
+                <input type="radio" name="color" value="black" hidden>
+                <span class="swatch" data-color="black" title="Black"></span>
+              </div>
             </div>
-            <div class="form-group">
-              <input type="email" name="email" placeholder="Your Email">
+            <div class="row">
+              <label for="ksize1">Size</label>
+              <select id="ksize1" class="select" name="size">
+                <option>XS</option><option selected>S</option><option>M</option>
+              </select>
+              <label for="kqty1">Qty</label>
+              <input id="kqty1" class="qty" type="number" name="qty" value="1" min="1">
             </div>
-            <div class="form-group">
-              <textarea name="message" placeholder="Your Message"></textarea> 
-            </div>
-            <button class="submitbtn" type="submit">Submit Message</button>
+            <button class="add-btn" type="submit">Add to cart</button>
           </form>
-        </div>
-        <div class="contact-info"></div>
-        <h3>Contact Information</h3>
-        <p>+44 7341 371665</p>
-        <p>240200938@aston.ac.uk</p>
-        <p>2A Aston Street, Birmingham</p>
+        </article>
+
+        <article class="product-card">
+          <img class="product-img" src=" " alt="LC Kids Tee 2">
+          <h3 class="product-title">LC Kids Tee 2</h3>
+          <div class="product-price">£13.49</div>
+          <form class="opts add-to-cart-form"
+                data-sku="KID-TEE-002" data-name="LC Kids Tee 2"
+                data-price="13.49" data-image=" ">
+            <div class="row">
+              <label>Colour</label>
+              <div class="swatches">
+                <input type="radio" name="color" value="pink" hidden checked>
+                <span class="swatch active" data-color="pink" title="Pink"></span>
+                <input type="radio" name="color" value="white" hidden>
+                <span class="swatch" data-color="white" title="White"></span>
+              </div>
+            </div>
+            <div class="row">
+              <label for="ksize2">Size</label>
+              <select id="ksize2" class="select" name="size">
+                <option>XS</option><option selected>S</option><option>M</option>
+              </select>
+              <label for="kqty2">Qty</label>
+              <input id="kqty2" class="qty" type="number" name="qty" value="1" min="1">
+            </div>
+            <button class="add-btn" type="submit">Add to cart</button>
+          </form>
+        </article>
       </div>
     </div>
   </section>
@@ -166,22 +207,23 @@
     <div class="container footer-grid">
       <div>
         <h5>Support</h5>
-        <a href="help.html">Help</a>
-        <a href="delivery.html">Delivery</a>
-        <a href="returns.html">Returns</a>
-        <a href="contact.html">Contact Us</a>
+        <a href="#">Help</a>
+        <a href="#">Delivery</a>
+        <a href="#">Returns</a>
+        <a href="contact.php">Contact Us</a>
       </div>
       <div>
         <h5>About</h5>
-        <a href="company.html">Company</a>
-        <a href="sustainability.html">Sustainability</a>
-        <a href="careers.html">Careers</a>
+        <a href="aboutus.php">About Us</a>
+        <a href="#">Company</a>
+        <a href="#">Sustainability</a>
+        <a href="#">Careers</a>
       </div>
       <div>
         <h5>Legal</h5>
-        <a href="terms.html">Terms</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="cookies.html">Cookies</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Cookies</a>
       </div>
     </div>
     <div class="container footer-bottom">
@@ -190,14 +232,5 @@
   </footer>
 
   <script src="app.js"></script>
-  <script>
-  const textarea = document.querySelector('textarea');
-
-  textarea.addEventListener('input', () => {
-    textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
-  });
-</script>
-
 </body>
 </html>

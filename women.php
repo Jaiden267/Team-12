@@ -1,3 +1,6 @@
+<?php
+require_once 'db_connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +26,7 @@
   <header class="site-header">
     <!-- Brand logo that links to the home page -->
     <div class="container header-inner">
-      <a href="index.html" class="brand" aria-label="Lunare Clothing Home"> 
+      <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
         
         <span class="wordmark">LUNARE CLOTHING</span>
@@ -184,11 +187,11 @@
         <a href="#">Help</a>
         <a href="#">Delivery</a>
         <a href="#">Returns</a>
-        <a href="contact.html">Contact Us</a>
+        <a href="contact.php">Contact Us</a>
       </div>
       <div>
         <h5>About</h5>
-        <a href="aboutus.html">About Us</a>
+        <a href="aboutus.php">About Us</a>
         <a href="#">Company</a>
         <a href="#">Sustainability</a>
         <a href="#">Careers</a>
