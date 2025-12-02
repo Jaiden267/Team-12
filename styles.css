@@ -864,6 +864,7 @@ body{
   .mega-col a{ padding:8px 0 }
   .hero-inner{ grid-template-columns:1fr; min-height:unset }
 }
+
 @media (max-width: 640px){
   .footer-grid{ grid-template-columns:1fr }
 }
@@ -893,6 +894,7 @@ body{
   flex-direction:column; 
   gap:10px;
 }
+
 .product-img{ 
   width:100%; 
   aspect-ratio:4/3; 
