@@ -173,4 +173,60 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-// Enf of contact form validation
+// End of contact form validation
+
+// DARK MODE
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+
+// Check saved preference
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+    setSunIcon();
+}
+
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+        setSunIcon();
+    } else {
+        localStorage.setItem("theme", "light");
+        setMoonIcon();
+    }
+});
+
+// Swap SVG icons
+function setSunIcon() {
+    themeIcon.innerHTML = `
+        <circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/>
+        <line x1="12" y1="1" x2="12" y2="4" stroke="currentColor" stroke-width="2"/>
+        <line x1="12" y1="20" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+        <line x1="1" y1="12" x2="4" y2="12" stroke="currentColor" stroke-width="2"/>
+        <line x1="20" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"/>
+    `;
+}
+
+function setMoonIcon() {
+    themeIcon.innerHTML = `
+        <path d="M21 12.79A9 9 0 0111.21 3a7 7 0 100 14A9 9 0 0121 12.79z"
+              fill="currentColor"/>
+    `;
+}
+
+
+// ACCESSIBILITY ZOOM
+let zoomLevel = 1;
+
+document.getElementById("zoomIn").addEventListener("click", () => {
+    zoomLevel += 0.1;
+    document.body.style.transform = `scale(${zoomLevel})`;
+    document.body.style.transformOrigin = "top center";
+});
+
+document.getElementById("zoomOut").addEventListener("click", () => {
+    zoomLevel = Math.max(1, zoomLevel - 0.1);
+    document.body.style.transform = `scale(${zoomLevel})`;
+    document.body.style.transformOrigin = "top center";
+});

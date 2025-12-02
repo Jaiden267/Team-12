@@ -34,6 +34,33 @@ require_once 'db_connect.php';
                 <a href="register.php" class="link">Register</a>
                 <a href="signin.php" class="link">Sign In</a>
             <?php endif; ?>
+
+            <!-- testing dark mode -->
+             <button id="themeToggle" class="utility-btn" title="Toggle dark mode">
+    <!-- Minimal Moon Icon -->
+    <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 0111.21 3a7 7 0 100 14A9 9 0 0121 12.79z"
+              fill="currentColor"/>
+    </svg>
+</button>
+
+<button id="zoomIn" class="utility-btn" title="Increase text size">
+    <svg width="18" height="18" viewBox="0 0 24 24">
+        <circle cx="10" cy="10" r="7" stroke="currentColor" fill="none" stroke-width="2"/>
+        <line x1="15" y1="15" x2="22" y2="22" stroke="currentColor" stroke-width="2"/>
+        <text x="7" y="13" font-size="8" font-weight="bold" fill="currentColor">A+</text>
+    </svg>
+</button>
+
+<button id="zoomOut" class="utility-btn" title="Decrease text size">
+    <svg width="18" height="18" viewBox="0 0 24 24">
+        <circle cx="10" cy="10" r="7" stroke="currentColor" fill="none" stroke-width="2"/>
+        <line x1="15" y1="15" x2="22" y2="22" stroke="currentColor" stroke-width="2"/>
+        <text x="7" y="13" font-size="8" font-weight="bold" fill="currentColor">A-</text>
+    </svg>
+</button>
+
+        
         </div>
 
     </div>
