@@ -2,7 +2,6 @@
 session_start();
 require_once 'db_connect.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,57 +118,56 @@ require_once 'db_connect.php';
         </ul>
       </nav>
 
-      <!-- Action buttons on the header: search toggle, favourites, bag -->
       <div class="actions">
-        <!-- Search toggle -->
         <button id="searchToggle" class="icon-btn" aria-expanded="false" aria-controls="searchBar" title="Search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="2"/><line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
         </button>
-        <!-- Favourites / wishlist button -->
         <button class="icon-btn" title="Favourites">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9-8.5S5 2 8.5 5.5L12 9l3.5-3.5C19 2 25 7 21 12.5S12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
         </button>
-        <!-- Shopping bag / cart button -->
         <button class="icon-btn" title="Bag">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a3 3 0 1 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
         </button>
       </div>
     </div>
 
-    <!-- Hidden search bar-->
     <div id="searchBar" class="searchbar" hidden>
       <div class="container">
         <form id="searchForm" role="search" aria-label="Site search">
           <input type="search" id="q" placeholder="Search" aria-label="Search" />
           <button type="submit" class="btn">Search</button>
         </form>
-        <!-- A small hint to help users with example queries -->
         <p class="search-hint">Try “Joggers” or “Tracksuits”.</p>
       </div>
     </div>
   </header>
 
-  <!-- Main content area: hero / promotional content -->
-  <main>
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <h1>ALL NEW ARRIVALS</h1>
-          <p>Fresh drops for the season. Shop the latest picks from Lunare Clothing.</p>
-          <div class="cta">
-            <!-- Primary calls-to-action -->
-            <a class="btn primary" href="#">Shop Men</a>
-            <a class="btn" href="#">Shop Women</a>
-            <a class="btn" href="#">Shop Kids</a>
-          </div>
-        </div>
-        <!-- Decorative artwork area for the hero -->
-        <div class="hero-art" aria-hidden="true"></div>
-      </div>
-    </section>
-  </main>
+  <section class ="payment-section">
+    <div class="payment-container">
+        <form action="" method="POST">
+            <h1>Payment Details</h1>
+            <div class="form-row">
+                <label>Cardholder Name </label>
+                <input type="text" name="cardholder_name" id="cardholder_name">
+                </div>
+                    <div class="form-row">
+                        <label>Card Number </label>
+                        <input type="text" name="card_number" id="card_number" required placeholder="0000 0000 0000 0000">
+                        </div>
+                        <div class="form-row">
+                            <label>Expiration Date </label>
+                            <input type="date" name="exp_date" id="exp_date" required>
+                            </div>
+                            <div class="form-row">
+                                <label>CVV </label>
+                                <input type="password" name="cvv" id="cvv" required placeholder="123" maxlength="3" style="width: 100px;">
+                                </div>
+                                <input type="submit" class="pay-btn" value="Pay Now">
+                                </form>
+                                </div>
+        
+  </section>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
@@ -194,12 +192,19 @@ require_once 'db_connect.php';
       </div>
     </div>
     <div class="container footer-bottom">
-      
       <span>© <span id="year"></span> Lunare Clothing</span>
     </div>
   </footer>
 
-  <!-- Link with javascript file -->
   <script src="app.js"></script>
+  <script>
+  const textarea = document.querySelector('textarea');
+
+  textarea.addEventListener('input', () => {
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
+  });
+</script>
+
 </body>
 </html>
