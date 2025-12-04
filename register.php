@@ -13,6 +13,20 @@ require_once 'db_connect.php';
 
   <link rel="stylesheet" href="styles.css" />
 </head>
+<script>
+document.querySelector("form").addEventListener("submit", function(e) {
+    const email = document.querySelector("input[name='email']").value;
+
+    // Strong email regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+
+    if (!emailRegex.test(email)) {
+        e.preventDefault();
+        alert("Please enter a valid email address (example: name@example.com).");
+    }
+});
+</script>
+
 <body>
  <div class="utility-strip">
     <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
