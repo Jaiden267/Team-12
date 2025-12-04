@@ -14,7 +14,7 @@ require_once 'db_connect.php';
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div class="utility-strip">
+ <div class="utility-strip">
     <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
         
         
@@ -70,14 +70,8 @@ require_once 'db_connect.php';
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="#">All Clothing</a>
-                <a href="#">Tops & T-Shirts</a>
-                <a href="#">Hoodies & Sweatshirts</a>
-                <a href="#">Shorts</a>
-                <a href="#">Tracksuits</a>
-                <a href="#">Trousers & Tights</a>
-                <a href="#">Jackets</a>
-                <a href="#">Accessories</a>
+                <a href="menstrousers.php">Trousers</a>
+                <a href="mensshorts.php">Shorts</a>
               </div>
             </div>
           </li>
@@ -98,11 +92,8 @@ require_once 'db_connect.php';
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="#">All Clothing</a>
-                <a href="#">Tops & T-Shirts</a>
-                <a href="#">Hoodies & Sweatshirts</a>
-                <a href="#">Leggings & Tights</a>
-                <a href="#">Jackets</a>
+                <a href="womenscoats.php">Coats</a>
+                <a href="womensshirts.php">Shirts</a>
               </div>
             </div>
           </li>
@@ -117,7 +108,7 @@ require_once 'db_connect.php';
               </div>
               <div class="mega-col">
                 <h4>Kids</h4>
-                <a href="#">Shoes</a>
+                <a href="kidstshirts.php">T-Shirts</a>
                 <a href="#">Clothing</a>
               </div>
             </div>

@@ -12,12 +12,10 @@ require_once 'db_connect.php';
   <!-- Page Title -->
   <title>Lunare Clothing — Home</title>
 
-  <!-- Link to main stylesheet -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Utility strip: small top bar for promotions and quick links -->
-<div class="utility-strip">
+ <div class="utility-strip">
     <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
         
         
@@ -35,100 +33,84 @@ require_once 'db_connect.php';
                 <a href="signin.php" class="link">Sign In</a>
             <?php endif; ?>
         </div>
+
     </div>
 </div>
 
-  <!-- Header including brand, navigation and actions (search, fav, bag) -->
+  <!-- Header including brand, navigation and actions -->
   <header class="site-header">
-    <!-- Brand logo that brings back to the home page-->
+    <!-- Brand logo that links to the home page -->
     <div class="container header-inner">
-      <a href="index.php" class="brand" aria-label="Lunare Clothing Home">
+      <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
         
-        <!-- Wordmark text shown alongside the logo -->
         <span class="wordmark">LUNARE CLOTHING</span>
       </a>
 
-      <!-- Primary navigation -->
       <nav class="primary-nav" aria-label="Primary">
         
-        <!-- Hamburger button for mobile menu toggle -->
         <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu">
           <span></span><span></span><span></span>
           <span class="sr-only">Toggle menu</span>
         </button>
 
-        <!-- Main menu list -->
         <ul class="menu">
-          <li><a href="new.php" class="nav-link">New</a></li>
+          <li><a href="#" class="nav-link">New</a></li>
 
-          <!-- Mega menu: Men -->
           <li class="has-mega">
-            <!-- Button opens the Men mega menu -->
             <button class="nav-link" data-menu="men" aria-expanded="false">Men</button>
             <div class="mega" id="mega-men" role="dialog" aria-label="Men menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="mennewinmen.php">New in Men</a>
-                <a href="menbestseller.php">Bestseller</a>
+                <a href="#">New in Men</a>
+                <a href="#">Bestseller</a>
               </div>
               <div class="mega-col">
                 <h4>Shoes</h4>
-                <a href="menallshoes.php">All Shoes</a>
+                <a href="#">All Shoes</a>
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="menallclothing.php">All Clothing</a>
-                <a href="mentopsandtshirts.php">Tops & T-Shirts</a>
-                <a href="menhoodiesandsweatshirts.php">Hoodies & Sweatshirts</a>
-                <a href="menshorts.php">Shorts</a>
-                <a href="mentracksuits.php">Tracksuits</a>
-                <a href="mentrousersandtights.php">Trousers & Tights</a>
-                <a href="menjackets.php">Jackets</a>
-                <a href="menaccessories.php">Accessories</a>
+                <a href="menstrousers.php">Trousers</a>
+                <a href="mensshorts.php">Shorts</a>
               </div>
             </div>
           </li>
 
-          <!-- Mega menu: Women -->
           <li class="has-mega">
             <button class="nav-link" data-menu="women" aria-expanded="false">Women</button>
             <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="newinwomen.php">New in Women</a>
-                <a href="womenbestseller.php">Bestseller</a>
+                <a href="#">New in Women</a>
+                <a href="#">Bestseller</a>
                 
               </div>
               <div class="mega-col">
                 <h4>Shoes</h4>
-                <a href="womenshoes.php">All Shoes</a>
+                <a href="#">All Shoes</a>
 
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="womenallclothing.php">All Clothing</a>
-                <a href="womenalltopsandshirts.php">Tops & T-Shirts</a>
-                <a href="womenhoodiesandsweatshirts.php">Hoodies & Sweatshirts</a>
-                <a href="womenleggingsandtights.php">Leggings & Tights</a>
-                <a href="womenjackets.php">Jackets</a>
+                <a href="womenscoats.php">Coats</a>
+                <a href="womensshirts.php">Shirts</a>
               </div>
             </div>
           </li>
 
-          <!-- Mega menu: Kids -->
           <li class="has-mega">
             <button class="nav-link" data-menu="kids" aria-expanded="false">Kids</button>
             <div class="mega" id="mega-kids" role="dialog" aria-label="Kids menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="newforkids.php">New for Kids</a>
-                <a href="kidsbestseller.php">Bestseller</a>
+                <a href="#">New for Kids</a>
+                <a href="#">Bestseller</a>
               </div>
               <div class="mega-col">
                 <h4>Kids</h4>
-                <a href="kidsshoes.php">Shoes</a>
-                <a href="kidsclothing.php">Clothing</a>
+                <a href="kidstshirts.php">T-Shirts</a>
+                <a href="#">Clothing</a>
               </div>
             </div>
           </li>

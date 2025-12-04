@@ -174,4 +174,3 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 // Enf of contact form validation
-

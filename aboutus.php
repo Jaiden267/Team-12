@@ -13,8 +13,17 @@ require_once 'db_connect.php';
 
   <link rel="stylesheet" href="styles.css" />
 </head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <!-- Page Title -->
+  <title>Lunare Clothing — Home</title>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
 <body>
-  <div class="utility-strip">
+ <div class="utility-strip">
     <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
         
         
@@ -35,6 +44,7 @@ require_once 'db_connect.php';
 
     </div>
 </div>
+
   <!-- Header including brand, navigation and actions -->
   <header class="site-header">
     <!-- Brand logo that links to the home page -->
@@ -69,18 +79,11 @@ require_once 'db_connect.php';
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="#">All Clothing</a>
-                <a href="#">Tops & T-Shirts</a>
-                <a href="#">Hoodies & Sweatshirts</a>
-                <a href="#">Shorts</a>
-                <a href="#">Tracksuits</a>
-                <a href="#">Trousers & Tights</a>
-                <a href="#">Jackets</a>
-                <a href="#">Accessories</a>
+                <a href="menstrousers.php">Trousers</a>
+                <a href="mensshorts.php">Shorts</a>
               </div>
             </div>
           </li>
-
           <li class="has-mega">
             <button class="nav-link" data-menu="women" aria-expanded="false">Women</button>
             <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
@@ -97,11 +100,8 @@ require_once 'db_connect.php';
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="#">All Clothing</a>
-                <a href="#">Tops & T-Shirts</a>
-                <a href="#">Hoodies & Sweatshirts</a>
-                <a href="#">Leggings & Tights</a>
-                <a href="#">Jackets</a>
+                <a href="womenscoats.php">Coats</a>
+                <a href="womensshirts.php">Shirts</a>
               </div>
             </div>
           </li>
@@ -116,7 +116,7 @@ require_once 'db_connect.php';
               </div>
               <div class="mega-col">
                 <h4>Kids</h4>
-                <a href="#">Shoes</a>
+                <a href="kidstshirts.php">T-Shirts</a>
                 <a href="#">Clothing</a>
               </div>
             </div>
@@ -138,7 +138,6 @@ require_once 'db_connect.php';
         </button>
       </div>
     </div>
-
     <div id="searchBar" class="searchbar" hidden>
       <div class="container">
         <form id="searchForm" role="search" aria-label="Site search">
