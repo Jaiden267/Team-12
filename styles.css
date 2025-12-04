@@ -679,4 +679,69 @@ body{
 @media (max-width:640px){
   .product-grid{ grid-template-columns: 1fr; }
 }
-sss
+
+/* Mini basket hover preview */
+.cart-hover{
+  position:relative;
+}
+
+.cart-preview{
+  position:absolute;
+  top:100%;
+  right:0;
+  margin-top:8px;
+  width:260px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
+  padding:10px 12px;
+  z-index:60;
+  display:none;
+}
+
+.cart-preview.open{
+  display:block;
+}
+
+.cart-preview-item{
+  display:flex;
+  gap:8px;
+  padding:6px 0;
+  border-bottom:1px solid var(--line);
+  align-items:flex-start;
+}
+
+.cart-preview-item:last-child{
+  border-bottom:none;
+}
+
+.cart-preview-img{
+  width:40px;
+  height:40px;
+  border-radius:6px;
+  border:1px solid var(--line);
+  object-fit:cover;
+  background:#fafafa;
+}
+
+.cart-preview-text{
+  font-size:13px;
+}
+
+.cart-preview-name{
+  font-weight:600;
+}
+
+.cart-preview-meta{
+  font-size:12px;
+  color:var(--ink-3);
+}
+
+.cart-preview-footer{
+  margin-top:8px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:13px;
+}
