@@ -228,9 +228,114 @@ require_once 'db_connect.php';
     </div>
 </footer>
 
+
 <script src="app.js"></script>
 <script>
+const bodyEl = document.getElementById('cartBody');
+const emptyEl = document.getElementById('cartEmpty');
+const tableWrap = document.getElementById('cartTableWrap');
+const subtotalEl = document.getElementById('subtotal');
+const grandEl = document.getElementById('grandTotal');
 
+function fmt(n){ return '£' + (Number(n||0)).toFixed(2); }
+
+function renderCart(){
+  const items = (typeof loadCart === 'function') ? loadCart() : [];
+  bodyEl.innerHTML = '';
+
+  if (!items.length){
+    emptyEl.hidden = false;
+    tableWrap.hidden = true;
+    subtotalEl.textContent = fmt(0);
+    grandEl.textContent = fmt(0);
+    return;
+  }
+
+  emptyEl.hidden = true;
+  tableWrap.hidden = false;
+
+  let subtotal = 0;
+
+  items.forEach((it, idx) => {
+    const line = (it.price || 0) * (it.qty || 0);
+    subtotal += line;
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>
+        <div class="cart-item">
+          <img class="cart-img" src="${it.image || ''}" alt="">
+          <div>
+            <div style="font-weight:700">${it.name || ''}</div>
+            <div class="muted">${it.sku || ''}</div>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div><span class="muted">Colour:</span> ${String(it.color||'').toUpperCase()}</div>
+        <div><span class="muted">Size:</span> ${it.size || ''}</div>
+      </td>
+      <td>${fmt(it.price)}</td>
+      <td>
+        <div class="qty-ctrl" data-idx="${idx}">
+          <button type="button" class="minus" aria-label="Decrease quantity">−</button>
+          <input type="number" class="qty-input" min="1" value="${it.qty || 1}" aria-label="Quantity">
+          <button type="button" class="plus" aria-label="Increase quantity">+</button>
+        </div>
+      </td>
+      <td class="text-right price">${fmt(line)}</td>
+      <td class="text-right">
+        <button class="link-btn remove" data-idx="${idx}" aria-label="Remove item">Remove</button>
+      </td>
+    `;
+    bodyEl.appendChild(tr);
+  });
+
+  subtotalEl.textContent = fmt(subtotal);
+  grandEl.textContent = fmt(subtotal);
+
+
+  bodyEl.querySelectorAll('.qty-ctrl').forEach(ctrl => {
+    const idx = Number(ctrl.dataset.idx);
+    const input = ctrl.querySelector('.qty-input');
+
+    ctrl.querySelector('.minus').addEventListener('click', () => {
+      const items = loadCart();
+      items[idx].qty = Math.max(1, Number(items[idx].qty||1) - 1);
+      saveCart(items);
+      renderCart();
+    });
+
+    ctrl.querySelector('.plus').addEventListener('click', () => {
+      const items = loadCart();
+      items[idx].qty = Number(items[idx].qty||1) + 1;
+      saveCart(items);
+      renderCart();
+    });
+
+    input.addEventListener('change', () => {
+      const items = loadCart();
+      let val = Number(input.value);
+      if (!Number.isFinite(val) || val < 1) val = 1;
+      items[idx].qty = val;
+      saveCart(items);
+      renderCart();
+    });
+  });
+
+
+  bodyEl.querySelectorAll('.remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = Number(btn.dataset.idx);
+      const items = loadCart();
+      items.splice(idx, 1);
+      saveCart(items);
+      renderCart();
+    });
+  });
+}
+
+renderCart();
 </script>
 
 </body>
