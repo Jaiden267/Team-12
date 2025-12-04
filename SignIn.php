@@ -157,14 +157,14 @@ require_once 'db_connect.php';
 
     <!-- SEARCH BAR FOR SEARCHING -->
     <div id="searchBar" class="searchbar" hidden>
-      <div class="container">
-        <form role="search" aria-label="Site search">
-          <input type="search" placeholder="Search" />
-          <button type="submit" class="btn">Search</button>
-        </form>
-        <p class="search-hint">Try “Joggers” or “Tracksuits”.</p>
-      </div>
-    </div>
+  <div class="container">
+    <form id="searchForm" role="search" aria-label="Site search">
+      <input type="search" id="q" placeholder="Search" aria-label="Search" />
+      <button type="submit" class="btn">Search</button>
+    </form>
+    <p class="search-hint">Try “Joggers” or “Tracksuits”.</p>
+  </div>
+</div>
 
   </header>
 
@@ -232,5 +232,7 @@ require_once 'db_connect.php';
       <span>© <span id="year"></span> Lunare Clothing</span>
     </div>
   </footer>
+<script src="app.js"></script>
 </body>
 </html>
+

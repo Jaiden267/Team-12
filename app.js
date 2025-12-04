@@ -122,55 +122,98 @@ document.addEventListener('click', function(e){
   if (radio) radio.checked = true;
 });
 
-// Validation for contact form
+// Validation for contact + register forms and global search
 document.addEventListener("DOMContentLoaded", () => {
+  // ==== CONTACT FORM VALIDATION ====
   const contactForm = document.querySelector(".contact-form form");
-  if (!contactForm) return;
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      const nameInput = contactForm.querySelector("input[name='name']");
+      const emailInput = contactForm.querySelector("input[name='email']");
+      const messageInput = contactForm.querySelector("textarea[name='message']");
 
-  contactForm.addEventListener("submit", function (e) {
-    const nameInput = contactForm.querySelector("input[name='name']");
-    const emailInput = contactForm.querySelector("input[name='email']");
-    const messageInput = contactForm.querySelector("textarea[name='message']");
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const message = messageInput.value.trim();
 
-    const name = nameInput.value.trim();
-    const email = emailInput.value.trim();
-    const message = messageInput.value.trim();
+      // Email regex pattern (same style we'll use for register)
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
 
-    // Email regex pattern
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      let errors = [];
 
-    let errors = [];
+      // Reset borders
+      nameInput.style.border = "";
+      emailInput.style.border = "";
+      messageInput.style.border = "";
 
-    // Reset borders
-    nameInput.style.border = "";
-    emailInput.style.border = "";
-    messageInput.style.border = "";
+      // Validate name
+      if (name.length < 2) {
+        errors.push("• Name must be at least 2 characters");
+        nameInput.style.border = "2px solid red";
+      }
 
-    // Validate name
-    if (name.length < 2) {
-      errors.push("• Name must be at least 2 characters");
-      nameInput.style.border = "2px solid red";
-    }
+      // Validate email
+      if (!emailRegex.test(email)) {
+        errors.push("• Enter a valid email address");
+        emailInput.style.border = "2px solid red";
+      }
 
-    // Validate email
-    if (!emailRegex.test(email)) {
-      errors.push("• Enter a valid email address");
-      emailInput.style.border = "2px solid red";
-    }
+      // Validate message
+      if (message.length < 5) {
+        errors.push("• Message must be at least 5 characters long");
+        messageInput.style.border = "2px solid red";
+      }
 
-    // Validate message
-    if (message.length < 5) {
-      errors.push("• Message must be at least 5 characters long");
-      messageInput.style.border = "2px solid red";
-    }
+      if (errors.length > 0) {
+        e.preventDefault();
+        alert("Please fix the following:\n\n" + errors.join("\n"));
+        return false;
+      }
+    });
+  }
 
-    // If there are ANY errors → show one popup message
-    if (errors.length > 0) {
-      e.preventDefault(); // stop form submission
+  // ==== REGISTER FORM EMAIL VALIDATION ====
+  const registerForm = document.querySelector('form[action="register_process.php"]');
+  if (registerForm) {
+    registerForm.addEventListener("submit", function (e) {
+      const emailInput = registerForm.querySelector("input[name='email']");
+      const email = emailInput.value.trim();
 
-      alert("Please fix the following:\n\n" + errors.join("\n"));
-      return false;
-    }
-  });
+      // SAME pattern as contact form
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+
+      emailInput.style.border = "";
+
+      if (!emailRegex.test(email)) {
+        e.preventDefault();
+        emailInput.style.border = "2px solid red";
+        alert("Please enter a valid email address (example: name@example.com).");
+      }
+    });
+  }
+
+  const searchForm = document.getElementById("searchForm");
+  const searchInput = document.getElementById("q");
+
+  if (searchForm && searchInput) {
+    searchForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const term = searchInput.value.trim();
+      if (!term) return;  
+      
+      window.location.href = "search.php?q=" + encodeURIComponent(term);
+    });
+  }
 });
-// Enf of contact form validation
+
+// Global Search Handler
+document.getElementById("searchForm")?.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let query = document.getElementById("q").value.trim();
+
+    if (query.length === 0) return;
+
+    window.location.href = "search.php?q=" + encodeURIComponent(query);
+});
+
+// End of validations + search

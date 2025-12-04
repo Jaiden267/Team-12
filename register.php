@@ -165,14 +165,15 @@ document.querySelector("form").addEventListener("submit", function(e) {
 
     <!-- SEARCH BAR -->
     <div id="searchBar" class="searchbar" hidden>
-      <div class="container">
-        <form>
-          <input type="search" placeholder="Search" />
-          <button class="btn">Search</button>
-        </form>
-        <p class="search-hint">Try “Joggers” or “Tracksuits”.</p>
-      </div>
-    </div>
+  <div class="container">
+    <form>
+      <input type="search" placeholder="Search" />
+      <button class="btn">Search</button>
+    </form>
+    <p class="search-hint">Try “Joggers” or “Tracksuits”.</p>
+  </div>
+</div>
+
     
   </header>
 
@@ -253,5 +254,7 @@ document.querySelector("form").addEventListener("submit", function(e) {
     </div>
   </footer>
 
+<script src="app.js"></script>
 </body>
 </html>
+
