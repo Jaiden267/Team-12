@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'db_connect.php';
 ?>
 <!DOCTYPE html>
@@ -6,37 +7,47 @@ require_once 'db_connect.php';
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lunare Clothing — Sign In</title>
+  
+  <!-- Page Title -->
+  <title>Lunare Clothing — Home</title>
+
   <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
+ <div class="utility-strip">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+        
+        
+        <span>FREE DELIVERY & RETURNS</span>
 
-  <!-- Top bar with links -->
-  <div class="utility-strip">
-    <div class="container">
-      <span>FREE DELIVERY & RETURNS</span>
-      <div>
-        <a href="contact.php" class="link">Contact Us</a>
-        <a href="register.php" class="link">Register</a>
-        <a href="signin.php" class="link">Sign In</a>
-      </div>
+        
+        <div style="display:flex; gap:15px; align-items:center;">
+            <a href="contact.php" class="link">Contact Us</a>
+
+            <?php if(isset($_SESSION['user_id'])): ?>
+                <span class="link">Hello, <?= htmlspecialchars($_SESSION['first_name']); ?></span>
+                <a href="logout.php" class="link">Logout</a>
+            <?php else: ?>
+                <a href="register.php" class="link">Register</a>
+                <a href="signin.php" class="link">Sign In</a>
+            <?php endif; ?>
+        </div>
+
     </div>
-  </div>
+</div>
 
-  <!-- Header -->
+  <!-- Header including brand, navigation and actions -->
   <header class="site-header">
+    <!-- Brand logo that links to the home page -->
     <div class="container header-inner">
-
-      <!-- Logo -->
-      <a href="index.php" class="brand">
+      <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
+        
         <span class="wordmark">LUNARE CLOTHING</span>
       </a>
 
-      <!-- RESTORED FULL NAVIGATION -->
       <nav class="primary-nav" aria-label="Primary">
-
+        
         <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu">
           <span></span><span></span><span></span>
           <span class="sr-only">Toggle menu</span>
@@ -45,7 +56,6 @@ require_once 'db_connect.php';
         <ul class="menu">
           <li><a href="#" class="nav-link">New</a></li>
 
-          <!-- MEN -->
           <li class="has-mega">
             <button class="nav-link" data-menu="men" aria-expanded="false">Men</button>
             <div class="mega" id="mega-men" role="dialog" aria-label="Men menu">
@@ -60,7 +70,6 @@ require_once 'db_connect.php';
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="#">All Clothing</a>
                 <a href="#">Tops & T-Shirts</a>
                 <a href="#">Hoodies & Sweatshirts</a>
                 <a href="#">Shorts</a>
@@ -72,7 +81,6 @@ require_once 'db_connect.php';
             </div>
           </li>
 
-          <!-- WOMEN  -->
           <li class="has-mega">
             <button class="nav-link" data-menu="women" aria-expanded="false">Women</button>
             <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
@@ -80,14 +88,15 @@ require_once 'db_connect.php';
                 <h4>Highlights</h4>
                 <a href="#">New in Women</a>
                 <a href="#">Bestseller</a>
+                
               </div>
               <div class="mega-col">
                 <h4>Shoes</h4>
                 <a href="#">All Shoes</a>
+
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="#">All Clothing</a>
                 <a href="#">Tops & T-Shirts</a>
                 <a href="#">Hoodies & Sweatshirts</a>
                 <a href="#">Leggings & Tights</a>
@@ -96,7 +105,6 @@ require_once 'db_connect.php';
             </div>
           </li>
 
-          <!-- KIDS -->
           <li class="has-mega">
             <button class="nav-link" data-menu="kids" aria-expanded="false">Kids</button>
             <div class="mega" id="mega-kids" role="dialog" aria-label="Kids menu">
@@ -109,7 +117,7 @@ require_once 'db_connect.php';
                 <h4>Kids</h4>
                 <a href="#">Shoes</a>
                 <a href="#">Clothing</a>
-              </diQAFRWFRVv>
+              </div>
             </div>
           </li>
 
@@ -169,22 +177,25 @@ require_once 'db_connect.php';
       <div class="contact-form">
         <h3>Welcome Back</h3>
 
-        <form>
+        <form method="POST" action="login_process.php">
           <div class="form-group">
-            <input type="email" placeholder="Email Address" required>
+              <input type="email" name="email" placeholder="Email Address" required>
           </div>
 
           <div class="form-group">
-            <input type="password" placeholder="Password" required>
+              <input type="password" name="password" placeholder="Password" required>
           </div>
 
           <a class="forgot-password" href="#">Forgot your password?</a>
+
           <button type="submit" class="submitbtn">Sign In</button>
 
-          <p class="signup-text">Don't have an account?
-            <a href="register.php">Sign up</a>
+          <p class="signup-text">
+              Don't have an account?
+              <a href="register.php">Sign up</a>
           </p>
         </form>
+
       </div>
 
     </div>

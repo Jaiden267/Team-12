@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'db_connect.php';
 ?>
 <!DOCTYPE html>
@@ -13,14 +14,27 @@ require_once 'db_connect.php';
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="utility-strip">
-    <div class="container">
-      <span>FREE DELIVERY & RETURNS</span>
-      <a href="contact.php" class="link">Contact Us</a>
-      <a href="register.php" class="link">Register</a>
-      <a href="signin.php" class="link">Sign In</a>
+ <div class="utility-strip">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+        
+        
+        <span>FREE DELIVERY & RETURNS</span>
+
+        
+        <div style="display:flex; gap:15px; align-items:center;">
+            <a href="contact.php" class="link">Contact Us</a>
+
+            <?php if(isset($_SESSION['user_id'])): ?>
+                <span class="link">Hello, <?= htmlspecialchars($_SESSION['first_name']); ?></span>
+                <a href="logout.php" class="link">Logout</a>
+            <?php else: ?>
+                <a href="register.php" class="link">Register</a>
+                <a href="signin.php" class="link">Sign In</a>
+            <?php endif; ?>
+        </div>
+
     </div>
-  </div>
+</div>
 
   <!-- Header including brand, navigation and actions -->
   <header class="site-header">
@@ -56,14 +70,8 @@ require_once 'db_connect.php';
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="#">All Clothing</a>
-                <a href="#">Tops & T-Shirts</a>
-                <a href="#">Hoodies & Sweatshirts</a>
-                <a href="#">Shorts</a>
-                <a href="#">Tracksuits</a>
-                <a href="#">Trousers & Tights</a>
-                <a href="#">Jackets</a>
-                <a href="#">Accessories</a>
+                <a href="menstrousers.php">Trousers</a>
+                <a href="mensshorts.php">Shorts</a>
               </div>
             </div>
           </li>
@@ -84,11 +92,8 @@ require_once 'db_connect.php';
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="#">All Clothing</a>
-                <a href="#">Tops & T-Shirts</a>
-                <a href="#">Hoodies & Sweatshirts</a>
-                <a href="#">Leggings & Tights</a>
-                <a href="#">Jackets</a>
+                <a href="womenscoats.php">Coats</a>
+                <a href="womensshirts.php">Shirts</a>
               </div>
             </div>
           </li>
@@ -103,7 +108,7 @@ require_once 'db_connect.php';
               </div>
               <div class="mega-col">
                 <h4>Kids</h4>
-                <a href="#">Shoes</a>
+                <a href="kidstshirts.php">T-Shirts</a>
                 <a href="#">Clothing</a>
               </div>
             </div>
@@ -163,7 +168,7 @@ require_once 'db_connect.php';
         <div class="contact-info"></div>
         <h3>Contact Information</h3>
         <p>+44 7341 371665</p>
-        <p>240200938@aston.ac.uk</p>
+        <p>lunare.clothing@mail.com</p>
         <p>2A Aston Street, Birmingham</p>
       </div>
     </div>

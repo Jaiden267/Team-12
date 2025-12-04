@@ -2,6 +2,7 @@
 session_start();
 require_once 'db_connect.php';
 $result = $conn->query("SELECT products.*, image_url FROM products LEFT JOIN product_images ON products.product_id = product_images.product_id WHERE category_id = 5");
+$plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price FROM product_variants WHERE product_id = ?");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,14 +72,8 @@ $result = $conn->query("SELECT products.*, image_url FROM products LEFT JOIN pro
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="#">All Clothing</a>
-                <a href="#">Tops & T-Shirts</a>
-                <a href="#">Hoodies & Sweatshirts</a>
-                <a href="#">Shorts</a>
-                <a href="#">Tracksuits</a>
-                <a href="#">Trousers & Tights</a>
-                <a href="#">Jackets</a>
-                <a href="#">Accessories</a>
+                <a href="menstrousers.php">Trousers</a>
+                <a href="mensshorts.php">Shorts</a>
               </div>
             </div>
           </li>
@@ -99,11 +94,8 @@ $result = $conn->query("SELECT products.*, image_url FROM products LEFT JOIN pro
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="#">All Clothing</a>
-                <a href="#">Tops & T-Shirts</a>
-                <a href="#">Hoodies & Sweatshirts</a>
-                <a href="#">Leggings & Tights</a>
-                <a href="#">Jackets</a>
+                <a href="womenscoats.php">Coats</a>
+                <a href="womensshirts.php">Shirts</a>
               </div>
             </div>
           </li>
@@ -118,7 +110,7 @@ $result = $conn->query("SELECT products.*, image_url FROM products LEFT JOIN pro
               </div>
               <div class="mega-col">
                 <h4>Kids</h4>
-                <a href="#">Shoes</a>
+                <a href="kidstshirts.php">T-Shirts</a>
                 <a href="#">Clothing</a>
               </div>
             </div>
@@ -151,40 +143,52 @@ $result = $conn->query("SELECT products.*, image_url FROM products LEFT JOIN pro
       </div>
     </div>
   </header>
-
-
-  <div class="page-header"><div class="container"><h1>Womens — Shirts</h1></div></div>
-
+  <div class="page-header"><div class="container"><h1>Mens — Shorts</h1></div></div>
   <section class="products">
     <div class="container">
 <div class="product-grid">
-  <?php while($row = $result->fetch_assoc()):?>
-    <article class="product-card">
-      <img class="product-img" src="<?= htmlspecialchars($row['image_url']); ?>" alt="<?= htmlspecialchars($row['name']);?>">
-      <h3 class="product-name"><?= htmlspecialchars($row['name']);?></h3>
-      <div class="product-price">£<?= $row['base_price'];?></div>
-      <form class="opts add-to-cart-form"
-      data-sku="<?= $row['product_id'];?>"
-      data-name="<?= htmlspecialchars($row['name']);?>"
-      data-price="<?= $row['base_price'];?>"
-      data-image="<?= htmlspecialchars($row['image_url']); ?>">
-      <div class="row">
-      <label for="size-<?=$row['product_id'];?>">Size:</label>
-      <select id="size-<?=$row['product_id'];?>" class="select" name="size">
-        <option value="S">S</option>
-        <option value="M">M</option>
-        <option value="L">L</option>
-        <option value="XL">XL</option>
-      </select>
-      <label for="qty-<?= $row['product_id'];?>">Qty:</label>
-      <input id="qty-<?= $row['product_id'];?>" class="qty" type="number" name="qty" value="1" min="1" max="5" />
-      </div>
-      <button class="add-btn" type="submit">Add to Cart</button>
-      </form>
-    </article>
-      <?php endwhile; ?>
+  <?php while($row = $result->fetch_assoc()): 
+$productid = $row['product_id'];
+    $plswork2->bind_param("i", $productid);
+    $plswork2->execute();
+    $vresult = $plswork2->get_result();
+    $variants = [];
+    while($v = $vresult->fetch_assoc()) {
+        $variants[] = $v;}
+        $current_price = !empty($variants) ? $variants[0]['additional_price'] : $row['base_price']; ?>
+        <article class="product-card">
+          <a href="indproduct.php?id=<?= $row['product_id']; ?>">
+            <img class="product-img" src="<?= htmlspecialchars($row['image_url']); ?>" alt="<?= htmlspecialchars($row['name']);?>"></a>
+            <a href="indproduct.php?id=<?= $row['product_id']; ?>" style="text-decoration: none; color: inherit;">
+              <h3 class="product-name"><?= htmlspecialchars($row['name']);?></h3></a>
+              <div class="product-price" id="price-display-<?= $row['product_id']; ?>">£<?= number_format($current_price, 2); ?></div>
+              <form class="opts add-to-cart-form"
+              data-sku="<?= $row['product_id'];?>"
+              data-name="<?= htmlspecialchars($row['name']);?>"
+              data-price="<?= $current_price;?>"
+              data-image="<?= htmlspecialchars($row['image_url']); ?>">
+              <div class="row">
+                <label for="size-<?=$row['product_id'];?>">Size:</label>
+                <select id="size-<?=$row['product_id'];?>" class="select grid-size-select" name="size" data-product-id="<?= $row['product_id']; ?>">
+                  <?php if(!empty($variants)): ?>
+                    <?php foreach($variants as $var): ?>
+                      <option value="<?= $var['variant_id']; ?>"
+                      data-price="<?= $var['additional_price']; ?>">
+                      <?= htmlspecialchars($var['attribute_value']); ?>
+                      </option>
+                      <?php endforeach; ?>
+                      <?php endif; ?>
+                      </select>
+                      <label for="qty-<?= $row['product_id'];?>">Qty:</label>
+                      <input id="qty-<?= $row['product_id'];?>" class="qty" type="number" name="qty" value="1" min="1" max="5" />
+                      </div>
+                      <button class="add-btn" type="submit">Add to Cart</button>
+                      </form>
+                      </article>
+                      <?php endwhile; ?>
+                      </div>
+</div>
   </section>
-
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
@@ -212,7 +216,20 @@ $result = $conn->query("SELECT products.*, image_url FROM products LEFT JOIN pro
       <span>© <span id="year"></span> Lunare Clothing</span>
     </div>
   </footer>
-
-  <script src="app.js"></script>
+<script>
+const workWorks = document.querySelectorAll('.grid-size-select');
+workWorks.forEach(select => {
+  select.addEventListener('change', function() {
+    const productID = this.getAttribute('data-product-id');
+    const selectedOption = this.options[this.selectedIndex];
+    const newPrice = selectedOption.getAttribute('data-price');
+    const priceDisplay = document.getElementById('price-display-' + productID);
+    if (priceDisplay) {
+      priceDisplay.innerText = '£' + parseFloat(newPrice).toFixed(2);
+    }
+  })
+})
+</script>
+<script src="app.js"></script>
 </body>
 </html>
