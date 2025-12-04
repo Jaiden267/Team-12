@@ -223,8 +223,7 @@ require_once 'db_connect.php';
 
 <script src="app.js"></script>
 <script>
-// This script EXACTLY matches the logic from basket.html (your friend's file).
-// I will give you the cleaned version inside app.js next.
+
 </script>
 
 </body>
