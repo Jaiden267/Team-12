@@ -663,7 +663,7 @@ body{
 }
 
 .product-card{
-  border:1px solid var(--line); border-radius:12px; padding:14px; background:#fff;
+  border:1px solid var(--line); border-radius:12px; padding:10px; background:#fff;
   display:flex; flex-direction:column; gap:10px;
 }
 .product-img{ width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; border:1px solid var(--line) }
@@ -675,9 +675,9 @@ body{
 .row label{ font-size:13px; color:var(--ink-2) }
 
 .select, .qty{
-  border:1px solid var(--line); border-radius:8px; padding:8px 10px; font-size:14px; background:#fff;
+  border:1px solid var(--line); border-radius:8px; padding:6px 4px; font-size:13px; background:#fff;
 }
-.qty{ width:72px }
+.qty{ width:50px; text-align: center; }
 
 .swatches{ display:flex; gap:8px }
 .swatch{
@@ -698,7 +698,7 @@ body{
   font-weight:700; cursor:pointer; border:1px solid var(--ink); background:var(--ink); color:#fff;
 }
 
-@media (max-width:980px){
+@media (max-width:1366px){
   .product-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
 @media (max-width:640px){
@@ -706,31 +706,31 @@ body{
 }
 #single-product-container{
   width: 90%;
-  height: 80vh;
   display: flex;
   position: relative;
   justify-content: center;
   place-items: center;
+  padding: 40px 0;
 }
 #single-product-box{
-  width: 80%;
-  height: 70vh;
+  width: 95%;
+  min-height: 600px;
   display: flex;
   justify-content: center;
   border-radius: 20px;
   overflow: hidden;
   background-color: white;
-  place-items: center;
+  place-items: flex-start;
 }
 #single-product-box-image {
-  width: 100%;
+  width: 55%;
   overflow:hidden;
   padding: 20px;
 }
 #single-product-box-content{
-  width: 30%;
+  width: 45%;
   background-color: white;
-  padding: 50px;
+  padding: 38px;
   color: rgb(60, 60, 60);
   display: flex;
   flex-direction: column;
