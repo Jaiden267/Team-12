@@ -217,3 +217,85 @@ document.getElementById("searchForm")?.addEventListener("submit", function (e) {
 });
 
 // End of validations + search
+
+// Cart Javascript
+function fmtPrice(n){
+  return '£' + (Number(n || 0)).toFixed(2);
+}
+
+function renderCartPreview(){
+  const wrap = document.getElementById('cartPreview');
+  const list = document.getElementById('cartPreviewItems');
+  const totalEl = document.getElementById('cartPreviewTotal');
+
+  if (!wrap || !list || !totalEl) return;
+
+  const items = loadCart();
+  list.innerHTML = '';
+
+  // Empty basket state
+  if (!items.length){
+    list.innerHTML = '<p class="cart-preview-meta">Your basket is empty.</p>';
+    totalEl.textContent = fmtPrice(0);
+    return;
+  }
+
+  let subtotal = 0;
+
+  items.slice(0, 3).forEach(it => {
+    const line = (it.price || 0) * (it.qty || 0);
+    subtotal += line;
+
+    const div = document.createElement('div');
+    div.className = 'cart-preview-item';
+    div.innerHTML = `
+      <img class="cart-preview-img" src="${it.image || ''}" alt="">
+      <div class="cart-preview-text">
+        <div class="cart-preview-name">${it.name || ''}</div>
+        <div class="cart-preview-meta">
+          ${String(it.color || '').toUpperCase()} • ${it.size || ''} • Qty: ${it.qty || 1}
+        </div>
+        <div class="cart-preview-meta">${fmtPrice(it.price || 0)}</div>
+      </div>
+    `;
+    list.appendChild(div);
+  });
+
+  if (items.length > 3){
+    const more = document.createElement('div');
+    more.className = 'cart-preview-meta';
+    more.style.paddingTop = '4px';
+    more.textContent = `+ ${items.length - 3} more item(s)…`;
+    list.appendChild(more);
+  }
+
+  totalEl.textContent = fmtPrice(
+    items.reduce((sum, it) => sum + (it.price || 0) * (it.qty || 0), 0)
+  );
+}
+
+(function initCartHover(){
+  const btn = document.getElementById('cartButton');
+  const preview = document.getElementById('cartPreview');
+  if (!btn || !preview) return;
+
+  let hideTimer = null;
+
+  function showPreview(){
+    clearTimeout(hideTimer);
+    renderCartPreview();
+    preview.classList.add('open');
+  }
+
+  function hidePreview(){
+    hideTimer = setTimeout(() => {
+      preview.classList.remove('open');
+    }, 150);
+  }
+
+  [btn, preview].forEach(el => {
+    el.addEventListener('mouseenter', showPreview);
+    el.addEventListener('mouseleave', hidePreview);
+  });
+})();
+// Enf of cart javascript
