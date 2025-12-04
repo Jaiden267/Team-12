@@ -143,22 +143,22 @@ require_once 'db_connect.php';
   </header>
 
   <section class ="payment-section">
-    <div class="payment-container">
+    <div class="paymentc">
         <form action="" method="POST">
             <h1>Payment Details</h1>
-            <div class="form-row">
+            <div class="frw">
                 <label>Cardholder Name </label>
                 <input type="text" name="cardholder_name" id="cardholder_name">
                 </div>
-                    <div class="form-row">
+                    <div class="frw">
                         <label>Card Number </label>
                         <input type="text" name="card_number" id="card_number" required placeholder="0000 0000 0000 0000">
                         </div>
-                        <div class="form-row">
+                        <div class="frw">
                             <label>Expiration Date </label>
                             <input type="date" name="exp_date" id="exp_date" required>
                             </div>
-                            <div class="form-row">
+                            <div class="frw">
                                 <label>CVV </label>
                                 <input type="password" name="cvv" id="cvv" required placeholder="123" maxlength="3" style="width: 100px;">
                                 </div>
