@@ -14,7 +14,6 @@ require_once 'db_connect.php';
 
 <body>
 
-<!-- Utility Strip -->
 <div class="utility-strip">
     <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
         <span>FREE DELIVERY & RETURNS</span>
@@ -33,7 +32,6 @@ require_once 'db_connect.php';
     </div>
 </div>
 
-<!-- Header -->
 <header class="site-header">
     <div class="container header-inner">
         <a href="index.php" class="brand">
@@ -41,7 +39,6 @@ require_once 'db_connect.php';
             <span class="wordmark">LUNARE CLOTHING</span>
         </a>
 
-        <!-- Navigation -->
         <nav class="primary-nav" aria-label="Primary">
             <button class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>
@@ -111,15 +108,12 @@ require_once 'db_connect.php';
         </nav>
 
        <div class="actions">
-        <!-- Search toggle -->
         <button id="searchToggle" class="icon-btn" aria-expanded="false" aria-controls="searchBar" title="Search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="2"/><line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
         </button>
-        <!-- Favourites / wishlist button -->
         <button class="icon-btn" title="Favourites">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9-8.5S5 2 8.5 5.5L12 9l3.5-3.5C19 2 25 7 21 12.5S12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
         </button>
-        <!-- Shopping bag / cart button -->
         <button id="cartButton" class="icon-btn" title="Bag">
 
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a3 3 0 1 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
@@ -140,7 +134,6 @@ require_once 'db_connect.php';
     </div>
 
 
-    <!-- Search bar -->
     <div id="searchBar" class="searchbar" hidden>
         <div class="container">
             <form id="searchForm" role="search">
@@ -152,18 +145,15 @@ require_once 'db_connect.php';
     </div>
 </header>
 
-<!-- Page Title -->
 <div class="page-header">
     <div class="container">
         <h1>Your Basket</h1>
     </div>
 </div>
 
-<!-- Cart Layout -->
 <main class="cart-wrap">
     <div class="container cart-grid">
 
-        <!-- Items Section -->
         <section class="card">
             <h2>Items</h2>
 
@@ -185,8 +175,6 @@ require_once 'db_connect.php';
                 </table>
             </div>
         </section>
-
-        <!-- Summary -->
         <aside class="card cart-summary">
             <h2>Summary</h2>
             <div class="row"><span>Subtotal</span><span id="subtotal" class="price">£0.00</span></div>
@@ -199,7 +187,6 @@ require_once 'db_connect.php';
     </div>
 </main>
 
-<!-- Footer -->
 <footer class="site-footer">
     <div class="container footer-grid">
       <div>
@@ -267,13 +254,11 @@ function renderCart(){
           <img class="cart-img" src="${it.image || ''}" alt="">
           <div>
             <div style="font-weight:700">${it.name || ''}</div>
-            <div class="muted">${it.sku || ''}</div>
           </div>
         </div>
       </td>
       <td>
-        <div><span class="muted">Colour:</span> ${String(it.color||'').toUpperCase()}</div>
-        <div><span class="muted">Size:</span> ${it.size || ''}</div>
+        <div><span class="muted">Size:</span> ${it.attribute_value || it.size || ''}</div>
       </td>
       <td>${fmt(it.price)}</td>
       <td>

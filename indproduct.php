@@ -75,7 +75,6 @@ if (isset($_GET['id'])) {
 
         <ul class="menu">
           <li><a href="#" class="nav-link">New</a></li>
-
           <li class="has-mega">
             <button class="nav-link" data-menu="men" aria-expanded="false">Men</button>
             <div class="mega" id="mega-men" role="dialog" aria-label="Men menu">
@@ -90,17 +89,11 @@ if (isset($_GET['id'])) {
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="#">Tops & T-Shirts</a>
-                <a href="#">Hoodies & Sweatshirts</a>
-                <a href="#">Shorts</a>
-                <a href="#">Tracksuits</a>
-                <a href="#">Trousers & Tights</a>
-                <a href="#">Jackets</a>
-                <a href="#">Accessories</a>
+                <a href="menstrousers.php">Trousers</a>
+                <a href="mensshorts.php">Shorts</a>
               </div>
             </div>
           </li>
-
           <li class="has-mega">
             <button class="nav-link" data-menu="women" aria-expanded="false">Women</button>
             <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
@@ -117,14 +110,11 @@ if (isset($_GET['id'])) {
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="#">Tops & T-Shirts</a>
-                <a href="#">Hoodies & Sweatshirts</a>
-                <a href="#">Leggings & Tights</a>
-                <a href="#">Jackets</a>
+                <a href="womenscoats.php">Coats</a>
+                <a href="womensshirts.php">Shirts</a>
               </div>
             </div>
           </li>
-
           <li class="has-mega">
             <button class="nav-link" data-menu="kids" aria-expanded="false">Kids</button>
             <div class="mega" id="mega-kids" role="dialog" aria-label="Kids menu">
@@ -135,7 +125,7 @@ if (isset($_GET['id'])) {
               </div>
               <div class="mega-col">
                 <h4>Kids</h4>
-                <a href="#">Shoes</a>
+                <a href="kidstshirts.php">T-Shirts</a>
                 <a href="#">Clothing</a>
               </div>
             </div>
