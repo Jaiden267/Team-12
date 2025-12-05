@@ -120,21 +120,32 @@ require_once 'db_connect.php';
       </nav>
 
       <!-- Action buttons on the header: search toggle, favourites, bag -->
-      <div class="actions">
-        <!-- Search toggle -->
+ <div class="actions">
         <button id="searchToggle" class="icon-btn" aria-expanded="false" aria-controls="searchBar" title="Search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="2"/><line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
         </button>
-        <!-- Favourites / wishlist button -->
         <button class="icon-btn" title="Favourites">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9-8.5S5 2 8.5 5.5L12 9l3.5-3.5C19 2 25 7 21 12.5S12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
         </button>
-        <!-- Shopping bag / cart button -->
-        <button class="icon-btn" title="Bag">
+        <button id="cartButton" class="icon-btn" title="Bag">
+
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a3 3 0 1 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
         </button>
+
+        <span id="cartCount" class="muted"></span>
+
+        <div id="cartPreview" class="cart-preview">
+          <div id="cartPreviewItems"></div>
+
+        <div class="cart-preview-total">
+          Total: <span id="cartPreviewTotal">£0.00</span>
+        </div>
+
+            <a href="cart.php" class="btn">View Basket</a>
+        </div>
       </div>
     </div>
+
 
     <!-- Hidden search bar-->
     <div id="searchBar" class="searchbar" hidden>
@@ -158,14 +169,44 @@ require_once 'db_connect.php';
           <p>Fresh drops for the season. Shop the latest picks from Lunare Clothing.</p>
           <div class="cta">
             <!-- Primary calls-to-action -->
-            <a class="btn primary" href="#">Shop Men</a>
-            <a class="btn" href="#">Shop Women</a>
-            <a class="btn" href="#">Shop Kids</a>
+            <a class="btn primary" href="menstrousers.php">Shop Men's Trousers</a>
+            <a class="btn" href="womenscoats.php">Shop Women's Coats</a>
+            <a class="btn" href="kidstshirts.php">Shop Kids</a>
           </div>
         </div>
         <!-- Decorative artwork area for the hero -->
-        <div class="hero-art" aria-hidden="true"></div>
+        <div class="hero-art" aria-hidden="true">
+        <img src="assets/landingfamilyimage1.png" alt="familyimg1">
       </div>
+      </div>
+    </section>
+<section class="container">
+    <div class="card-row">
+      <div class="card">
+        <img src="assets/5WomensEffortlessTrenchCoat.png" alt = "mtr" >
+        <h1>LC Effortless Trench Coat</h1>
+        <p class="price">£135.99</p>
+        <p>The forever staple</p>
+        <a href="/indproduct.php?id=5">
+          <button>View More</button></a>
+      </div>
+      <div class="card">
+        <img src="assets/12KidsStatementGraphicTee.png" alt = "mtr" >
+        <h1>LC Statment Graphic Tee</h1>
+        <p class="price">£35.99</p>
+        <p>For little space explorers</p>
+        <a href="/indproduct.php?id=12">
+          <button>View More</button></a>
+      </div>
+      <div class="card">
+        <img src="assets/21WomensShirtsFoundationalCrispShirt.png" alt = "mtr" >
+        <h1>LC Foundational Crisp Shirt</h1>
+        <p class="price">£79.99</p>
+        <p>Polished, sharp, and confident</p>
+        <a href="/indproduct.php?id=21">
+          <button>View More</button></a>
+      </div>
+    </div>
     </section>
   </main>
 
