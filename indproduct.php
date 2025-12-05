@@ -90,8 +90,13 @@ if (isset($_GET['id'])) {
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="menstrousers.php">Trousers</a>
-                <a href="mensshorts.php">Shorts</a>
+                <a href="#">Tops & T-Shirts</a>
+                <a href="#">Hoodies & Sweatshirts</a>
+                <a href="#">Shorts</a>
+                <a href="#">Tracksuits</a>
+                <a href="#">Trousers & Tights</a>
+                <a href="#">Jackets</a>
+                <a href="#">Accessories</a>
               </div>
             </div>
           </li>
@@ -112,8 +117,10 @@ if (isset($_GET['id'])) {
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="womenscoats.php">Coats</a>
-                <a href="womensshirts.php">Shirts</a>
+                <a href="#">Tops & T-Shirts</a>
+                <a href="#">Hoodies & Sweatshirts</a>
+                <a href="#">Leggings & Tights</a>
+                <a href="#">Jackets</a>
               </div>
             </div>
           </li>
@@ -128,7 +135,7 @@ if (isset($_GET['id'])) {
               </div>
               <div class="mega-col">
                 <h4>Kids</h4>
-                <a href="kidstshirts.php">T-Shirts</a>
+                <a href="#">Shoes</a>
                 <a href="#">Clothing</a>
               </div>
             </div>
@@ -145,9 +152,22 @@ if (isset($_GET['id'])) {
         <button class="icon-btn" title="Favourites">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9-8.5S5 2 8.5 5.5L12 9l3.5-3.5C19 2 25 7 21 12.5S12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
         </button>
-        <button class="icon-btn" title="Bag">
+        <button id="cartButton" class="icon-btn" title="Bag">
+
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a3 3 0 1 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
         </button>
+
+        <span id="cartCount" class="muted"></span>
+        
+        <div id="cartPreview" class="cart-preview">
+          <div id="cartPreviewItems"></div>
+
+        <div class="cart-preview-total">
+          Total: <span id="cartPreviewTotal">£0.00</span>
+        </div>
+
+            <a href="cart.php" class="btn">View Basket</a>
+        </div>
       </div>
     </div>
 

@@ -125,9 +125,22 @@ require_once 'db_connect.php';
         <button class="icon-btn" title="Favourites">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9-8.5S5 2 8.5 5.5L12 9l3.5-3.5C19 2 25 7 21 12.5S12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
         </button>
-        <button class="icon-btn" title="Bag">
+        <button id="cartButton" class="icon-btn" title="Bag">
+
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a3 3 0 1 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
         </button>
+
+        <span id="cartCount" class="muted"></span>
+        
+        <div id="cartPreview" class="cart-preview">
+          <div id="cartPreviewItems"></div>
+
+        <div class="cart-preview-total">
+          Total: <span id="cartPreviewTotal">£0.00</span>
+        </div>
+
+            <a href="cart.php" class="btn">View Basket</a>
+        </div>
       </div>
     </div>
 
@@ -143,22 +156,22 @@ require_once 'db_connect.php';
   </header>
 
   <section class ="payment-section">
-    <div class="paymentc">
+    <div class="payment-container">
         <form action="" method="POST">
             <h1>Payment Details</h1>
-            <div class="frw">
+            <div class="form-row">
                 <label>Cardholder Name </label>
                 <input type="text" name="cardholder_name" id="cardholder_name">
                 </div>
-                    <div class="frw">
+                    <div class="form-row">
                         <label>Card Number </label>
                         <input type="text" name="card_number" id="card_number" required placeholder="0000 0000 0000 0000">
                         </div>
-                        <div class="frw">
+                        <div class="form-row">
                             <label>Expiration Date </label>
                             <input type="date" name="exp_date" id="exp_date" required>
                             </div>
-                            <div class="frw">
+                            <div class="form-row">
                                 <label>CVV </label>
                                 <input type="password" name="cvv" id="cvv" required placeholder="123" maxlength="3" style="width: 100px;">
                                 </div>

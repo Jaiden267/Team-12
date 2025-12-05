@@ -17,6 +17,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
+    // Validate email format (same idea as contact form)
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo "<script>
+            alert('Please enter a valid email address.');
+            window.history.back();
+          </script>";
+    exit;
+}
+
+
     // Check password match
     if ($password !== $confirm) {
         echo "<script>alert('Passwords do not match.'); window.history.back();</script>";

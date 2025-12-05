@@ -122,55 +122,180 @@ document.addEventListener('click', function(e){
   if (radio) radio.checked = true;
 });
 
-// Validation for contact form
+// Validation for contact + register forms and global search
 document.addEventListener("DOMContentLoaded", () => {
+  // ==== CONTACT FORM VALIDATION ====
   const contactForm = document.querySelector(".contact-form form");
-  if (!contactForm) return;
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      const nameInput = contactForm.querySelector("input[name='name']");
+      const emailInput = contactForm.querySelector("input[name='email']");
+      const messageInput = contactForm.querySelector("textarea[name='message']");
 
-  contactForm.addEventListener("submit", function (e) {
-    const nameInput = contactForm.querySelector("input[name='name']");
-    const emailInput = contactForm.querySelector("input[name='email']");
-    const messageInput = contactForm.querySelector("textarea[name='message']");
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const message = messageInput.value.trim();
 
-    const name = nameInput.value.trim();
-    const email = emailInput.value.trim();
-    const message = messageInput.value.trim();
+      // Email regex pattern (same style we'll use for register)
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
 
-    // Email regex pattern
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      let errors = [];
 
-    let errors = [];
+      // Reset borders
+      nameInput.style.border = "";
+      emailInput.style.border = "";
+      messageInput.style.border = "";
 
-    // Reset borders
-    nameInput.style.border = "";
-    emailInput.style.border = "";
-    messageInput.style.border = "";
+      // Validate name
+      if (name.length < 2) {
+        errors.push("• Name must be at least 2 characters");
+        nameInput.style.border = "2px solid red";
+      }
 
-    // Validate name
-    if (name.length < 2) {
-      errors.push("• Name must be at least 2 characters");
-      nameInput.style.border = "2px solid red";
-    }
+      // Validate email
+      if (!emailRegex.test(email)) {
+        errors.push("• Enter a valid email address");
+        emailInput.style.border = "2px solid red";
+      }
 
-    // Validate email
-    if (!emailRegex.test(email)) {
-      errors.push("• Enter a valid email address");
-      emailInput.style.border = "2px solid red";
-    }
+      // Validate message
+      if (message.length < 5) {
+        errors.push("• Message must be at least 5 characters long");
+        messageInput.style.border = "2px solid red";
+      }
 
-    // Validate message
-    if (message.length < 5) {
-      errors.push("• Message must be at least 5 characters long");
-      messageInput.style.border = "2px solid red";
-    }
+      if (errors.length > 0) {
+        e.preventDefault();
+        alert("Please fix the following:\n\n" + errors.join("\n"));
+        return false;
+      }
+    });
+  }
 
-    // If there are ANY errors → show one popup message
-    if (errors.length > 0) {
-      e.preventDefault(); // stop form submission
+  // ==== REGISTER FORM EMAIL VALIDATION ====
+  const registerForm = document.querySelector('form[action="register_process.php"]');
+  if (registerForm) {
+    registerForm.addEventListener("submit", function (e) {
+      const emailInput = registerForm.querySelector("input[name='email']");
+      const email = emailInput.value.trim();
 
-      alert("Please fix the following:\n\n" + errors.join("\n"));
-      return false;
-    }
-  });
+      // SAME pattern as contact form
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+
+      emailInput.style.border = "";
+
+      if (!emailRegex.test(email)) {
+        e.preventDefault();
+        emailInput.style.border = "2px solid red";
+        alert("Please enter a valid email address (example: name@example.com).");
+      }
+    });
+  }
+
+  const searchForm = document.getElementById("searchForm");
+  const searchInput = document.getElementById("q");
+
+  if (searchForm && searchInput) {
+    searchForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const term = searchInput.value.trim();
+      if (!term) return;  
+      
+      window.location.href = "search.php?q=" + encodeURIComponent(term);
+    });
+  }
 });
-// Enf of contact form validation
+
+// Global Search Handler
+document.getElementById("searchForm")?.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let query = document.getElementById("q").value.trim();
+
+    if (query.length === 0) return;
+
+    window.location.href = "search.php?q=" + encodeURIComponent(query);
+});
+
+// End of validations + search
+
+// Cart Javascript
+function fmtPrice(n){
+  return '£' + (Number(n || 0)).toFixed(2);
+}
+
+function renderCartPreview(){
+  const wrap = document.getElementById('cartPreview');
+  const list = document.getElementById('cartPreviewItems');
+  const totalEl = document.getElementById('cartPreviewTotal');
+
+  if (!wrap || !list || !totalEl) return;
+
+  const items = loadCart();
+  list.innerHTML = '';
+
+  // Empty basket state
+  if (!items.length){
+    list.innerHTML = '<p class="cart-preview-meta">Your basket is empty.</p>';
+    totalEl.textContent = fmtPrice(0);
+    return;
+  }
+
+  let subtotal = 0;
+
+  items.slice(0, 3).forEach(it => {
+    const line = (it.price || 0) * (it.qty || 0);
+    subtotal += line;
+
+    const div = document.createElement('div');
+    div.className = 'cart-preview-item';
+    div.innerHTML = `
+      <img class="cart-preview-img" src="${it.image || ''}" alt="">
+      <div class="cart-preview-text">
+        <div class="cart-preview-name">${it.name || ''}</div>
+        <div class="cart-preview-meta">
+          ${String(it.color || '').toUpperCase()} • ${it.size || ''} • Qty: ${it.qty || 1}
+        </div>
+        <div class="cart-preview-meta">${fmtPrice(it.price || 0)}</div>
+      </div>
+    `;
+    list.appendChild(div);
+  });
+
+  if (items.length > 3){
+    const more = document.createElement('div');
+    more.className = 'cart-preview-meta';
+    more.style.paddingTop = '4px';
+    more.textContent = `+ ${items.length - 3} more item(s)…`;
+    list.appendChild(more);
+  }
+
+  totalEl.textContent = fmtPrice(
+    items.reduce((sum, it) => sum + (it.price || 0) * (it.qty || 0), 0)
+  );
+}
+
+(function initCartHover(){
+  const btn = document.getElementById('cartButton');
+  const preview = document.getElementById('cartPreview');
+  if (!btn || !preview) return;
+
+  let hideTimer = null;
+
+  function showPreview(){
+    clearTimeout(hideTimer);
+    renderCartPreview();
+    preview.classList.add('open');
+  }
+
+  function hidePreview(){
+    hideTimer = setTimeout(() => {
+      preview.classList.remove('open');
+    }, 150);
+  }
+
+  [btn, preview].forEach(el => {
+    el.addEventListener('mouseenter', showPreview);
+    el.addEventListener('mouseleave', hidePreview);
+  });
+})();
+// Enf of cart javascript

@@ -178,30 +178,29 @@ require_once 'db_connect.php';
         <div class="hero-art" aria-hidden="true">
         <img src="assets/landingfamilyimage1.png" alt="familyimg1">
       </div>
-      </div>
     </section>
-<section class="container">
-    <div class="card-row">
-      <div class="card">
+    <section class="container">
+    <div class="promocard-row">
+      <div class="promocard">
         <img src="assets/5WomensEffortlessTrenchCoat.png" alt = "mtr" >
         <h1>LC Effortless Trench Coat</h1>
-        <p class="price">£135.99</p>
+        <p class="promoprice">£135.99</p>
         <p>The forever staple</p>
         <a href="/indproduct.php?id=5">
           <button>View More</button></a>
       </div>
-      <div class="card">
+      <div class="promocard">
         <img src="assets/12KidsStatementGraphicTee.png" alt = "mtr" >
         <h1>LC Statment Graphic Tee</h1>
-        <p class="price">£35.99</p>
+        <p class="promoprice">£35.99</p>
         <p>For little space explorers</p>
         <a href="/indproduct.php?id=12">
           <button>View More</button></a>
       </div>
-      <div class="card">
+      <div class="promocard">
         <img src="assets/21WomensShirtsFoundationalCrispShirt.png" alt = "mtr" >
         <h1>LC Foundational Crisp Shirt</h1>
-        <p class="price">£79.99</p>
+        <p class="promoprice">£79.99</p>
         <p>Polished, sharp, and confident</p>
         <a href="/indproduct.php?id=21">
           <button>View More</button></a>
