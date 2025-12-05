@@ -34,7 +34,7 @@ $stmt = $conn->prepare("
 ");
 
 $stmt->bind_param(
-    "issssssssd",   
+    "issssssssd",
     $user_id,
     $billing_name,
     $billing_email,
@@ -49,7 +49,6 @@ $stmt->bind_param(
 
 $stmt->execute();
 $order_id = $stmt->insert_id;
-
 
 $itemStmt = $conn->prepare("
     INSERT INTO order_items (order_id, product_sku, product_name, price, quantity)
@@ -68,7 +67,6 @@ foreach ($cart as $item) {
     $itemStmt->execute();
 }
 
-
 $to = "lunare.clothing@mail.com";
 $subject = "New Order #$order_id";
 
@@ -84,14 +82,12 @@ foreach ($cart as $item) {
 }
 
 $headers = "From: no-reply@lunareclothing.com";
-mail($to, $subject, $message, $headers);
 
+mail($to, $subject, $message, $headers);
 
 echo "<script>
     alert('Order Successful! Thank you for shopping with Lunare Clothing.');
     localStorage.removeItem('lc_cart_v1');
     window.location.href = 'index.php';
 </script>";
-
 ?>
-
