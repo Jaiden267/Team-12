@@ -10,7 +10,6 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <!-- Page Title -->
   <title>Lunare Clothing — Home</title>
 
   <link rel="stylesheet" href="styles.css" />
@@ -35,9 +34,7 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
             </div>
     </div>
 </div>
-  <!-- Header including brand, navigation and actions -->
   <header class="site-header">
-    <!-- Brand logo that links to the home page -->
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">

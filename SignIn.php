@@ -8,7 +8,6 @@ require_once 'db_connect.php';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <!-- Page Title -->
   <title>Lunare Clothing — Home</title>
 
   <link rel="stylesheet" href="styles.css" />
@@ -36,9 +35,7 @@ require_once 'db_connect.php';
     </div>
 </div>
 
-  <!-- Header including brand, navigation and actions -->
   <header class="site-header">
-    <!-- Brand logo that links to the home page -->
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
@@ -124,8 +121,6 @@ require_once 'db_connect.php';
           <li><a href="#" class="nav-link sale">Sale</a></li>
         </ul>
       </nav>
-
-      <!-- ACTION ICONS  -->
       <div class="actions">
         <button id="searchToggle" class="icon-btn" aria-expanded="false" aria-controls="searchBar" title="Search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="2"/><line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
@@ -152,7 +147,6 @@ require_once 'db_connect.php';
       </div>
     </div>
 
-    <!-- SEARCH BAR FOR SEARCHING -->
     <div id="searchBar" class="searchbar" hidden>
   <div class="container">
     <form id="searchForm" role="search" aria-label="Site search">
@@ -165,7 +159,6 @@ require_once 'db_connect.php';
 
   </header>
 
-  <!-- Sign In Section, email,password,forgot password, sign up link -->
   <section class="contact">
     <div class="container signin-container">
 
@@ -198,7 +191,6 @@ require_once 'db_connect.php';
     </div>
   </section>
 
-  <!-- bottom Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>

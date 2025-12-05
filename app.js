@@ -126,9 +126,7 @@ document.addEventListener('click', function(e){
   if (radio) radio.checked = true;
 });
 
-// Validation for contact + register forms and global search
 document.addEventListener("DOMContentLoaded", () => {
-  // ==== CONTACT FORM VALIDATION ====
   const contactForm = document.querySelector(".contact-form form");
   if (contactForm) {
     contactForm.addEventListener("submit", function (e) {
@@ -140,29 +138,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const email = emailInput.value.trim();
       const message = messageInput.value.trim();
 
-      // Email regex pattern (same style we'll use for register)
       const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
 
       let errors = [];
 
-      // Reset borders
       nameInput.style.border = "";
       emailInput.style.border = "";
       messageInput.style.border = "";
 
-      // Validate name
       if (name.length < 2) {
         errors.push("• Name must be at least 2 characters");
         nameInput.style.border = "2px solid red";
       }
 
-      // Validate email
       if (!emailRegex.test(email)) {
         errors.push("• Enter a valid email address");
         emailInput.style.border = "2px solid red";
       }
 
-      // Validate message
       if (message.length < 5) {
         errors.push("• Message must be at least 5 characters long");
         messageInput.style.border = "2px solid red";
@@ -176,14 +169,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ==== REGISTER FORM EMAIL VALIDATION ====
   const registerForm = document.querySelector('form[action="register_process.php"]');
   if (registerForm) {
     registerForm.addEventListener("submit", function (e) {
       const emailInput = registerForm.querySelector("input[name='email']");
       const email = emailInput.value.trim();
 
-      // SAME pattern as contact form
       const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
 
       emailInput.style.border = "";
@@ -210,7 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Global Search Handler
 document.getElementById("searchForm")?.addEventListener("submit", function (e) {
     e.preventDefault();
     let query = document.getElementById("q").value.trim();
@@ -220,9 +210,7 @@ document.getElementById("searchForm")?.addEventListener("submit", function (e) {
     window.location.href = "search.php?q=" + encodeURIComponent(query);
 });
 
-// End of validations + search
 
-// Cart Javascript
 function fmtPrice(n){
   return '£' + (Number(n || 0)).toFixed(2);
 }
@@ -237,7 +225,6 @@ function renderCartPreview(){
   const items = loadCart();
   list.innerHTML = '';
 
-  // Empty basket state
   if (!items.length){
     list.innerHTML = '<p class="cart-preview-meta">Your basket is empty.</p>';
     totalEl.textContent = fmtPrice(0);
@@ -302,4 +289,3 @@ function renderCartPreview(){
     el.addEventListener('mouseleave', hidePreview);
   });
 })();
-// Enf of cart javascript

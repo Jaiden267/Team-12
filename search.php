@@ -9,14 +9,12 @@ if ($q === '') {
     exit();
 }
 
-// Search products by name
 $stmt = $conn->prepare("SELECT * FROM products WHERE name LIKE ?");
 $search = "%$q%";
 $stmt->bind_param("s", $search);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// If ONLY ONE result → go directly to product page
 if ($result->num_rows === 1) {
     $row = $result->fetch_assoc();
     header("Location: indproduct.php?id=" . $row['product_id']);

@@ -8,7 +8,6 @@ require_once 'db_connect.php';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <!-- Page Title -->
   <title>Lunare Clothing — Home</title>
 
   <link rel="stylesheet" href="styles.css" />
@@ -17,7 +16,6 @@ require_once 'db_connect.php';
 document.querySelector("form").addEventListener("submit", function(e) {
     const email = document.querySelector("input[name='email']").value;
 
-    // Strong email regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
 
     if (!emailRegex.test(email)) {
@@ -50,9 +48,7 @@ document.querySelector("form").addEventListener("submit", function(e) {
     </div>
 </div>
 
-  <!-- Header including brand, navigation and actions -->
   <header class="site-header">
-    <!-- Brand logo that links to the home page -->
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
@@ -139,7 +135,6 @@ document.querySelector("form").addEventListener("submit", function(e) {
         </ul>
       </nav>
 
-      <!-- ACTION ICONSs -->
       <div class="actions">
         <button id="searchToggle" class="icon-btn" aria-expanded="false" aria-controls="searchBar" title="Search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="2"/><line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
@@ -166,7 +161,6 @@ document.querySelector("form").addEventListener("submit", function(e) {
       </div>
     </div>
 
-    <!-- SEARCH BAR -->
     <div id="searchBar" class="searchbar" hidden>
   <div class="container">
     <form>
@@ -180,7 +174,6 @@ document.querySelector("form").addEventListener("submit", function(e) {
     
   </header>
 
-  <!-- REGISTRATION FORM -->
   <section class="contact">
     <div class="container signin-container">
 
@@ -190,27 +183,22 @@ document.querySelector("form").addEventListener("submit", function(e) {
         <h3>Register</h3>
 
        <form method="POST" action="register_process.php">
-    <!-- First Name -->
     <div class="form-group">
         <input type="text" name="first_name" placeholder="First Name" required>
     </div>
 
-    <!-- Last Name -->
     <div class="form-group">
         <input type="text" name="last_name" placeholder="Last Name" required>
     </div>
 
-    <!-- Email -->
     <div class="form-group">
         <input type="email" name="email" placeholder="Email Address" required>
     </div>
 
-    <!-- Password -->
     <div class="form-group">
         <input type="password" name="password" placeholder="Password" required>
     </div>
 
-    <!-- Confirm Password -->
     <div class="form-group">
         <input type="password" name="confirm_password" placeholder="Confirm Password" required>
     </div>
@@ -227,7 +215,6 @@ document.querySelector("form").addEventListener("submit", function(e) {
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>

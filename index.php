@@ -9,7 +9,6 @@ require_once 'db_connect.php';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <!-- Page Title -->
   <title>Lunare Clothing — Home</title>
 
   <link rel="stylesheet" href="styles.css" />
@@ -37,9 +36,7 @@ require_once 'db_connect.php';
     </div>
 </div>
 
-  <!-- Header including brand, navigation and actions -->
   <header class="site-header">
-    <!-- Brand logo that links to the home page -->
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
@@ -119,7 +116,6 @@ require_once 'db_connect.php';
         </ul>
       </nav>
 
-      <!-- Action buttons on the header: search toggle, favourites, bag -->
  <div class="actions">
         <button id="searchToggle" class="icon-btn" aria-expanded="false" aria-controls="searchBar" title="Search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="2"/><line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
@@ -147,20 +143,17 @@ require_once 'db_connect.php';
     </div>
 
 
-    <!-- Hidden search bar-->
     <div id="searchBar" class="searchbar" hidden>
       <div class="container">
         <form id="searchForm" role="search" aria-label="Site search">
           <input type="search" id="q" placeholder="Search" aria-label="Search" />
           <button type="submit" class="btn">Search</button>
         </form>
-        <!-- A small hint to help users with example queries -->
         <p class="search-hint">Try “Joggers” or “Tracksuits”.</p>
       </div>
     </div>
   </header>
 
-  <!-- Main content area: hero / promotional content -->
   <main>
     <section class="hero">
       <div class="container hero-inner">
@@ -168,13 +161,11 @@ require_once 'db_connect.php';
           <h1>ALL NEW ARRIVALS</h1>
           <p>Fresh drops for the season. Shop the latest picks from Lunare Clothing.</p>
           <div class="cta">
-            <!-- Primary calls-to-action -->
             <a class="btn primary" href="menstrousers.php">Shop Men's Trousers</a>
             <a class="btn" href="womenscoats.php">Shop Women's Coats</a>
             <a class="btn" href="kidstshirts.php">Shop Kids</a>
           </div>
         </div>
-        <!-- Decorative artwork area for the hero -->
         <div class="hero-art" aria-hidden="true">
         <img src="assets/landingfamilyimage1.png" alt="familyimg1">
       </div>
@@ -208,8 +199,6 @@ require_once 'db_connect.php';
     </div>
     </section>
   </main>
-
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
@@ -239,7 +228,6 @@ require_once 'db_connect.php';
     </div>
   </footer>
 
-  <!-- Link with javascript file -->
   <script src="app.js"></script>
 </body>
 </html>
