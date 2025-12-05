@@ -22,13 +22,19 @@ $country       = $_POST['country'];
 
 $user_id = $_SESSION['user_id'] ?? null;
 
+$order_total = 0;
+foreach ($cart as $item) {
+    $order_total += $item['price'] * $item['qty'];
+}
+
 $stmt = $conn->prepare("
-    INSERT INTO orders (user_id, full_name, email, phone, address1, address2, city, postcode, country, order_status)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending')
+    INSERT INTO orders 
+    (user_id, full_name, email, phone, address1, address2, city, postcode, country, total, payment_status)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending')
 ");
 
 $stmt->bind_param(
-    "issssssss",
+    "issssssssd",   
     $user_id,
     $billing_name,
     $billing_email,
@@ -37,11 +43,13 @@ $stmt->bind_param(
     $address2,
     $city,
     $postcode,
-    $country
+    $country,
+    $order_total
 );
 
 $stmt->execute();
 $order_id = $stmt->insert_id;
+
 
 $itemStmt = $conn->prepare("
     INSERT INTO order_items (order_id, product_sku, product_name, price, quantity)
@@ -60,10 +68,11 @@ foreach ($cart as $item) {
     $itemStmt->execute();
 }
 
+
 $to = "lunare.clothing@mail.com";
 $subject = "New Order #$order_id";
 
-$message = "New order received:\n\n";
+$message  = "New order received:\n\n";
 $message .= "Name: $billing_name\n";
 $message .= "Email: $billing_email\n";
 $message .= "Phone: $billing_phone\n";
@@ -75,13 +84,14 @@ foreach ($cart as $item) {
 }
 
 $headers = "From: no-reply@lunareclothing.com";
-
 mail($to, $subject, $message, $headers);
+
 
 echo "<script>
     alert('Order Successful! Thank you for shopping with Lunare Clothing.');
     localStorage.removeItem('lc_cart_v1');
     window.location.href = 'index.php';
 </script>";
+
 ?>
 
