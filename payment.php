@@ -159,38 +159,53 @@ require_once 'db_connect.php';
     <div class = "payment-container">
       <h1>Checkout</h1>
  
-      <form id="checkoutForm" noValidate>
-        
-      <h2 class ="checkout-heading">Billing Details</h2>
-        
-      <div class="form-row">
+       <form id="checkoutForm" method="POST" action="process_order.php" noValidate>
+
+    <h2 class="checkout-heading">Billing Details</h2>
+
+    <div class="form-row">
         <label for="billing_name">Full Name</label>
         <input type="text" id="billing_name" name="billing_name" required>
-      </div>
+    </div>
 
-      <div class="form-row">
+    <div class="form-row">
+        <label for="billing_email">Email Address</label>
+        <input type="email" id="billing_email" name="billing_email" required>
+    </div>
+
+    <div class="form-row">
+        <label for="billing_phone">Phone Number</label>
+        <input type="tel" id="billing_phone" name="billing_phone" pattern="[0-9]{11}" placeholder="11-digit UK number" required>
+    </div>
+
+    <div class="form-row">
         <label for="address1">Address Line 1</label>
         <input type="text" id="address1" name="address1" required>
-      </div>
+    </div>
 
-      <div class="form-row">
-        <label for="address2">Address Line 2</label>
+    <div class="form-row">
+        <label for="address2">Address Line 2 (Optional)</label>
         <input type="text" id="address2" name="address2">
-      </div>
+    </div>
 
-      <div class="form-row">
+    <div class="form-row">
+        <label for="city">City</label>
+        <input type="text" id="city" name="city" required>
+    </div>
+
+    <div class="form-row">
         <label for="postcode">Postcode</label>
-        <input type="text" id="postcode" name="postcode" placeholder="e.g. SW1A 1AA" required>
-      </div>
+        <input type="text" id="postcode" name="postcode" required>
+    </div>
 
-      <div class="form-row">
+    <div class="form-row">
         <label for="country">Country</label>
         <select id="country" name="country" required>
-          <option value="">Select Country</option>
-          <option value="United Kingdom">United Kingdom</option>
-          <option value="Ireland">Ireland</option>
-          </select>
-      </div>
+            <option value="">Select Country</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Ireland">Ireland</option>
+        </select>
+    </div>
 
       <h2 class ="checkout-heading">Payment Details</h2>
 
@@ -204,21 +219,14 @@ require_once 'db_connect.php';
         <input type="text" id="card_number" name="card_number" inputmode="numeric" autocomplete="cc-number" placeholder="1234 5678 9012 3456" required>
       </div>
 
-      <div class="form-row" style="display: flex; gap: 10px;">
-        <div style="flex: 1;">
-          <label for="exp_month">Expiry(MM) </label>
-          <input type="text" id="exp_month" name="exp_month" input="numeric" placeholder="MM" maxlength="2" required>
-        </div>
+      <div class="form-row">
+        <label for="expiry">Expiry Date (MM/YY)</label>
+        <input type="text" id="expiry" name="expiry" maxlength="5" required>
+      </div>
 
-        <div style="flex: 1;">
-          <label for="exp_year">Expiry(YY) </label>
-          <input type="text" id="exp_year" name="exp_year" input="numeric" placeholder="YY" maxlength="2" required>
-        </div>
-
-        <div style="flex: 1;">
-          <label for="cvv">CVV</label>
-          <input type="password" id="cvv" name="cvv" input="numeric" placeholder="123" maxlength="3" required>
-        </div>
+      <div class="form-row">
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" name="cvv" maxlength="3" required>
       </div>
 
       <div class="checkout-summary">
@@ -276,141 +284,83 @@ require_once 'db_connect.php';
 
   <script src="app.js"></script>
   <script>
-    function renderCheckoutSummary() {
-      const items = loadCart();
-      const list = document.getElementById('checkoutItems');
-      const subEl = document.getElementById('checkoutSubtotal');
-      const totalEl = document.getElementById('checkoutTotal');
+function renderCheckoutSummary() {
+    const items = loadCart();
+    const list = document.getElementById('checkoutItems');
+    const subEl = document.getElementById('checkoutSubtotal');
+    const totalEl = document.getElementById('checkoutTotal');
 
-      if (!list || !subEl || !totalEl) return;
-
-      list.innerHTML = '';
-
-      if (!items.length) {
-        list.innerHTML = '<p class = "muted">Your cart is empty. <a href="cart.php"> Go back to your cart.</p>';
+    if (!items.length){
+        list.innerHTML = '<p class="muted">Your cart is empty. <a href="cart.php">Return to basket</a></p>';
         subEl.textContent = '£0.00';
         totalEl.textContent = '£0.00';
         return;
-      }
+    }
 
-      let subtotal = 0;
+    let subtotal = 0;
+    list.innerHTML = '';
 
-      items.forEach(it => {
-        const line = (it.price || 0) * (it.qty || 0);
+    items.forEach(it => {
+        const line = (it.price * it.qty);
         subtotal += line;
 
         const div = document.createElement('div');
-    div.className = 'checkout-item';
-    div.innerHTML = `
-      <div>
-        <strong>${it.name || ''}</strong>
-        <div class="muted">
-          ${String(it.color || '').toUpperCase()} • ${it.size || ''} • Qty: ${it.qty || 1}
-        </div>
-      </div>
-      <div class="price">${fmtPrice(line)}</div>
-    `;
-    list.appendChild(div);
-  });
-  subEl.textContent = fmtPrice(subtotal);
-  totalEl.textContent = fmtPrice(subtotal); 
+        div.className = 'checkout-item';
+        div.innerHTML = `
+            <div>
+                <strong>${it.name}</strong>
+                <div class="muted">${it.color.toUpperCase()} • ${it.size} • Qty: ${it.qty}</div>
+            </div>
+            <div class="price">£${line.toFixed(2)}</div>
+        `;
+        list.appendChild(div);
+    });
+
+    subEl.textContent = `£${subtotal.toFixed(2)}`;
+    totalEl.textContent = `£${subtotal.toFixed(2)}`;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderCheckoutSummary();
+    renderCheckoutSummary();
 
-  const form = document.getElementById('checkoutForm');
-  if (!form) return;
+    const form = document.getElementById("checkoutForm");
 
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-    const errors = [];
+      
+        let errors = [];
 
-    const name      = form.billing_name.value.trim();
-    const address1  = form.address1.value.trim();
-    const town      = form.town.value.trim();
-    const postcode  = form.postcode.value.trim();
-    const country   = form.country.value.trim();
+        const cardNum = form.card_number.value.replace(/\s+/g, "");
+        const expiry = form.expiry.value.trim();
+        const cvv = form.cvv.value.trim();
 
-    const cardName  = form.card_name.value.trim();
-    const cardNumberRaw = form.card_number.value.replace(/\s+/g, '');
-    const expMonth  = form.exp_month.value.trim();
-    const expYear   = form.exp_year.value.trim();
-    const cvv       = form.cvv.value.trim();
+      
+        const expParts = expiry.split("/");
+        const month = parseInt(expParts[0]);
+        const year = parseInt(expParts[1]);
 
-    
-    form.querySelectorAll('input, select').forEach(el => el.style.border = '');
+        if (!/^\d{16}$/.test(cardNum)) {
+            errors.push("Card number must be 16 digits.");
+        }
 
-    
-    const ukPostcodeRegex = /^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/i;
+        if (!(expParts.length === 2 && month >= 1 && month <= 12)) {
+            errors.push("Expiry must be in MM/YY format.");
+        }
 
-    
-    if (!name){
-      errors.push('Enter your full name');
-      form.billing_name.style.border = '2px solid red';
-    }
-    if (!address1){
-      errors.push('Enter your billing address');
-      form.address1.style.border = '2px solid red';
-    }
-    if (!town){
-      errors.push('Enter your town or city');
-      form.town.style.border = '2px solid red';
-    }
-    if (!ukPostcodeRegex.test(postcode)){
-      errors.push('Enter a valid UK postcode (e.g. SW1A 1AA)');
-      form.postcode.style.border = '2px solid red';
-    }
-    if (!country){
-      errors.push('Select your country/region');
-      form.country.style.border = '2px solid red';
-    }
+        if (!/^\d{3}$/.test(cvv)) {
+            errors.push("CVV must be 3 digits.");
+        }
 
-    
-    if (!cardName){
-      errors.push('Enter the name on the card');
-      form.card_name.style.border = '2px solid red';
-    }
+        if (errors.length) {
+            alert("Please fix the following:\n\n" + errors.join("\n"));
+            return;
+        }
 
-    if (!/^\d{16}$/.test(cardNumberRaw)){
-      errors.push('Card number must be 16 digits');
-      form.card_number.style.border = '2px solid red';
-    }
+        document.getElementById("cartData").value = JSON.stringify(loadCart());
 
-    const monthNum = Number(expMonth);
-    if (!/^\d{2}$/.test(expMonth) || monthNum < 1 || monthNum > 12){
-      errors.push('Enter a valid expiry month (01–12)');
-      form.exp_month.style.border = '2px solid red';
-    }
-
-    const now = new Date();
-    const currentYearTwo = now.getFullYear() % 100; 
-    const yearNum = Number(expYear);
-    if (!/^\d{2}$/.test(expYear) || yearNum < currentYearTwo){
-      errors.push('Enter a valid expiry year (not in the past)');
-      form.exp_year.style.border = '2px solid red';
-    }
-
-    if (!/^\d{3}$/.test(cvv)){
-      errors.push('CVV must be 3 digits');
-      form.cvv.style.border = '2px solid red';
-    }
-
-    if (!loadCart().length){
-      errors.push('Your basket is empty – add items before checking out.');
-    }
-
-    if (errors.length){
-      alert('Please fix the following:\n\n' + errors.join('\n'));
-      return;
-    }
-
-   
-    alert('Payment authorised (dummy checkout).\n\nThank you for your order with Lunare Clothing!');
-    saveCart([]); 
-    window.location.href = 'index.php';
-  });
+        form.submit();
+    });
 });
 </script>
 
