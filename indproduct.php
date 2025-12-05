@@ -254,7 +254,7 @@ if (isset($_GET['id'])) {
 
     addBtn.addEventListener("click", function(e) {
         e.preventDefault();
-
+        const sizeDropdown = document.getElementById("sizeSelect");
         const sizeName = sizeDropdown.options[sizeDropdown.selectedIndex].text;
         const qty = Number(document.getElementById("qtySelect")?.value || 1);
         const price = Number(
@@ -267,11 +267,11 @@ if (isset($_GET['id'])) {
             price: price,
             image: "<?= htmlspecialchars($product['image_url']); ?>",
             color: "default",
-            size: sizeName,
+            sizeId: sizeName,
             qty: qty
         };
 
-        if (!size) {
+        if (!sizeId) {
             alert("Please select a size before adding to cart.");
             return;
         }
