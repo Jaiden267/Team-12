@@ -90,13 +90,17 @@ document.addEventListener('submit', function(e){
   if (!form) return;
   e.preventDefault();
 
+  const sizeSelect = form.querySelector('select[name="size"]');
+  const sizeId = sizeSelect?.value || 'M';
+  const sizeName = sizeSelect?.options[sizeSelect.selectedIndex]?.text || sizeId;
   const item = {
     sku: form.dataset.sku,
     name: form.dataset.name,
     price: Number(form.dataset.price),
     image: form.dataset.image || '',
     color: form.querySelector('input[name="color"]:checked')?.value || 'default',
-    size: form.querySelector('select[name="size"]')?.value || 'M',
+    size: sizeId,               
+    attribute_value: sizeName,  
     qty: Number(form.querySelector('input[name="qty"]')?.value || 1),
   };
 
@@ -109,7 +113,7 @@ document.addEventListener('submit', function(e){
   if (idx >= 0) cart[idx].qty += item.qty; else cart.push(item);
 
   saveCart(cart);
-  alert(`Added ${item.qty} × ${item.name} (${item.color.toUpperCase()}, ${item.size}) to cart.`);
+  alert(`Added ${item.qty} × ${item.name} (${item.attribute_value || item.size}) to cart.`);
 });
 
 document.addEventListener('click', function(e){
@@ -253,7 +257,7 @@ function renderCartPreview(){
       <div class="cart-preview-text">
         <div class="cart-preview-name">${it.name || ''}</div>
         <div class="cart-preview-meta">
-          ${String(it.color || '').toUpperCase()} • ${it.size || ''} • Qty: ${it.qty || 1}
+          ${it.attribute_value || it.size || ''} • Qty: ${it.qty || 1}
         </div>
         <div class="cart-preview-meta">${fmtPrice(it.price || 0)}</div>
       </div>

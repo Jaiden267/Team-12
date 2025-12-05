@@ -39,73 +39,77 @@ require_once 'db_connect.php';
             <span class="wordmark">LUNARE CLOTHING</span>
         </a>
 
-        <nav class="primary-nav" aria-label="Primary">
-            <button class="hamburger" id="hamburger">
-                <span></span><span></span><span></span>
-            </button>
+       <nav class="primary-nav" aria-label="Primary">
+        
+        <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+          <span class="sr-only">Toggle menu</span>
+        </button>
 
-            <ul class="menu">
-                <li><a href="#" class="nav-link">New</a></li>
+        <ul class="menu">
+          <li><a href="#" class="nav-link">New</a></li>
 
-                <li class="has-mega">
-                    <button class="nav-link" data-menu="men">Men</button>
-                    <div class="mega" id="mega-men">
-                        <div class="mega-col">
-                            <h4>Highlights</h4>
-                            <a href="#">New in Men</a>
-                            <a href="#">Bestseller</a>
-                        </div>
-                        <div class="mega-col">
-                            <h4>Shoes</h4>
-                            <a href="#">All Shoes</a>
-                        </div>
-                        <div class="mega-col">
-                            <h4>Clothing</h4>
-                            <a href="menstrousers.php">Trousers</a>
-                            <a href="mensshorts.php">Shorts</a>
-                        </div>
-                    </div>
-                </li>
+          <li class="has-mega">
+            <button class="nav-link" data-menu="men" aria-expanded="false">Men</button>
+            <div class="mega" id="mega-men" role="dialog" aria-label="Men menu">
+              <div class="mega-col">
+                <h4>Highlights</h4>
+                <a>New in Men</a>
+                <a>Bestseller</a>
+              </div>
+              <div class="mega-col">
+                <h4>Shoes</h4>
+                <a>All Shoes</a>
+              </div>
+              <div class="mega-col">
+                <h4>Clothing</h4>
+                <a href="menstrousers.php">Trousers</a>
+                <a href="mensshorts.php">Shorts</a>
+              </div>
+            </div>
+          </li>
 
-                <li class="has-mega">
-                    <button class="nav-link" data-menu="women">Women</button>
-                    <div class="mega" id="mega-women">
-                        <div class="mega-col">
-                            <h4>Highlights</h4>
-                            <a href="#">New in Women</a>
-                            <a href="#">Bestseller</a>
-                        </div>
-                        <div class="mega-col">
-                            <h4>Shoes</h4>
-                            <a href="#">All Shoes</a>
-                        </div>
-                        <div class="mega-col">
-                            <h4>Clothing</h4>
-                            <a href="womenscoats.php">Coats</a>
-                            <a href="womensshirts.php">Shirts</a>
-                        </div>
-                    </div>
-                </li>
+          <li class="has-mega">
+            <button class="nav-link" data-menu="women" aria-expanded="false">Women</button>
+            <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
+              <div class="mega-col">
+                <h4>Highlights</h4>
+                <a>New in Women</a>
+                <a>Bestseller</a>
+                
+              </div>
+              <div class="mega-col">
+                <h4>Shoes</h4>
+                <a>All Shoes</a>
 
-                <li class="has-mega">
-                    <button class="nav-link" data-menu="kids">Kids</button>
-                    <div class="mega" id="mega-kids">
-                        <div class="mega-col">
-                            <h4>Highlights</h4>
-                            <a href="#">New for Kids</a>
-                            <a href="#">Bestseller</a>
-                        </div>
-                        <div class="mega-col">
-                            <h4>Kids</h4>
-                            <a href="kidstshirts.php">T-Shirts</a>
-                            <a href="#">Clothing</a>
-                        </div>
-                    </div>
-                </li>
+              </div>
+              <div class="mega-col">
+                <h4>Clothing</h4>
+                <a href="womenscoats.php">Coats</a>
+                <a href="womensshirts.php">Shirts</a>
+              </div>
+            </div>
+          </li>
 
-                <li><a href="#" class="nav-link sale">Sale</a></li>
-            </ul>
-        </nav>
+          <li class="has-mega">
+            <button class="nav-link" data-menu="kids" aria-expanded="false">Kids</button>
+            <div class="mega" id="mega-kids" role="dialog" aria-label="Kids menu">
+              <div class="mega-col">
+                <h4>Highlights</h4>
+                <a> New for Kids</a>
+                <a>Bestseller</a>
+              </div>
+              <div class="mega-col">
+                <h4>Kids</h4>
+                <a href="kidstshirts.php">T-Shirts</a>
+                <a>Clothing</a>
+              </div>
+            </div>
+          </li>
+
+          <li><a href="#" class="nav-link sale">Sale</a></li>
+        </ul>
+      </nav>
 
        <div class="actions">
         <button id="searchToggle" class="icon-btn" aria-expanded="false" aria-controls="searchBar" title="Search">

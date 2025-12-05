@@ -47,7 +47,7 @@ require_once 'db_connect.php';
         <span class="wordmark">LUNARE CLOTHING</span>
       </a>
 
-      <nav class="primary-nav" aria-label="Primary">
+     <nav class="primary-nav" aria-label="Primary">
         
         <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu">
           <span></span><span></span><span></span>
@@ -62,12 +62,12 @@ require_once 'db_connect.php';
             <div class="mega" id="mega-men" role="dialog" aria-label="Men menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="#">New in Men</a>
-                <a href="#">Bestseller</a>
+                <a>New in Men</a>
+                <a>Bestseller</a>
               </div>
               <div class="mega-col">
                 <h4>Shoes</h4>
-                <a href="#">All Shoes</a>
+                <a>All Shoes</a>
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
@@ -82,13 +82,13 @@ require_once 'db_connect.php';
             <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="#">New in Women</a>
-                <a href="#">Bestseller</a>
+                <a>New in Women</a>
+                <a>Bestseller</a>
                 
               </div>
               <div class="mega-col">
                 <h4>Shoes</h4>
-                <a href="#">All Shoes</a>
+                <a>All Shoes</a>
 
               </div>
               <div class="mega-col">
@@ -104,13 +104,13 @@ require_once 'db_connect.php';
             <div class="mega" id="mega-kids" role="dialog" aria-label="Kids menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="#">New for Kids</a>
-                <a href="#">Bestseller</a>
+                <a> New for Kids</a>
+                <a>Bestseller</a>
               </div>
               <div class="mega-col">
                 <h4>Kids</h4>
                 <a href="kidstshirts.php">T-Shirts</a>
-                <a href="#">Clothing</a>
+                <a>Clothing</a>
               </div>
             </div>
           </li>
@@ -187,7 +187,7 @@ require_once 'db_connect.php';
         <p class="promoprice">£135.99</p>
         <p>The forever staple</p>
         <a href="/indproduct.php?id=5">
-          <button>View Now</button></a>
+          <button>View More</button></a>
       </div>
       <div class="promocard">
         <img src="assets/12KidsStatementGraphicTee.png" alt = "mtr" >
@@ -195,7 +195,7 @@ require_once 'db_connect.php';
         <p class="promoprice">£35.99</p>
         <p>For little space explorers</p>
         <a href="/indproduct.php?id=12">
-          <button>View Now</button></a>
+          <button>View More</button></a>
       </div>
       <div class="promocard">
         <img src="assets/21WomensShirtsFoundationalCrispShirt.png" alt = "mtr" >
@@ -203,7 +203,7 @@ require_once 'db_connect.php';
         <p class="promoprice">£79.99</p>
         <p>Polished, sharp, and confident</p>
         <a href="/indproduct.php?id=21">
-          <button>View Now</button></a>
+          <button>View More</button></a>
       </div>
     </div>
     </section>

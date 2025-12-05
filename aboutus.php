@@ -70,12 +70,12 @@ require_once 'db_connect.php';
             <div class="mega" id="mega-men" role="dialog" aria-label="Men menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="#">New in Men</a>
-                <a href="#">Bestseller</a>
+                <a>New in Men</a>
+                <a>Bestseller</a>
               </div>
               <div class="mega-col">
                 <h4>Shoes</h4>
-                <a href="#">All Shoes</a>
+                <a>All Shoes</a>
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
@@ -84,18 +84,19 @@ require_once 'db_connect.php';
               </div>
             </div>
           </li>
+
           <li class="has-mega">
             <button class="nav-link" data-menu="women" aria-expanded="false">Women</button>
             <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="#">New in Women</a>
-                <a href="#">Bestseller</a>
+                <a>New in Women</a>
+                <a>Bestseller</a>
                 
               </div>
               <div class="mega-col">
                 <h4>Shoes</h4>
-                <a href="#">All Shoes</a>
+                <a>All Shoes</a>
 
               </div>
               <div class="mega-col">
@@ -111,13 +112,13 @@ require_once 'db_connect.php';
             <div class="mega" id="mega-kids" role="dialog" aria-label="Kids menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="#">New for Kids</a>
-                <a href="#">Bestseller</a>
+                <a> New for Kids</a>
+                <a>Bestseller</a>
               </div>
               <div class="mega-col">
                 <h4>Kids</h4>
                 <a href="kidstshirts.php">T-Shirts</a>
-                <a href="#">Clothing</a>
+                <a>Clothing</a>
               </div>
             </div>
           </li>
