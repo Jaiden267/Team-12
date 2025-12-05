@@ -175,7 +175,7 @@ require_once 'db_connect.php';
     </div>
 <div class="ourjourneycontent">
   <h2>Our Aspirations</h2>
-  <p>We aspire to be more than a label on a shelf. Our vision here at Lunare Clothing is to build a community around the world united by clothing and the evolving area that it is. We are aiming to redifine the urban wear market  by creating not only stylish pieces but sustainable and high performance clothing. We strive to create a legacy for "Lunare CLothing" that looks as good as it feels</p>
+  <p>We aspire to be more than a label on a shelf. Our vision here at Lunare Clothing is to build a community around the world united by clothing and the evolving area that it is. We are aiming to redifine the urban wear market  by creating not only stylish pieces but sustainable and high performance clothing. We strive to create a legacy for "Lunare CLothing" that looks as good as it feels.</p>
   <p>As we look forward into the future, we are excited about the opportunities that lie ahead for us here at Lunare. We are committed to evolving the clothing scene piece by piece, while not abandoning our roots but embracing thems. Our goal is to continue to innovate and inspire, creating pieces that not only meet the needs of our customers but also exceed their expectations.</p>
   <div class="onelinersgrid">
     <div class="onelinersitem">
