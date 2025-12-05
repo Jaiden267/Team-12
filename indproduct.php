@@ -255,7 +255,8 @@ if (isset($_GET['id'])) {
     addBtn.addEventListener("click", function(e) {
         e.preventDefault();
         const sizeDropdown = document.getElementById("sizeSelect");
-        const sizeName = sizeDropdown.options[sizeDropdown.selectedIndex].text;
+        const sizeId = sizeDropdown.value;
+        const sizeName = sizeDropdown.options[sizeDropdown.selectedIndex].text.trim();
         const qty = Number(document.getElementById("qtySelect")?.value || 1);
         const price = Number(
             sizeDropdown.selectedOptions[0]?.dataset.price
@@ -267,7 +268,7 @@ if (isset($_GET['id'])) {
             price: price,
             image: "<?= htmlspecialchars($product['image_url']); ?>",
             color: "default",
-            sizeId: sizeName,
+            size: sizeName,
             qty: qty
         };
 
