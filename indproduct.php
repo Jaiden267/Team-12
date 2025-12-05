@@ -288,7 +288,7 @@ if (isset($_GET['id'])) {
         }
 
         saveCart(cart);
-        alert(`Added ${qty} × <?= htmlspecialchars($product['name']); ?> (Size: ${size}) to cart.`);
+        alert(`Added ${qty} × <?= htmlspecialchars($product['name']); ?> (Size: ${sizeName}) to cart.`);
     });
 });
 </script>
