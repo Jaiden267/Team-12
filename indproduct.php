@@ -75,7 +75,6 @@ if (isset($_GET['id'])) {
 
         <ul class="menu">
           <li><a href="#" class="nav-link">New</a></li>
-
           <li class="has-mega">
             <button class="nav-link" data-menu="men" aria-expanded="false">Men</button>
             <div class="mega" id="mega-men" role="dialog" aria-label="Men menu">
@@ -95,7 +94,6 @@ if (isset($_GET['id'])) {
               </div>
             </div>
           </li>
-
           <li class="has-mega">
             <button class="nav-link" data-menu="women" aria-expanded="false">Women</button>
             <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
@@ -117,7 +115,6 @@ if (isset($_GET['id'])) {
               </div>
             </div>
           </li>
-
           <li class="has-mega">
             <button class="nav-link" data-menu="kids" aria-expanded="false">Kids</button>
             <div class="mega" id="mega-kids" role="dialog" aria-label="Kids menu">
@@ -139,15 +136,12 @@ if (isset($_GET['id'])) {
       </nav>
 
       <div class="actions">
-        <!-- Search toggle -->
         <button id="searchToggle" class="icon-btn" aria-expanded="false" aria-controls="searchBar" title="Search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="2"/><line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
         </button>
-        <!-- Favourites / wishlist button -->
         <button class="icon-btn" title="Favourites">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9-8.5S5 2 8.5 5.5L12 9l3.5-3.5C19 2 25 7 21 12.5S12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
         </button>
-        <!-- Shopping bag / cart button -->
         <button id="cartButton" class="icon-btn" title="Bag">
 
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a3 3 0 1 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
@@ -166,7 +160,6 @@ if (isset($_GET['id'])) {
         </div>
       </div>
     </div>
-
 
     <div id="searchBar" class="searchbar" hidden>
       <div class="container">
@@ -253,5 +246,33 @@ if (isset($_GET['id'])) {
     </div>
   </footer>
   <script src="app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+    const addBtn = document.querySelector(".single-product-cart-btn");
+
+    addBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const sizeSelect = document.getElementById("sizeSelect");
+        const qtySelect = document.getElementById("qtySelect");
+
+        const product = {
+            id: <?= json_encode($product['product_id']); ?>,
+            sku: <?= json_encode($product['sku'] ?? ''); ?>,
+            name: <?= json_encode($product['name']); ?>,
+            image: <?= json_encode($product['image_url']); ?>,
+            color: <?= json_encode($product['color'] ?? ''); ?>,
+            size: sizeSelect ? sizeSelect.options[sizeSelect.selectedIndex].text : "",
+            price: sizeSelect ? parseFloat(sizeSelect.options[sizeSelect.selectedIndex].dataset.price) : <?= $product['base_price']; ?>,
+            qty: parseInt(qtySelect.value, 10)
+        };
+
+        addToCart(product);
+        alert(`Added ${item.qty} × ${item.name} (${item.color.toUpperCase()}, ${item.size}) to cart.`);
+    });
+
+    });
+</script>
 </body>
 </html>
