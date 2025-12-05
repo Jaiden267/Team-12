@@ -269,7 +269,7 @@ if (isset($_GET['id'])) {
         };
 
         addToCart(product);
-        alert(`Added ${item.qty} × ${item.name} (${item.color.toUpperCase()}, ${item.size}) to cart.`);
+        alert("Added to cart!");
     });
 
     });
