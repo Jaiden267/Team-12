@@ -2,9 +2,11 @@
 session_start();
 require_once "db_connect.php";
 
-if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    die("Invalid request.");
+if (!isset($_POST['cart']) || empty($_POST['cart'])) {
+    die("No cart data received.");
 }
+
+$cart = json_decode($_POST['cart'], true);
 
 $billing_name  = $_POST['billing_name'];
 $billing_email = $_POST['billing_email'];
@@ -15,9 +17,7 @@ $city          = $_POST['city'];
 $postcode      = $_POST['postcode'];
 $country       = $_POST['country'];
 
-$cart = json_decode($_POST['cart'], true);
-
-$user_id = $_SESSION['user_id'] ?? NULL;
+$user_id = $_SESSION['user_id'] ?? null;
 
 $stmt = $conn->prepare("
     INSERT INTO orders (user_id, full_name, email, phone, address1, address2, city, postcode, country, order_status)
@@ -58,27 +58,27 @@ foreach ($cart as $item) {
 }
 
 $to = "lunare.clothing@mail.com";
-$subject = "New Order #$order_id Received";
+$subject = "New Order #$order_id";
 
-$message = "A new order has been placed.\n\n";
-$message .= "Order ID: $order_id\n";
-$message .= "Customer: $billing_name\n";
+$message = "New order received:\n\n";
+$message .= "Name: $billing_name\n";
 $message .= "Email: $billing_email\n";
-$message .= "Phone: $billing_phone\n\n";
-$message .= "Address:\n$address1\n";
-if ($address2) $message .= "$address2\n";
-$message .= "$city\n$postcode\n$country\n\n";
+$message .= "Phone: $billing_phone\n";
+$message .= "Address: $address1, $address2, $city, $postcode, $country\n\n";
+$message .= "Order Items:\n";
 
-$message .= "Items:\n";
 foreach ($cart as $item) {
-    $message .= "- {$item['name']} x {$item['qty']} @ £{$item['price']}\n";
+    $message .= "{$item['name']} x {$item['qty']} (£{$item['price']})\n";
 }
 
-$headers = "From: orders@lunareclothing.com";
+$headers = "From: no-reply@lunareclothing.com";
 
 mail($to, $subject, $message, $headers);
 
-
-header("Location: success.php");
-exit;
+echo "<script>
+    alert('Order Successful! Thank you for shopping with Lunare Clothing.');
+    localStorage.removeItem('lc_cart_v1');
+    window.location.href = 'index.php';
+</script>";
 ?>
+

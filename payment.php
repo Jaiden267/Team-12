@@ -248,6 +248,9 @@ require_once 'db_connect.php';
         </div>
       </div>
 
+      <input type="hidden" id="cartData" name="cart">
+
+
       <button type="submit" class="pay-btn">Pay Now</button>
       </form>
     </div>
@@ -320,46 +323,16 @@ function renderCheckoutSummary() {
     totalEl.textContent = `£${subtotal.toFixed(2)}`;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     renderCheckoutSummary();
 
     const form = document.getElementById("checkoutForm");
 
     form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-      
-        let errors = [];
-
-        const cardNum = form.card_number.value.replace(/\s+/g, "");
-        const expiry = form.expiry.value.trim();
-        const cvv = form.cvv.value.trim();
-
-      
-        const expParts = expiry.split("/");
-        const month = parseInt(expParts[0]);
-        const year = parseInt(expParts[1]);
-
-        if (!/^\d{16}$/.test(cardNum)) {
-            errors.push("Card number must be 16 digits.");
-        }
-
-        if (!(expParts.length === 2 && month >= 1 && month <= 12)) {
-            errors.push("Expiry must be in MM/YY format.");
-        }
-
-        if (!/^\d{3}$/.test(cvv)) {
-            errors.push("CVV must be 3 digits.");
-        }
-
-        if (errors.length) {
-            alert("Please fix the following:\n\n" + errors.join("\n"));
-            return;
-        }
 
         document.getElementById("cartData").value = JSON.stringify(loadCart());
-
-        form.submit();
+        
+        return true;
     });
 });
 </script>
