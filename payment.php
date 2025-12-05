@@ -322,7 +322,7 @@ function renderCheckoutSummary() {
         div.innerHTML = `
             <div>
                 <strong>${it.name}</strong>
-                <div class="muted">${it.color.toUpperCase()} • ${it.size} • Qty: ${it.qty}</div>
+                <div class="muted">${colorDisplay}${sizeDisplay} • Qty: ${it.qty}</div>
             </div>
             <div class="price">£${line.toFixed(2)}</div>
         `;
