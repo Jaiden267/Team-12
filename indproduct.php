@@ -247,32 +247,50 @@ if (isset($_GET['id'])) {
   </footer>
   <script src="app.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
 
+  document.addEventListener("DOMContentLoaded", () => {
     const addBtn = document.querySelector(".single-product-cart-btn");
+    if (!addBtn) return;
 
-    addBtn.addEventListener("click", function (e) {
+    addBtn.addEventListener("click", function(e) {
         e.preventDefault();
 
-        const sizeSelect = document.getElementById("sizeSelect");
-        const qtySelect = document.getElementById("qtySelect");
+        const size = document.getElementById("sizeSelect")?.value || "";
+        const qty = Number(document.getElementById("qtySelect")?.value || 1);
+        const price = Number(
+            document.getElementById("sizeSelect")?.selectedOptions[0]?.dataset.price
+        );
 
-        const product = {
-            id: <?= json_encode($product['product_id']); ?>,
-            sku: <?= json_encode($product['sku'] ?? ''); ?>,
-            name: <?= json_encode($product['name']); ?>,
-            image: <?= json_encode($product['image_url']); ?>,
-            color: <?= json_encode($product['color'] ?? ''); ?>,
-            size: sizeSelect ? sizeSelect.options[sizeSelect.selectedIndex].text : "",
-            price: sizeSelect ? parseFloat(sizeSelect.options[sizeSelect.selectedIndex].dataset.price) : <?= $product['base_price']; ?>,
-            qty: parseInt(qtySelect.value, 10)
+        const item = {
+            sku: "<?= $product['product_id']; ?>",
+            name: "<?= htmlspecialchars($product['name']); ?>",
+            price: price,
+            image: "<?= htmlspecialchars($product['image_url']); ?>",
+            color: "default",
+            size: size,
+            qty: qty
         };
 
-        addToCart(product);
-        alert("Added to cart!");
-    });
+        if (!size) {
+            alert("Please select a size before adding to cart.");
+            return;
+        }
 
+        const cart = loadCart();
+        const key = (i) => `${i.sku}-${i.size}`;
+
+        const existingIndex = cart.findIndex(i => key(i) === key(item));
+
+        if (existingIndex >= 0) {
+            cart[existingIndex].qty += qty;
+        } else {
+            cart.push(item);
+        }
+
+        saveCart(cart);
+        alert(`Added ${qty} × <?= htmlspecialchars($product['name']); ?> (Size: ${size}) to cart.`);
     });
+});
 </script>
 </body>
 </html>
