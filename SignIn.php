@@ -146,7 +146,17 @@ require_once 'db_connect.php';
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a3 3 0 1 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
         </button>
 
-</div>
+        <span id="cartCount" class="muted"></span>
+        
+        <div id="cartPreview" class="cart-preview">
+          <div id="cartPreviewItems"></div>
+
+        <div class="cart-preview-total">
+          Total: <span id="cartPreviewTotal">£0.00</span>
+        </div>
+
+            <a href="cart.php" class="btn">View Basket</a>
+        </div>
 
       </div>
 
