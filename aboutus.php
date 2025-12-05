@@ -171,7 +171,7 @@ require_once 'db_connect.php';
     <div class="ourjourneycontent">
       <h2>Our Journey</h2>
       <p>Lunare Clothing was built from the ground up by our team of passionate creators here in the studio. We were founded in 2022 by only two members and since grew to a team of over 150 people. Our vision was clear from the start: to redefine everyday essentials by blending comfort, style, and functionality. Over the years, we've expanded our product range and refined our designs, but our commitment to quality and innovation remains unwavering.</p>
-      <p>The name "Lunare" reflects our core philosophy. The name is the Latin wrd for Lunar which represents renewal which we aspire to to bring to the clothing industry with fresh new designs every year to create new identities. Lunare isn't just our name its a mindset and embracing new journies and standing out.</p>
+      <p>The name "Lunare" reflects our core philosophy. The name is the Latin word for Lunar which represents renewal which we aspire to to bring to the clothing industry with fresh new designs every year to create new identities. Lunare isn't just our name its a mindset and embracing new journies and standing out.</p>
     </div>
 <div class="ourjourneycontent">
   <h2>Our Aspirations</h2>
