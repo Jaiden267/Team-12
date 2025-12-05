@@ -254,12 +254,11 @@ if (isset($_GET['id'])) {
 
     addBtn.addEventListener("click", function(e) {
         e.preventDefault();
-        const sizeDropdown = document.getElementById("sizeSelect");
+
         const sizeName = sizeDropdown.options[sizeDropdown.selectedIndex].text;
-        const sizeId = sizeDropdown.value;
         const qty = Number(document.getElementById("qtySelect")?.value || 1);
         const price = Number(
-            document.getElementById("sizeSelect")?.selectedOptions[0]?.dataset.price
+            sizeDropdown.selectedOptions[0]?.dataset.price
         );
 
         const item = {
