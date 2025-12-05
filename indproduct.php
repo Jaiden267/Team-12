@@ -246,5 +246,52 @@ if (isset($_GET['id'])) {
     </div>
   </footer>
   <script src="app.js"></script>
+  <script>
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const addBtn = document.querySelector(".single-product-cart-btn");
+    if (!addBtn) return;
+
+    addBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        const sizeName = sizeDropdown.options[sizeDropdown.selectedIndex].text;
+        const sizeId = sizeDropdown.value;
+        const qty = Number(document.getElementById("qtySelect")?.value || 1);
+        const price = Number(
+            document.getElementById("sizeSelect")?.selectedOptions[0]?.dataset.price
+        );
+
+        const item = {
+            sku: "<?= $product['product_id']; ?>",
+            name: "<?= htmlspecialchars($product['name']); ?>",
+            price: price,
+            image: "<?= htmlspecialchars($product['image_url']); ?>",
+            color: "default",
+            size: size,
+            qty: qty
+        };
+
+        if (!size) {
+            alert("Please select a size before adding to cart.");
+            return;
+        }
+
+        const cart = loadCart();
+        const key = (i) => `${i.sku}-${i.size}`;
+
+        const existingIndex = cart.findIndex(i => key(i) === key(item));
+
+        if (existingIndex >= 0) {
+            cart[existingIndex].qty += qty;
+        } else {
+            cart.push(item);
+        }
+
+        saveCart(cart);
+        alert(`Added ${qty} × <?= htmlspecialchars($product['name']); ?> (Size: ${size}) to cart.`);
+    });
+});
+</script>
 </body>
 </html>
