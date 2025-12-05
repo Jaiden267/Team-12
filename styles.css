@@ -1451,3 +1451,8 @@ letter-spacing: 0.05em;
   flex: 1 1 300px;        
   max-width: 350px;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
