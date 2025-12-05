@@ -310,13 +310,6 @@ function renderCheckoutSummary() {
         if (it.color && it.color.toLowerCase() !== 'default') {
           colorDisplay = `${it.color.toUpperCase()} • `;}
           const sizeDisplay = it.attribute_value || it.size;
-
-
-
-
-
-
-
         const div = document.createElement('div');
         div.className = 'checkout-item';
         div.innerHTML = `
