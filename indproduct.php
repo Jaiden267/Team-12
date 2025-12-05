@@ -268,7 +268,7 @@ if (isset($_GET['id'])) {
             price: price,
             image: "<?= htmlspecialchars($product['image_url']); ?>",
             color: "default",
-            size: size,
+            size: sizeName,
             qty: qty
         };
 
