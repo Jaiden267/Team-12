@@ -289,13 +289,21 @@ function renderCheckoutSummary() {
   items.forEach(it => {
     const line = it.price * it.qty;
     subtotal += line;
+    let colorDisplay = '';
+    if (it.color && it.color.toLowerCase() !== 'default') {
+      colorDisplay = `${it.color.toUpperCase()} • `;}
+
+      const sizeDisplay = it.attribute_value || it.size;
+
+
+
 
     const div = document.createElement("div");
     div.className = "checkout-item";
     div.innerHTML = `
       <div>
         <strong>${it.name}</strong>
-        <div class="muted">${it.color.toUpperCase()} • ${it.size} • Qty: ${it.qty}</div>
+        <div class="muted">${colorDisplay}${sizeDisplay} • Qty: ${it.qty}</div>
       </div>
       <div class="price">£${line.toFixed(2)}</div>
     `;
