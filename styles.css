@@ -1377,3 +1377,31 @@ letter-spacing: 0.05em;
     font-weight: bold;
     text-align: right;
 }
+
+/* End of Bag page css */
+
+/* Checkkout page css */
+.checkout-heading {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.checkout-summary {
+  margin-top: 24px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.checkout-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+.checkout-item:last-child {
+  border-bottom: none;
+}
+/* End of Checkout page css */
