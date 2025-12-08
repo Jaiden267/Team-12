@@ -155,7 +155,7 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
   </header>
 
 
-  <div class="page-header"><div class="container"><h1>Mens — Shorts</h1></div></div>
+  <div class="page-header"><div class="container"><h1>Womens — Coats</h1></div></div>
   <section class="products">
     <div class="container">
 <div class="product-grid">
