@@ -71,10 +71,10 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
                 <h4>Clothing</h4>
                 <a href="menstrousers.php">Trousers</a>
                 <a href="mensshorts.php">Shorts</a>
+                <a href="menssocks.php">Socks</a>
               </div>
             </div>
           </li>
-
           <li class="has-mega">
             <button class="nav-link" data-menu="women" aria-expanded="false">Women</button>
             <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
@@ -93,6 +93,8 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
                 <h4>Clothing</h4>
                 <a href="womenscoats.php">Coats</a>
                 <a href="womensshirts.php">Shirts</a>
+                <a href="womensknitwear.php">Knitwear</a>
+                <a href="womenactivewear.php">Activewear</a>
               </div>
             </div>
           </li>
@@ -155,7 +157,7 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
   </header>
 
 
-  <div class="page-header"><div class="container"><h1>Mens — Shorts</h1></div></div>
+  <div class="page-header"><div class="container"><h1>Womens — Coats</h1></div></div>
   <section class="products">
     <div class="container">
 <div class="product-grid">
