@@ -59,39 +59,41 @@ require_once 'db_connect.php';
             <div class="mega" id="mega-men" role="dialog" aria-label="Men menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a>New in Men</a>
-                <a>Bestseller</a>
+                <a href="#">New in Men</a>
+                <a href="#">Bestseller</a>
               </div>
               <div class="mega-col">
                 <h4>Shoes</h4>
-                <a>All Shoes</a>
+                <a href="#">All Shoes</a>
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
                 <a href="menstrousers.php">Trousers</a>
                 <a href="mensshorts.php">Shorts</a>
+                <a href="menssocks.php">Socks</a>
               </div>
             </div>
           </li>
-
           <li class="has-mega">
             <button class="nav-link" data-menu="women" aria-expanded="false">Women</button>
             <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a>New in Women</a>
-                <a>Bestseller</a>
+                <a href="#">New in Women</a>
+                <a href="#">Bestseller</a>
                 
               </div>
               <div class="mega-col">
                 <h4>Shoes</h4>
-                <a>All Shoes</a>
+                <a href="#">All Shoes</a>
 
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
                 <a href="womenscoats.php">Coats</a>
                 <a href="womensshirts.php">Shirts</a>
+                <a href="womensknitwear.php">Knitwear</a>
+                <a href="womenactivewear.php">Activewear</a>
               </div>
             </div>
           </li>

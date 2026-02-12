@@ -63,6 +63,7 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
                 <h4>Clothing</h4>
                 <a href="menstrousers.php">Trousers</a>
                 <a href="mensshorts.php">Shorts</a>
+                <a href="menssocks.php">Socks</a>
               </div>
             </div>
           </li>
@@ -84,6 +85,8 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
                 <h4>Clothing</h4>
                 <a href="womenscoats.php">Coats</a>
                 <a href="womensshirts.php">Shirts</a>
+                <a href="womensknitwear.php">Knitwear</a>
+                <a href="womenactivewear.php">Activewear</a>
               </div>
             </div>
           </li>
