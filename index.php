@@ -14,7 +14,7 @@ require_once 'db_connect.php';
 
   <link rel="stylesheet" href="styles.css" />
 </head>
-<script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
+
 <body>
  <div class="utility-strip">
     <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
@@ -242,5 +242,6 @@ require_once 'db_connect.php';
 
   <!-- Link with javascript file -->
   <script src="app.js"></script>
+  <script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
 </body>
 </html>
