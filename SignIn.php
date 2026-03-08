@@ -161,7 +161,21 @@ require_once 'db_connect.php';
 
       <div class="contact-form">
         <h3>Welcome Back</h3>
+       <div style="display:flex; justify-content:center; margin-bottom:20px;">
+          <div style="display:flex; border:1px solid #ddd; border-radius:6px; overflow:hidden;">
 
+            <a href="signin.php"
+               style="padding:10px 18px; text-decoration:none; background:#000; color:#fff; font-size:14px;">
+               Customer
+            </a>
+
+            <a href="admin_signin.php"
+               style="padding:10px 18px; text-decoration:none; background:#f5f5f5; color:#000; font-size:14px;">
+               Admin
+            </a>
+
+          </div>
+        </div>
         <form method="POST" action="login_process.php">
           <div class="form-group">
               <input type="email" name="email" placeholder="Email Address" required>
