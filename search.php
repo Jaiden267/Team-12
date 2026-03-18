@@ -192,7 +192,7 @@ if ($result->num_rows === 1) {
     </div>
 <?php endif; ?>
 </div>
-<footer class="site-footer">
+</main> <footer class="site-footer">
     <div class="container footer-grid">
       <div>
         <h5>Support</h5>
