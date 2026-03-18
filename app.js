@@ -289,3 +289,99 @@ function renderCartPreview(){
     el.addEventListener('mouseleave', hidePreview);
   });
 })();
+
+function loadFavourites() {
+    try {
+        return JSON.parse(localStorage.getItem('lunare_favourites')) || [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveFavourites(items) {
+    localStorage.setItem('lunare_favourites', JSON.stringify(items));
+    updateFavouriteCount();
+}
+
+function isFavourite(productId, size = '') {
+    const favourites = loadFavourites();
+    return favourites.some(item =>
+        String(item.id) === String(productId) &&
+        String(item.attribute_value || item.size || '') === String(size)
+    );
+}
+
+function addToFavourites(product) {
+    const favourites = loadFavourites();
+
+    const exists = favourites.some(item =>
+        String(item.id) === String(product.id) &&
+        String(item.attribute_value || item.size || '') === String(product.attribute_value || product.size || '')
+    );
+
+    if (!exists) {
+        favourites.push(product);
+        saveFavourites(favourites);
+    }
+}
+
+function removeFromFavourites(productId, size = '') {
+    let favourites = loadFavourites();
+
+    favourites = favourites.filter(item =>
+        !(
+            String(item.id) === String(productId) &&
+            String(item.attribute_value || item.size || '') === String(size)
+        )
+    );
+
+    saveFavourites(favourites);
+}
+
+function removeFavourite(index) {
+    const favourites = loadFavourites();
+    favourites.splice(index, 1);
+    saveFavourites(favourites);
+}
+
+function toggleFavourite(product) {
+    const size = product.attribute_value || product.size || '';
+
+    if (isFavourite(product.id, size)) {
+        removeFromFavourites(product.id, size);
+    } else {
+        addToFavourites(product);
+    }
+
+    updateFavouriteButtons();
+}
+
+function updateFavouriteCount() {
+    const countEl = document.getElementById('favCount');
+    if (!countEl) return;
+
+    const favourites = loadFavourites();
+    countEl.textContent = favourites.length ? `(${favourites.length})` : '';
+}
+
+function updateFavouriteButtons() {
+    document.querySelectorAll('.fav-toggle').forEach(btn => {
+        const productId = btn.dataset.id;
+        const size = btn.dataset.size || '';
+
+        if (isFavourite(productId, size)) {
+            btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
+        } else {
+            btn.classList.remove('active');
+            btn.setAttribute('aria-pressed', 'false');
+        }
+    });
+
+    updateFavouriteCount();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateFavouriteCount();
+    updateFavouriteButtons();
+});

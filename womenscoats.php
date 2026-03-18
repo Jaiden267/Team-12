@@ -123,9 +123,13 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
         <button id="searchToggle" class="icon-btn" aria-expanded="false" aria-controls="searchBar" title="Search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="2"/><line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
         </button>
-        <button class="icon-btn" title="Favourites">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9-8.5S5 2 8.5 5.5L12 9l3.5-3.5C19 2 25 7 21 12.5S12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-        </button>
+        <a href="favourites.php" class="icon-btn" title="Favourites" aria-label="Favourites">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 21s-7-4.5-9-8.5S5 2 8.5 5.5L12 9l3.5-3.5C19 2 25 7 21 12.5S12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/>
+  </svg>
+</a>
+
+<span id="favCount" class="muted"></span>
         <button id="cartButton" class="icon-btn" title="Bag">
 
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a3 3 0 1 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
@@ -206,25 +210,25 @@ $productid = $row['product_id'];
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
-        <h5>Support</h5>
-        <a href="#">Help</a>
-        <a href="#">Delivery</a>
-        <a href="#">Returns</a>
-        <a href="contact.php">Contact Us</a>
-      </div>
-      <div>
-        <h5>About</h5>
-        <a href="aboutus.php">About Us</a>
-        <a href="#">Company</a>
-        <a href="#">Sustainability</a>
-        <a href="#">Careers</a>
-      </div>
-      <div>
-        <h5>Legal</h5>
-        <a href="#">Terms</a>
-        <a href="#">Privacy</a>
-        <a href="#">Cookies</a>
-      </div>
+  <h5>Support</h5>
+  <a href="help.php">Help</a>
+  <a href="delivery.php">Delivery</a>
+  <a href="returns.php">Returns</a>
+  <a href="contact.php">Contact Us</a>
+</div>
+<div>
+  <h5>About</h5>
+  <a href="aboutus.php">About Us</a>
+  <a href="company.php">Company</a>
+  <a href="sustainability.php">Sustainability</a>
+  <a href="careers.php">Careers</a>
+</div>
+<div>
+  <h5>Legal</h5>
+  <a href="terms.php">Terms</a>
+  <a href="privacy.php">Privacy</a>
+  <a href="cookies.php">Cookies</a>
+</div>
     </div>
     <div class="container footer-bottom">
       <span>© <span id="year"></span> Lunare Clothing</span>

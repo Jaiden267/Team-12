@@ -1441,3 +1441,219 @@ input[type=number]::-webkit-outer-spin-button {
 main {
   flex: 1 0 auto;
 }
+.help-page,
+.delivery-page,
+.returns-page,
+.company-page,
+.sustainability-page,
+.careers-page,
+.terms-page,
+.privacy-page,
+.cookies-page {
+  padding: 40px 0;
+}
+
+.help-header,
+.delivery-header,
+.returns-header,
+.company-header,
+.sustainability-header,
+.careers-header,
+.terms-header,
+.privacy-header,
+.cookies-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.help-grid,
+.delivery-grid,
+.returns-grid,
+.company-values,
+.sustainability-grid,
+.careers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin: 30px 0 40px;
+}
+
+.help-card,
+.delivery-card,
+.returns-card,
+.value-card,
+.sustainability-card,
+.careers-card,
+.job-card,
+.cookies-card {
+  border: 1px solid var(--line);
+  padding: 20px;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.help-card h3,
+.delivery-card h3,
+.returns-card h3,
+.value-card h3,
+.sustainability-card h3,
+.careers-card h3,
+.job-card h3,
+.cookies-card h3 {
+  margin-bottom: 10px;
+}
+
+.help-search {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.help-search-input {
+  padding: 12px;
+  width: 320px;
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.help-card p,
+.delivery-card p,
+.returns-card p,
+.value-card p,
+.sustainability-card p,
+.careers-card p,
+.job-card p,
+.cookies-card p {
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+.delivery-info,
+.returns-info,
+.returns-steps,
+.company-section,
+.sustainability-section,
+.careers-section,
+.terms-section,
+.privacy-section,
+.cookies-section {
+  margin-bottom: 30px;
+  line-height: 1.7;
+}
+
+.returns-steps ol {
+  padding-left: 20px;
+}
+
+.job-listings {
+  display: grid;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.faq-section,
+.delivery-faq,
+.returns-faq {
+  max-width: 800px;
+  margin-top: 10px;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 10px 0;
+  color: var(--ink);
+}
+
+.faq-answer {
+  display: none;
+  color: var(--ink-2);
+  padding-bottom: 10px;
+  line-height: 1.6;
+}
+
+.terms-section h2,
+.privacy-section h2,
+.cookies-section h2,
+.company-section h2,
+.sustainability-section h2,
+.careers-section h2,
+.delivery-info h2,
+.returns-info h2,
+.returns-steps h2,
+.faq-section h2,
+.delivery-faq h2,
+.returns-faq h2 {
+  margin-bottom: 10px;
+}
+
+.fav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.fav-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.fav-image-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #f8f8f8;
+}
+
+.fav-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fav-info {
+  padding: 16px;
+}
+
+.fav-info h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.fav-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.fav-toggle.active svg path {
+  fill: currentColor;
+}
+
+@media (max-width: 640px) {
+  .help-grid,
+  .delivery-grid,
+  .returns-grid,
+  .company-values,
+  .sustainability-grid,
+  .careers-grid,
+  .fav-grid {
+    grid-template-columns: 1fr;
+  }
+}
