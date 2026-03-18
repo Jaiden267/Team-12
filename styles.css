@@ -16,10 +16,14 @@ html,body{
   padding:0; 
 }
 
-body{
+body {
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color:var(--ink); 
-  background:var(--bg); 
+  color: var(--ink); 
+  background: var(--bg); 
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
 }
 
 .container{ max-width:1200px; 
@@ -1433,4 +1437,7 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
+}
+main {
+  flex: 1 0 auto;
 }
