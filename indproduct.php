@@ -204,9 +204,18 @@ if (isset($_GET['id'])) {
         </select>
     </div>
     <div style="margin-top: 10px;">
-      <p class="single-product-size">In Stock:
-        <span id="stockDisplay"><?= !empty($variants) ? ($variants[0]['quantity'] ?? 0) : 0; ?></span> 
-        </p>
+        <span id="stockDisplay" style="font-weight: bold;">
+          <?php
+          $initial_qty = !empty($variants) ? ($variants[0]['quantity'] ?? 0) : 0;
+          if ($initial_qty == 0) {
+            echo "Out of Stock: " . $initial_qty;
+            } elseif ($initial_qty < 10) {
+              echo "Low Stock: " . $initial_qty;
+              } else {
+                echo "In Stock: " . $initial_qty;
+                }
+          ?>
+        </span>
         </div>
     <div style="width: 100%;">
         <button class="single-product-cart-btn">Add to Cart</button>
@@ -224,8 +233,16 @@ if (isset($_GET['id'])) {
         const selectedOption = this.options[this.selectedIndex];
         const newPrice = parseFloat(selectedOption.getAttribute('data-price'));
         priceText.textContent = '£' + newPrice.toFixed(2);
-        const newStock = selectedOption.getAttribute('data-stock');
-        stockText.textContent = newStock;
+        const qty = parseInt(selectedOption.getAttribute('data-stock')) || 0;
+        let label = "";
+        if (qty === 0) {
+          label = "Out of Stock: ";
+          } else if (qty < 10) {
+            label = "Low Stock: ";
+            } else {
+              label = "In Stock: ";
+              }
+              stockText.textContent = label + qty;
     });
   }
   </script>
