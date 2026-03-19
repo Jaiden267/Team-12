@@ -16,7 +16,7 @@ require_once 'db_connect.php';
 <body>
  <div class="utility-strip">
     <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
-        
+         
         
         <span>FREE DELIVERY & RETURNS</span>
 
@@ -231,5 +231,6 @@ require_once 'db_connect.php';
   </footer>
 
   <script src="app.js"></script>
+
 </body>
 </html>
