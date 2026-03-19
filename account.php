@@ -158,55 +158,6 @@ require_once 'db_connect.php';
     </div>
   </header>
 
-  <!-- Main content area: hero / promotional content -->
-  <main>
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <h1>ALL NEW ARRIVALS</h1>
-          <p>Fresh drops for the season. Shop the latest picks from Lunare Clothing.</p>
-          <div class="cta">
-            <!-- Primary calls-to-action -->
-            <a class="btn primary" href="menstrousers.php">Shop Men's Trousers</a>
-            <a class="btn" href="womenscoats.php">Shop Women's Coats</a>
-            <a class="btn" href="kidstshirts.php">Shop Kids</a>
-          </div>
-        </div>
-        <!-- Decorative artwork area for the hero -->
-        <div class="hero-art" aria-hidden="true">
-        <img src="assets/landingfamilyimage1.png" alt="familyimg1">
-      </div>
-    </section>
-    <section class="container">
-    <div class="promocard-row">
-      <div class="promocard">
-        <img src="assets/5WomensEffortlessTrenchCoat.png" alt = "mtr" >
-        <h1>LC Effortless Trench Coat</h1>
-        <p class="promoprice">£135.99</p>
-        <p>The forever staple</p>
-        <a href="/indproduct.php?id=5">
-          <button>View Now</button></a>
-      </div>
-      <div class="promocard">
-        <img src="assets/12KidsStatementGraphicTee.png" alt = "mtr" >
-        <h1>LC Statment Graphic Tee</h1>
-        <p class="promoprice">£35.99</p>
-        <p>For little space explorers</p>
-        <a href="/indproduct.php?id=12">
-          <button>View Now</button></a>
-      </div>
-      <div class="promocard">
-        <img src="assets/21WomensShirtsFoundationalCrispShirt.png" alt = "mtr" >
-        <h1>LC Foundational Crisp Shirt</h1>
-        <p class="promoprice">£79.99</p>
-        <p>Polished, sharp, and confident</p>
-        <a href="/indproduct.php?id=21">
-          <button>View Now</button></a>
-      </div>
-    </div>
-    </section>
-  </main>
-
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
@@ -237,7 +188,7 @@ require_once 'db_connect.php';
     </div>
   </footer>
 
-  <!-- Link with javascript file -->
+ 
   <script src="app.js"></script>
   <script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
 </body>
