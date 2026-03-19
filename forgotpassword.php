@@ -178,9 +178,6 @@ require_once 'db_connect.php';
           </div>
 
 
-         <a href="register.php">Sign up</a>
-         <a href="signin.php">Sign in</a>
-
           <button type="submit" class="submitbtn">Reset Password</button>
 
     
