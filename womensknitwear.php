@@ -1,7 +1,17 @@
 <?php
 session_start();
 require_once 'db_connect.php';
-$result = $conn->query("SELECT products.*, image_url FROM products LEFT JOIN product_images ON products.product_id = product_images.product_id WHERE category_id = 7");
+$sort = $_GET['sort'] ?? 'default';
+$order_query = "ORDER BY products.product_id ASC";
+if ($sort == 'price_low') {
+  $order_query = "ORDER BY products.base_price ASC";
+  } elseif ($sort == 'price_high') {
+    $order_query = "ORDER BY products.base_price DESC";
+    } elseif ($sort == 'name_az') {
+      $order_query = "ORDER BY products.name ASC";
+      } elseif ($sort == 'name_za') {
+        $order_query = "ORDER BY products.name DESC";}
+$result = $conn->query("SELECT products.*, image_url FROM products LEFT JOIN product_images ON products.product_id = product_images.product_id WHERE category_id = 7 AND (product_images.is_main = 1 OR product_images.is_main IS NULL) $order_query");
 $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price FROM product_variants WHERE product_id = ?");
 ?>
 <!DOCTYPE html>
@@ -145,7 +155,20 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
       </div>
     </div>
   </header>
-  <div class="page-header"><div class="container"><h1>Womens — Knitwear</h1></div></div>
+  <div class="page-header">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+      <h1>Womens — Knitwear</h1>
+      <form method="GET" action="womensknitwear.php" id="sortForm">
+        <label style="font-size:14px; font-weight:600;">Sort By: </label>
+        <select name="sort" class="select" onchange="document.getElementById('sortForm').submit();">
+          <option value="default" <?= $sort == 'default' ? 'selected' : '' ?>>Default</option>
+          <option value="price_low" <?= $sort == 'price_low' ? 'selected' : '' ?>>Price - Low to High</option>
+          <option value="price_high" <?= $sort == 'price_high' ? 'selected' : '' ?>>Price - High to Low</option>
+          <option value="name_az" <?= $sort == 'name_az' ? 'selected' : '' ?>>A to Z</option>
+          <option value="name_za" <?= $sort == 'name_za' ? 'selected' : '' ?>>Z to A</option>
+          </select>
+          </form>
+          </div></div>
   <section class="products">
     <div class="container">
 <div class="product-grid">
