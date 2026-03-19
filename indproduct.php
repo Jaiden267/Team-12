@@ -71,7 +71,7 @@ if (isset($_GET['id'])) {
         </button>
 
         <ul class="menu">
-          <li><a href="#" class="nav-link">New</a></li>
+          <li><a href="allproducts.php" class="nav-link">All Products</a></li>
 
           <li class="has-mega">
             <button class="nav-link" data-menu="men" aria-expanded="false">Men</button>

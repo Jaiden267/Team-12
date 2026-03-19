@@ -46,7 +46,7 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
           <span class="sr-only">Toggle menu</span>
         </button>
         <ul class="menu">
-          <li><a href="#" class="nav-link">New</a></li>
+          <li><a href="allproducts.php" class="nav-link">All Products</a></li>
           <li class="has-mega">
             <button class="nav-link" data-menu="men" aria-expanded="false">Men</button>
             <div class="mega" id="mega-men" role="dialog" aria-label="Men menu">
