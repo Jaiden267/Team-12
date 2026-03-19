@@ -171,7 +171,7 @@ require_once 'db_connect.php';
               <input type="password" name="password" placeholder="Password" required>
           </div>
 
-          <a class="forgot-password" href="#">Forgot your password?</a>
+          <a class="forgot-password" href="forgotpassword.php">Forgot your password?</a>
 
           <button type="submit" class="submitbtn">Sign In</button>
 
