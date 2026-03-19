@@ -178,14 +178,14 @@ require_once 'db_connect.php';
           </div>
 
 
-          <a class="forgot-password" href="forgotpassword.php">Forgot your password?</a>
+         <a href="register.php">Sign up</a>
+         <a href="signin.php">Sign in</a>
 
           <button type="submit" class="submitbtn">Reset Password</button>
 
     
-              <a href="register.php">Sign up</a>
-              <a href="signin.php">Sign in</a>
-          </p>
+              
+        
         </form>
 
       </div>
