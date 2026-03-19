@@ -186,6 +186,7 @@ require_once 'db_connect.php';
     </div>
   </section>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
@@ -195,7 +196,6 @@ require_once 'db_connect.php';
         <a href="returns.php">Returns</a>
         <a href="contact.php">Contact Us</a>
       </div>
-
       <div>
         <h5>About</h5>
         <a href="aboutus.php">About Us</a>
@@ -203,7 +203,6 @@ require_once 'db_connect.php';
         <a href="sustainability.php">Sustainability</a>
         <a href="careers.php">Careers</a>
       </div>
-
       <div>
         <h5>Legal</h5>
         <a href="terms.php">Terms</a>
@@ -211,12 +210,14 @@ require_once 'db_connect.php';
         <a href="cookies.php">Cookies</a>
       </div>
     </div>
-
     <div class="container footer-bottom">
+      
       <span>© <span id="year"></span> Lunare Clothing</span>
     </div>
   </footer>
-<script src="app.js"></script>
+
+  <script src="app.js"></script>
+  <script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
 </body>
 </html>
 

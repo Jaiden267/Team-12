@@ -210,6 +210,7 @@ document.querySelector("form").addEventListener("submit", function(e) {
     </div>
   </section>
 
+    <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
@@ -221,7 +222,7 @@ document.querySelector("form").addEventListener("submit", function(e) {
       </div>
       <div>
         <h5>About</h5>
-        <a href="company.php">About Us</a>
+        <a href="aboutus.php">About Us</a>
         <a href="company.php">Company</a>
         <a href="sustainability.php">Sustainability</a>
         <a href="careers.php">Careers</a>
@@ -233,13 +234,14 @@ document.querySelector("form").addEventListener("submit", function(e) {
         <a href="cookies.php">Cookies</a>
       </div>
     </div>
-
     <div class="container footer-bottom">
+      
       <span>© <span id="year"></span> Lunare Clothing</span>
     </div>
   </footer>
 
-<script src="app.js"></script>
+  <script src="app.js"></script>
+  <script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
 </body>
 </html>
 

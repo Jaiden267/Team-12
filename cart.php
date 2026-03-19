@@ -193,7 +193,8 @@ require_once 'db_connect.php';
     </div>
 </main>
 
-<footer class="site-footer">
+<!-- Footer -->
+  <footer class="site-footer">
     <div class="container footer-grid">
       <div>
         <h5>Support</h5>
@@ -217,9 +218,13 @@ require_once 'db_connect.php';
       </div>
     </div>
     <div class="container footer-bottom">
+      
       <span>© <span id="year"></span> Lunare Clothing</span>
     </div>
-</footer>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
 
 
 <script src="app.js"></script>

@@ -214,33 +214,36 @@ $productid = $row['product_id'];
                       </div>
 </div>
   </section>
+   <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
         <h5>Support</h5>
-        <a href="#">Help</a>
-        <a href="#">Delivery</a>
-        <a href="#">Returns</a>
+        <a href="help.php">Help</a>
+        <a href="delivery.php">Delivery</a>
+        <a href="returns.php">Returns</a>
         <a href="contact.php">Contact Us</a>
       </div>
       <div>
         <h5>About</h5>
         <a href="aboutus.php">About Us</a>
-        <a href="#">Company</a>
-        <a href="#">Sustainability</a>
-        <a href="#">Careers</a>
+        <a href="company.php">Company</a>
+        <a href="sustainability.php">Sustainability</a>
+        <a href="careers.php">Careers</a>
       </div>
       <div>
         <h5>Legal</h5>
-        <a href="#">Terms</a>
-        <a href="#">Privacy</a>
-        <a href="#">Cookies</a>
+        <a href="terms.php">Terms</a>
+        <a href="privacy.php">Privacy</a>
+        <a href="cookies.php">Cookies</a>
       </div>
     </div>
     <div class="container footer-bottom">
+      
       <span>© <span id="year"></span> Lunare Clothing</span>
     </div>
   </footer>
+ 
 <script>
 const workWorks = document.querySelectorAll('.grid-size-select');
 workWorks.forEach(select => {
@@ -256,5 +259,6 @@ workWorks.forEach(select => {
 })
 </script>
 <script src="app.js"></script>
+<script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
 </body>
 </html>
