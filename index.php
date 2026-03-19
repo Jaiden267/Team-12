@@ -40,7 +40,6 @@ require_once 'db_connect.php';
 
   <!-- Header including brand, navigation and actions -->
   <header class="site-header">
-    <!-- Brand logo that links to the home page -->
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
@@ -56,7 +55,7 @@ require_once 'db_connect.php';
         </button>
 
         <ul class="menu">
-          <li><a href="#" class="nav-link">New</a></li>
+          <li><a href="allproducts.php" class="nav-link">All Products</a></li>
 
           <li class="has-mega">
             <button class="nav-link" data-menu="men" aria-expanded="false">Men</button>
@@ -74,10 +73,10 @@ require_once 'db_connect.php';
                 <h4>Clothing</h4>
                 <a href="menstrousers.php">Trousers</a>
                 <a href="mensshorts.php">Shorts</a>
+                <a href="menssocks.php">Socks</a>
               </div>
             </div>
           </li>
-
           <li class="has-mega">
             <button class="nav-link" data-menu="women" aria-expanded="false">Women</button>
             <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
@@ -96,6 +95,8 @@ require_once 'db_connect.php';
                 <h4>Clothing</h4>
                 <a href="womenscoats.php">Coats</a>
                 <a href="womensshirts.php">Shirts</a>
+                <a href="womensknitwear.php">Knitwear</a>
+                <a href="womenactivewear.php">Activewear</a>
               </div>
             </div>
           </li>
@@ -105,13 +106,13 @@ require_once 'db_connect.php';
             <div class="mega" id="mega-kids" role="dialog" aria-label="Kids menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="#">New for Kids</a>
-                <a href="#">Bestseller</a>
+                <a> New for Kids</a>
+                <a>Bestseller</a>
               </div>
               <div class="mega-col">
                 <h4>Kids</h4>
                 <a href="kidstshirts.php">T-Shirts</a>
-                <a href="#">Clothing</a>
+                <a>Clothing</a>
               </div>
             </div>
           </li>
@@ -120,8 +121,7 @@ require_once 'db_connect.php';
         </ul>
       </nav>
 
-      <!-- Action buttons on the header: search toggle, favourites, bag -->
- <div class="actions">
+      <div class="actions">
         <button id="searchToggle" class="icon-btn" aria-expanded="false" aria-controls="searchBar" title="Search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="2"/><line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
         </button>
@@ -134,7 +134,7 @@ require_once 'db_connect.php';
         </button>
 
         <span id="cartCount" class="muted"></span>
-
+        
         <div id="cartPreview" class="cart-preview">
           <div id="cartPreviewItems"></div>
 
@@ -147,15 +147,12 @@ require_once 'db_connect.php';
       </div>
     </div>
 
-
-    <!-- Hidden search bar-->
     <div id="searchBar" class="searchbar" hidden>
       <div class="container">
         <form id="searchForm" role="search" aria-label="Site search">
           <input type="search" id="q" placeholder="Search" aria-label="Search" />
           <button type="submit" class="btn">Search</button>
         </form>
-        <!-- A small hint to help users with example queries -->
         <p class="search-hint">Try “Joggers” or “Tracksuits”.</p>
       </div>
     </div>

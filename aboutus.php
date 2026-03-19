@@ -8,7 +8,6 @@ require_once 'db_connect.php';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <!-- Page Title -->
   <title>Lunare Clothing — Home</title>
 
   <link rel="stylesheet" href="styles.css" />
@@ -17,7 +16,6 @@ require_once 'db_connect.php';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <!-- Page Title -->
   <title>Lunare Clothing — Home</title>
 
   <link rel="stylesheet" href="styles.css" />
@@ -45,9 +43,7 @@ require_once 'db_connect.php';
     </div>
 </div>
 
-  <!-- Header including brand, navigation and actions -->
   <header class="site-header">
-    <!-- Brand logo that links to the home page -->
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
@@ -63,7 +59,7 @@ require_once 'db_connect.php';
         </button>
 
         <ul class="menu">
-          <li><a href="#" class="nav-link">New</a></li>
+          <li><a href="allproducts.php" class="nav-link">All Products</a></li>
 
           <li class="has-mega">
             <button class="nav-link" data-menu="men" aria-expanded="false">Men</button>
@@ -81,6 +77,7 @@ require_once 'db_connect.php';
                 <h4>Clothing</h4>
                 <a href="menstrousers.php">Trousers</a>
                 <a href="mensshorts.php">Shorts</a>
+                <a href="menssocks.php">Socks</a>
               </div>
             </div>
           </li>
@@ -102,6 +99,8 @@ require_once 'db_connect.php';
                 <h4>Clothing</h4>
                 <a href="womenscoats.php">Coats</a>
                 <a href="womensshirts.php">Shirts</a>
+                <a href="womensknitwear.php">Knitwear</a>
+                <a href="womenactivewear.php">Activewear</a>
               </div>
             </div>
           </li>
@@ -111,13 +110,13 @@ require_once 'db_connect.php';
             <div class="mega" id="mega-kids" role="dialog" aria-label="Kids menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="#">New for Kids</a>
-                <a href="#">Bestseller</a>
+                <a> New for Kids</a>
+                <a>Bestseller</a>
               </div>
               <div class="mega-col">
                 <h4>Kids</h4>
                 <a href="kidstshirts.php">T-Shirts</a>
-                <a href="#">Clothing</a>
+                <a>Clothing</a>
               </div>
             </div>
           </li>
@@ -171,11 +170,11 @@ require_once 'db_connect.php';
     <div class="ourjourneycontent">
       <h2>Our Journey</h2>
       <p>Lunare Clothing was built from the ground up by our team of passionate creators here in the studio. We were founded in 2022 by only two members and since grew to a team of over 150 people. Our vision was clear from the start: to redefine everyday essentials by blending comfort, style, and functionality. Over the years, we've expanded our product range and refined our designs, but our commitment to quality and innovation remains unwavering.</p>
-      <p>The name "Lunare" reflects our core philosophy. The name is the Latin wrd for Lunar which represents renewal which we aspire to to bring to the clothing industry with fresh new designs every year to create new identities. Lunare isn't just our name its a mindset and embracing new journies and standing out.</p>
+      <p>The name "Lunare" reflects our core philosophy. The name is the Latin word for Lunar which represents renewal which we aspire to to bring to the clothing industry with fresh new designs every year to create new identities. Lunare isn't just our name its a mindset and embracing new journies and standing out.</p>
     </div>
 <div class="ourjourneycontent">
   <h2>Our Aspirations</h2>
-  <p>We aspire to be more than a label on a shelf. Our vision here at Lunare Clothing is to build a community around the world united by clothing and the evolving area that it is. We are aiming to redifine the urban wear market  by creating not only stylish pieces but sustainable and high performance clothing. We strive to create a legacy for "Lunare CLothing" that looks as good as it feels</p>
+  <p>We aspire to be more than a label on a shelf. Our vision here at Lunare Clothing is to build a community around the world united by clothing and the evolving area that it is. We are aiming to redifine the urban wear market  by creating not only stylish pieces but sustainable and high performance clothing. We strive to create a legacy for "Lunare CLothing" that looks as good as it feels.</p>
   <p>As we look forward into the future, we are excited about the opportunities that lie ahead for us here at Lunare. We are committed to evolving the clothing scene piece by piece, while not abandoning our roots but embracing thems. Our goal is to continue to innovate and inspire, creating pieces that not only meet the needs of our customers but also exceed their expectations.</p>
   <div class="onelinersgrid">
     <div class="onelinersitem">

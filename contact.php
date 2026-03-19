@@ -8,7 +8,6 @@ require_once 'db_connect.php';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <!-- Page Title -->
   <title>Lunare Clothing — Home</title>
 
   <link rel="stylesheet" href="styles.css" />
@@ -36,9 +35,7 @@ require_once 'db_connect.php';
     </div>
 </div>
 
-  <!-- Header including brand, navigation and actions -->
   <header class="site-header">
-    <!-- Brand logo that links to the home page -->
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
@@ -54,7 +51,7 @@ require_once 'db_connect.php';
         </button>
 
         <ul class="menu">
-          <li><a href="#" class="nav-link">New</a></li>
+          <li><a href="allproducts.php" class="nav-link">All Products</a></li>
 
           <li class="has-mega">
             <button class="nav-link" data-menu="men" aria-expanded="false">Men</button>
@@ -72,10 +69,10 @@ require_once 'db_connect.php';
                 <h4>Clothing</h4>
                 <a href="menstrousers.php">Trousers</a>
                 <a href="mensshorts.php">Shorts</a>
+                <a href="menssocks.php">Socks</a>
               </div>
             </div>
           </li>
-
           <li class="has-mega">
             <button class="nav-link" data-menu="women" aria-expanded="false">Women</button>
             <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
@@ -94,6 +91,8 @@ require_once 'db_connect.php';
                 <h4>Clothing</h4>
                 <a href="womenscoats.php">Coats</a>
                 <a href="womensshirts.php">Shirts</a>
+                <a href="womensknitwear.php">Knitwear</a>
+                <a href="womenactivewear.php">Activewear</a>
               </div>
             </div>
           </li>
@@ -103,13 +102,13 @@ require_once 'db_connect.php';
             <div class="mega" id="mega-kids" role="dialog" aria-label="Kids menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="#">New for Kids</a>
-                <a href="#">Bestseller</a>
+                <a> New for Kids</a>
+                <a>Bestseller</a>
               </div>
               <div class="mega-col">
                 <h4>Kids</h4>
                 <a href="kidstshirts.php">T-Shirts</a>
-                <a href="#">Clothing</a>
+                <a>Clothing</a>
               </div>
             </div>
           </li>

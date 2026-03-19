@@ -8,7 +8,7 @@ if (isset($_GET['id']))
     $plswork->execute();
     $result = $plswork->get_result();
     $product = $result->fetch_assoc();
-    $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price FROM product_variants WHERE product_id = ? ORDER BY variant_id ASC");
+    $plswork2 = $conn->prepare("SELECT pv.variant_id, pv.attribute_value, pv.additional_price, s.quantity FROM product_variants pv LEFT JOIN stock s ON pv.variant_id = s.variant_id WHERE pv.product_id = ? ORDER BY CAST(pv.attribute_value AS UNSIGNED) ASC");
     $plswork2->bind_param("i", $product_id);
     $plswork2->execute();
     $var_result = $plswork2->get_result();
@@ -28,7 +28,6 @@ if (isset($_GET['id'])) {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <!-- Page Title -->
   <title>Lunare Clothing — Home</title>
 
   <link rel="stylesheet" href="styles.css" />
@@ -56,9 +55,7 @@ if (isset($_GET['id'])) {
     </div>
 </div>
 
-  <!-- Header including brand, navigation and actions -->
   <header class="site-header">
-    <!-- Brand logo that links to the home page -->
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
@@ -74,7 +71,8 @@ if (isset($_GET['id'])) {
         </button>
 
         <ul class="menu">
-          <li><a href="#" class="nav-link">New</a></li>
+          <li><a href="allproducts.php" class="nav-link">All Products</a></li>
+
           <li class="has-mega">
             <button class="nav-link" data-menu="men" aria-expanded="false">Men</button>
             <div class="mega" id="mega-men" role="dialog" aria-label="Men menu">
@@ -91,6 +89,7 @@ if (isset($_GET['id'])) {
                 <h4>Clothing</h4>
                 <a href="menstrousers.php">Trousers</a>
                 <a href="mensshorts.php">Shorts</a>
+                <a href="menssocks.php">Socks</a>
               </div>
             </div>
           </li>
@@ -112,21 +111,24 @@ if (isset($_GET['id'])) {
                 <h4>Clothing</h4>
                 <a href="womenscoats.php">Coats</a>
                 <a href="womensshirts.php">Shirts</a>
+                <a href="womensknitwear.php">Knitwear</a>
+                <a href="womenactivewear.php">Activewear</a>
               </div>
             </div>
           </li>
+
           <li class="has-mega">
             <button class="nav-link" data-menu="kids" aria-expanded="false">Kids</button>
             <div class="mega" id="mega-kids" role="dialog" aria-label="Kids menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="#">New for Kids</a>
-                <a href="#">Bestseller</a>
+                <a> New for Kids</a>
+                <a>Bestseller</a>
               </div>
               <div class="mega-col">
                 <h4>Kids</h4>
                 <a href="kidstshirts.php">T-Shirts</a>
-                <a href="#">Clothing</a>
+                <a>Clothing</a>
               </div>
             </div>
           </li>
@@ -184,7 +186,8 @@ if (isset($_GET['id'])) {
           <p class="single-product-size" style="margin-bottom:5px;">Select Size:</p>
           <select id="sizeSelect" class="product-select">
               <?php foreach($variants as $var): ?>
-                  <option value="<?= $var['variant_id']; ?>" data-price="<?= $var['additional_price']; ?>">
+                  <option value="<?= $var['variant_id']; ?>" data-price="<?= $var['additional_price']; ?>"
+                    data-stock="<?= $var['quantity'] ?? 0; ?>">
                       <?= htmlspecialchars($var['attribute_value']); ?>
                   </option>
               <?php endforeach; ?>
@@ -200,6 +203,20 @@ if (isset($_GET['id'])) {
             <?php endfor; ?>
         </select>
     </div>
+    <div style="margin-top: 10px;">
+        <span id="stockDisplay" style="font-weight: bold;">
+          <?php
+          $initial_qty = !empty($variants) ? ($variants[0]['quantity'] ?? 0) : 0;
+          if ($initial_qty == 0) {
+            echo "Out of Stock: " . $initial_qty;
+            } elseif ($initial_qty < 10) {
+              echo "Low Stock: " . $initial_qty;
+              } else {
+                echo "In Stock: " . $initial_qty;
+                }
+          ?>
+        </span>
+        </div>
     <div style="width: 100%;">
         <button class="single-product-cart-btn">Add to Cart</button>
             </div>
@@ -210,11 +227,22 @@ if (isset($_GET['id'])) {
 <script>
   const sizeDropdown = document.getElementById('sizeSelect');
   const priceText = document.getElementById('single-product-price');
-  if(sizeDropdown && priceText){
+  const stockText = document.getElementById('stockDisplay');
+  if(sizeDropdown && priceText && stockText){
     sizeDropdown.addEventListener('change', function() {
         const selectedOption = this.options[this.selectedIndex];
         const newPrice = parseFloat(selectedOption.getAttribute('data-price'));
         priceText.textContent = '£' + newPrice.toFixed(2);
+        const qty = parseInt(selectedOption.getAttribute('data-stock')) || 0;
+        let label = "";
+        if (qty === 0) {
+          label = "Out of Stock: ";
+          } else if (qty < 10) {
+            label = "Low Stock: ";
+            } else {
+              label = "In Stock: ";
+              }
+              stockText.textContent = label + qty;
     });
   }
   </script>
@@ -254,11 +282,12 @@ if (isset($_GET['id'])) {
 
     addBtn.addEventListener("click", function(e) {
         e.preventDefault();
-
-        const size = document.getElementById("sizeSelect")?.value || "";
+        const sizeDropdown = document.getElementById("sizeSelect");
+        const sizeId = sizeDropdown.value;
+        const sizeName = sizeDropdown.options[sizeDropdown.selectedIndex].text.trim();
         const qty = Number(document.getElementById("qtySelect")?.value || 1);
         const price = Number(
-            document.getElementById("sizeSelect")?.selectedOptions[0]?.dataset.price
+            sizeDropdown.selectedOptions[0]?.dataset.price
         );
 
         const item = {
@@ -267,11 +296,11 @@ if (isset($_GET['id'])) {
             price: price,
             image: "<?= htmlspecialchars($product['image_url']); ?>",
             color: "default",
-            size: size,
+            size: sizeName,
             qty: qty
         };
 
-        if (!size) {
+        if (!sizeId) {
             alert("Please select a size before adding to cart.");
             return;
         }
@@ -288,7 +317,7 @@ if (isset($_GET['id'])) {
         }
 
         saveCart(cart);
-        alert(`Added ${qty} × <?= htmlspecialchars($product['name']); ?> (Size: ${size}) to cart.`);
+        alert(`Added ${qty} × <?= htmlspecialchars($product['name']); ?> (Size: ${sizeName}) to cart.`);
     });
 });
 </script>

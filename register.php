@@ -8,7 +8,6 @@ require_once 'db_connect.php';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <!-- Page Title -->
   <title>Lunare Clothing — Home</title>
 
   <link rel="stylesheet" href="styles.css" />
@@ -17,7 +16,6 @@ require_once 'db_connect.php';
 document.querySelector("form").addEventListener("submit", function(e) {
     const email = document.querySelector("input[name='email']").value;
 
-    // Strong email regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
 
     if (!emailRegex.test(email)) {
@@ -50,9 +48,7 @@ document.querySelector("form").addEventListener("submit", function(e) {
     </div>
 </div>
 
-  <!-- Header including brand, navigation and actions -->
   <header class="site-header">
-    <!-- Brand logo that links to the home page -->
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
@@ -68,7 +64,7 @@ document.querySelector("form").addEventListener("submit", function(e) {
         </button>
 
         <ul class="menu">
-          <li><a href="#" class="nav-link">New</a></li>
+          <li><a href="allproducts.php" class="nav-link">All Products</a></li>
 
           <li class="has-mega">
             <button class="nav-link" data-menu="men" aria-expanded="false">Men</button>
@@ -84,17 +80,12 @@ document.querySelector("form").addEventListener("submit", function(e) {
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="#">Tops & T-Shirts</a>
-                <a href="#">Hoodies & Sweatshirts</a>
-                <a href="#">Shorts</a>
-                <a href="#">Tracksuits</a>
-                <a href="#">Trousers & Tights</a>
-                <a href="#">Jackets</a>
-                <a href="#">Accessories</a>
+                <a href="menstrousers.php">Trousers</a>
+                <a href="mensshorts.php">Shorts</a>
+                <a href="menssocks.php">Socks</a>
               </div>
             </div>
           </li>
-
           <li class="has-mega">
             <button class="nav-link" data-menu="women" aria-expanded="false">Women</button>
             <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
@@ -111,10 +102,10 @@ document.querySelector("form").addEventListener("submit", function(e) {
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
-                <a href="#">Tops & T-Shirts</a>
-                <a href="#">Hoodies & Sweatshirts</a>
-                <a href="#">Leggings & Tights</a>
-                <a href="#">Jackets</a>
+                <a href="womenscoats.php">Coats</a>
+                <a href="womensshirts.php">Shirts</a>
+                <a href="womensknitwear.php">Knitwear</a>
+                <a href="womenactivewear.php">Activewear</a>
               </div>
             </div>
           </li>
@@ -129,7 +120,7 @@ document.querySelector("form").addEventListener("submit", function(e) {
               </div>
               <div class="mega-col">
                 <h4>Kids</h4>
-                <a href="#">Shoes</a>
+                <a href="kidstshirts.php">T-Shirts</a>
                 <a href="#">Clothing</a>
               </div>
             </div>
@@ -139,22 +130,20 @@ document.querySelector("form").addEventListener("submit", function(e) {
         </ul>
       </nav>
 
-      <!-- ACTION ICONSs -->
       <div class="actions">
-        <button id="searchToggle" class="icon-btn" title="Search">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="2"/>
-            <line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/>
-          </svg>
+        <button id="searchToggle" class="icon-btn" aria-expanded="false" aria-controls="searchBar" title="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="2"/><line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
         </button>
-
+        <button class="icon-btn" title="Favourites">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9-8.5S5 2 8.5 5.5L12 9l3.5-3.5C19 2 25 7 21 12.5S12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </button>
         <button id="cartButton" class="icon-btn" title="Bag">
 
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a3 3 0 1 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
         </button>
 
         <span id="cartCount" class="muted"></span>
-        
+
         <div id="cartPreview" class="cart-preview">
           <div id="cartPreviewItems"></div>
 
@@ -165,10 +154,8 @@ document.querySelector("form").addEventListener("submit", function(e) {
             <a href="cart.php" class="btn">View Basket</a>
         </div>
       </div>
-
     </div>
 
-    <!-- SEARCH BAR -->
     <div id="searchBar" class="searchbar" hidden>
   <div class="container">
     <form>
@@ -182,7 +169,6 @@ document.querySelector("form").addEventListener("submit", function(e) {
     
   </header>
 
-  <!-- REGISTRATION FORM -->
   <section class="contact">
     <div class="container signin-container">
 
@@ -192,27 +178,22 @@ document.querySelector("form").addEventListener("submit", function(e) {
         <h3>Register</h3>
 
        <form method="POST" action="register_process.php">
-    <!-- First Name -->
     <div class="form-group">
         <input type="text" name="first_name" placeholder="First Name" required>
     </div>
 
-    <!-- Last Name -->
     <div class="form-group">
         <input type="text" name="last_name" placeholder="Last Name" required>
     </div>
 
-    <!-- Email -->
     <div class="form-group">
         <input type="email" name="email" placeholder="Email Address" required>
     </div>
 
-    <!-- Password -->
     <div class="form-group">
         <input type="password" name="password" placeholder="Password" required>
     </div>
 
-    <!-- Confirm Password -->
     <div class="form-group">
         <input type="password" name="confirm_password" placeholder="Confirm Password" required>
     </div>
@@ -229,7 +210,6 @@ document.querySelector("form").addEventListener("submit", function(e) {
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>

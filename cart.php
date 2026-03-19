@@ -14,7 +14,6 @@ require_once 'db_connect.php';
 
 <body>
 
-<!-- Utility Strip -->
 <div class="utility-strip">
     <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
         <span>FREE DELIVERY & RETURNS</span>
@@ -33,7 +32,6 @@ require_once 'db_connect.php';
     </div>
 </div>
 
-<!-- Header -->
 <header class="site-header">
     <div class="container header-inner">
         <a href="index.php" class="brand">
@@ -41,85 +39,87 @@ require_once 'db_connect.php';
             <span class="wordmark">LUNARE CLOTHING</span>
         </a>
 
-        <!-- Navigation -->
-        <nav class="primary-nav" aria-label="Primary">
-            <button class="hamburger" id="hamburger">
-                <span></span><span></span><span></span>
-            </button>
+       <nav class="primary-nav" aria-label="Primary">
+        
+        <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+          <span class="sr-only">Toggle menu</span>
+        </button>
 
-            <ul class="menu">
-                <li><a href="#" class="nav-link">New</a></li>
+        <ul class="menu">
+          <li><a href="allproducts.php" class="nav-link">All Products</a></li>
 
-                <li class="has-mega">
-                    <button class="nav-link" data-menu="men">Men</button>
-                    <div class="mega" id="mega-men">
-                        <div class="mega-col">
-                            <h4>Highlights</h4>
-                            <a href="#">New in Men</a>
-                            <a href="#">Bestseller</a>
-                        </div>
-                        <div class="mega-col">
-                            <h4>Shoes</h4>
-                            <a href="#">All Shoes</a>
-                        </div>
-                        <div class="mega-col">
-                            <h4>Clothing</h4>
-                            <a href="menstrousers.php">Trousers</a>
-                            <a href="mensshorts.php">Shorts</a>
-                        </div>
-                    </div>
-                </li>
+          <li class="has-mega">
+            <button class="nav-link" data-menu="men" aria-expanded="false">Men</button>
+            <div class="mega" id="mega-men" role="dialog" aria-label="Men menu">
+              <div class="mega-col">
+                <h4>Highlights</h4>
+                <a href="#">New in Men</a>
+                <a href="#">Bestseller</a>
+              </div>
+              <div class="mega-col">
+                <h4>Shoes</h4>
+                <a href="#">All Shoes</a>
+              </div>
+              <div class="mega-col">
+                <h4>Clothing</h4>
+                <a href="menstrousers.php">Trousers</a>
+                <a href="mensshorts.php">Shorts</a>
+                <a href="menssocks.php">Socks</a>
+              </div>
+            </div>
+          </li>
+          <li class="has-mega">
+            <button class="nav-link" data-menu="women" aria-expanded="false">Women</button>
+            <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
+              <div class="mega-col">
+                <h4>Highlights</h4>
+                <a href="#">New in Women</a>
+                <a href="#">Bestseller</a>
+                
+              </div>
+              <div class="mega-col">
+                <h4>Shoes</h4>
+                <a href="#">All Shoes</a>
 
-                <li class="has-mega">
-                    <button class="nav-link" data-menu="women">Women</button>
-                    <div class="mega" id="mega-women">
-                        <div class="mega-col">
-                            <h4>Highlights</h4>
-                            <a href="#">New in Women</a>
-                            <a href="#">Bestseller</a>
-                        </div>
-                        <div class="mega-col">
-                            <h4>Shoes</h4>
-                            <a href="#">All Shoes</a>
-                        </div>
-                        <div class="mega-col">
-                            <h4>Clothing</h4>
-                            <a href="womenscoats.php">Coats</a>
-                            <a href="womensshirts.php">Shirts</a>
-                        </div>
-                    </div>
-                </li>
+              </div>
+              <div class="mega-col">
+                <h4>Clothing</h4>
+                <a href="womenscoats.php">Coats</a>
+                <a href="womensshirts.php">Shirts</a>
+                <a href="womensknitwear.php">Knitwear</a>
+                <a href="womenactivewear.php">Activewear</a>
+              </div>
+            </div>
+          </li>
 
-                <li class="has-mega">
-                    <button class="nav-link" data-menu="kids">Kids</button>
-                    <div class="mega" id="mega-kids">
-                        <div class="mega-col">
-                            <h4>Highlights</h4>
-                            <a href="#">New for Kids</a>
-                            <a href="#">Bestseller</a>
-                        </div>
-                        <div class="mega-col">
-                            <h4>Kids</h4>
-                            <a href="kidstshirts.php">T-Shirts</a>
-                            <a href="#">Clothing</a>
-                        </div>
-                    </div>
-                </li>
+          <li class="has-mega">
+            <button class="nav-link" data-menu="kids" aria-expanded="false">Kids</button>
+            <div class="mega" id="mega-kids" role="dialog" aria-label="Kids menu">
+              <div class="mega-col">
+                <h4>Highlights</h4>
+                <a> New for Kids</a>
+                <a>Bestseller</a>
+              </div>
+              <div class="mega-col">
+                <h4>Kids</h4>
+                <a href="kidstshirts.php">T-Shirts</a>
+                <a>Clothing</a>
+              </div>
+            </div>
+          </li>
 
-                <li><a href="#" class="nav-link sale">Sale</a></li>
-            </ul>
-        </nav>
+          <li><a href="#" class="nav-link sale">Sale</a></li>
+        </ul>
+      </nav>
 
        <div class="actions">
-        <!-- Search toggle -->
         <button id="searchToggle" class="icon-btn" aria-expanded="false" aria-controls="searchBar" title="Search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="2"/><line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
         </button>
-        <!-- Favourites / wishlist button -->
         <button class="icon-btn" title="Favourites">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9-8.5S5 2 8.5 5.5L12 9l3.5-3.5C19 2 25 7 21 12.5S12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
         </button>
-        <!-- Shopping bag / cart button -->
         <button id="cartButton" class="icon-btn" title="Bag">
 
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a3 3 0 1 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
@@ -140,7 +140,6 @@ require_once 'db_connect.php';
     </div>
 
 
-    <!-- Search bar -->
     <div id="searchBar" class="searchbar" hidden>
         <div class="container">
             <form id="searchForm" role="search">
@@ -152,18 +151,15 @@ require_once 'db_connect.php';
     </div>
 </header>
 
-<!-- Page Title -->
 <div class="page-header">
     <div class="container">
         <h1>Your Basket</h1>
     </div>
 </div>
 
-<!-- Cart Layout -->
 <main class="cart-wrap">
     <div class="container cart-grid">
 
-        <!-- Items Section -->
         <section class="card">
             <h2>Items</h2>
 
@@ -185,8 +181,6 @@ require_once 'db_connect.php';
                 </table>
             </div>
         </section>
-
-        <!-- Summary -->
         <aside class="card cart-summary">
             <h2>Summary</h2>
             <div class="row"><span>Subtotal</span><span id="subtotal" class="price">£0.00</span></div>
@@ -199,7 +193,6 @@ require_once 'db_connect.php';
     </div>
 </main>
 
-<!-- Footer -->
 <footer class="site-footer">
     <div class="container footer-grid">
       <div>
@@ -267,13 +260,11 @@ function renderCart(){
           <img class="cart-img" src="${it.image || ''}" alt="">
           <div>
             <div style="font-weight:700">${it.name || ''}</div>
-            <div class="muted">${it.sku || ''}</div>
           </div>
         </div>
       </td>
       <td>
-        <div><span class="muted">Colour:</span> ${String(it.color||'').toUpperCase()}</div>
-        <div><span class="muted">Size:</span> ${it.size || ''}</div>
+        <div><span class="muted">Size:</span> ${it.attribute_value || it.size || ''}</div>
       </td>
       <td>${fmt(it.price)}</td>
       <td>

@@ -16,7 +16,6 @@ $stmt->bind_param("s", $email);
 $stmt->execute();
 $stmt->store_result();
 
-// If no user found
 if ($stmt->num_rows === 0) {
     echo "<script>alert('No account found with that email.'); window.location.href='signin.php';</script>";
     exit();
@@ -30,7 +29,6 @@ if (!password_verify($password, $hashed_password)) {
     exit();
 }
 
-// LOGIN SUCCESS — store session
 $_SESSION['user_id'] = $user_id;
 $_SESSION['first_name'] = $first_name;
 

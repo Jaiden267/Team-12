@@ -1,7 +1,17 @@
 <?php
 session_start();
 require_once 'db_connect.php';
-$result = $conn->query("SELECT products.*, image_url FROM products LEFT JOIN product_images ON products.product_id = product_images.product_id WHERE category_id = 2");
+$sort = $_GET['sort'] ?? 'default';
+$order_query = "ORDER BY products.product_id ASC";
+if ($sort == 'price_low') {
+  $order_query = "ORDER BY products.base_price ASC";
+  } elseif ($sort == 'price_high') {
+    $order_query = "ORDER BY products.base_price DESC";
+    } elseif ($sort == 'name_az') {
+      $order_query = "ORDER BY products.name ASC";
+      } elseif ($sort == 'name_za') {
+        $order_query = "ORDER BY products.name DESC";}
+$result = $conn->query("SELECT products.*, image_url FROM products LEFT JOIN product_images ON products.product_id = product_images.product_id WHERE category_id = 2 AND (product_images.is_main = 1 OR product_images.is_main IS NULL) $order_query");
 $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price FROM product_variants WHERE product_id = ?");
 ?>
 <!DOCTYPE html>
@@ -10,7 +20,6 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <!-- Page Title -->
   <title>Lunare Clothing — Home</title>
 
   <link rel="stylesheet" href="styles.css" />
@@ -35,9 +44,7 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
             </div>
     </div>
 </div>
-  <!-- Header including brand, navigation and actions -->
   <header class="site-header">
-    <!-- Brand logo that links to the home page -->
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
@@ -49,7 +56,7 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
           <span class="sr-only">Toggle menu</span>
         </button>
         <ul class="menu">
-          <li><a href="#" class="nav-link">New</a></li>
+          <li><a href="allproducts.php" class="nav-link">All Products</a></li>
           <li class="has-mega">
             <button class="nav-link" data-menu="men" aria-expanded="false">Men</button>
             <div class="mega" id="mega-men" role="dialog" aria-label="Men menu">
@@ -66,6 +73,7 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
                 <h4>Clothing</h4>
                 <a href="menstrousers.php">Trousers</a>
                 <a href="mensshorts.php">Shorts</a>
+                <a href="menssocks.php">Socks</a>
               </div>
             </div>
           </li>
@@ -87,6 +95,8 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
                 <h4>Clothing</h4>
                 <a href="womenscoats.php">Coats</a>
                 <a href="womensshirts.php">Shirts</a>
+                <a href="womensknitwear.php">Knitwear</a>
+                <a href="womenactivewear.php">Activewear</a>
               </div>
             </div>
           </li>
@@ -145,7 +155,20 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
       </div>
     </div>
   </header>
-  <div class="page-header"><div class="container"><h1>Mens — Trousers</h1></div></div>
+  <div class="page-header">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+      <h1>Mens — Trousers</h1>
+      <form method="GET" action="menstrousers.php" id="sortForm">
+        <label style="font-size:14px; font-weight:600;">Sort By: </label>
+        <select name="sort" class="select" onchange="document.getElementById('sortForm').submit();">
+          <option value="default" <?= $sort == 'default' ? 'selected' : '' ?>>Default</option>
+          <option value="price_low" <?= $sort == 'price_low' ? 'selected' : '' ?>>Price - Low to High</option>
+          <option value="price_high" <?= $sort == 'price_high' ? 'selected' : '' ?>>Price - High to Low</option>
+          <option value="name_az" <?= $sort == 'name_az' ? 'selected' : '' ?>>A to Z</option>
+          <option value="name_za" <?= $sort == 'name_za' ? 'selected' : '' ?>>Z to A</option>
+          </select>
+          </form>
+          </div></div>
   <section class="products">
     <div class="container">
 <div class="product-grid">
