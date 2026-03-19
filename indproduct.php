@@ -8,7 +8,7 @@ if (isset($_GET['id']))
     $plswork->execute();
     $result = $plswork->get_result();
     $product = $result->fetch_assoc();
-    $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price FROM product_variants WHERE product_id = ? ORDER BY variant_id ASC");
+    $plswork2 = $conn->prepare("SELECT pv.variant_id, pv.attribute_value, pv.additional_price, s.quantity FROM product_variants pv LEFT JOIN stock s ON pv.variant_id = s.variant_id WHERE pv.product_id = ? ORDER BY CAST(pv.attribute_value AS UNSIGNED) ASC");
     $plswork2->bind_param("i", $product_id);
     $plswork2->execute();
     $var_result = $plswork2->get_result();
@@ -186,7 +186,8 @@ if (isset($_GET['id'])) {
           <p class="single-product-size" style="margin-bottom:5px;">Select Size:</p>
           <select id="sizeSelect" class="product-select">
               <?php foreach($variants as $var): ?>
-                  <option value="<?= $var['variant_id']; ?>" data-price="<?= $var['additional_price']; ?>">
+                  <option value="<?= $var['variant_id']; ?>" data-price="<?= $var['additional_price']; ?>"
+                    data-stock="<?= $var['quantity'] ?? 0; ?>">
                       <?= htmlspecialchars($var['attribute_value']); ?>
                   </option>
               <?php endforeach; ?>
@@ -202,6 +203,11 @@ if (isset($_GET['id'])) {
             <?php endfor; ?>
         </select>
     </div>
+    <div style="margin-top: 10px;">
+      <p class="single-product-size">In Stock:
+        <span id="stockDisplay"><?= !empty($variants) ? ($variants[0]['quantity'] ?? 0) : 0; ?></span> 
+        </p>
+        </div>
     <div style="width: 100%;">
         <button class="single-product-cart-btn">Add to Cart</button>
             </div>
@@ -212,11 +218,14 @@ if (isset($_GET['id'])) {
 <script>
   const sizeDropdown = document.getElementById('sizeSelect');
   const priceText = document.getElementById('single-product-price');
-  if(sizeDropdown && priceText){
+  const stockText = document.getElementById('stockDisplay');
+  if(sizeDropdown && priceText && stockText){
     sizeDropdown.addEventListener('change', function() {
         const selectedOption = this.options[this.selectedIndex];
         const newPrice = parseFloat(selectedOption.getAttribute('data-price'));
         priceText.textContent = '£' + newPrice.toFixed(2);
+        const newStock = selectedOption.getAttribute('data-stock');
+        stockText.textContent = newStock;
     });
   }
   </script>
