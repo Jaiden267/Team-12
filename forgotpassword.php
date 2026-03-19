@@ -158,6 +158,41 @@ require_once 'db_connect.php';
     </div>
   </header>
 
+  <section class="contact">
+    <div class="container signin-container">
+
+      <h2>Forgot Password</h2>
+
+      <div class="contact-form">
+        <h3>Reset Your Password</h3>
+
+        <form method="POST" action="forgotpassword_process.php">
+          <div class="form-group">
+              <input type="email" name="email" placeholder="Email Address" required>
+          </div>
+           <div class="form-group">
+              <input type="password" name="confirm_password" placeholder="Confirm New Password" required>
+          </div>
+          <div class="form-group">
+              <input type="password" name="new_password" placeholder="New Password" required>
+          </div>
+
+
+          <a class="forgot-password" href="forgotpassword.php">Forgot your password?</a>
+
+          <button type="submit" class="submitbtn">Reset Password</button>
+
+    
+              <a href="register.php">Sign up</a>
+              <a href="signin.php">Sign in</a>
+          </p>
+        </form>
+
+      </div>
+
+    </div>
+  </section>
+
 
 
 <!-- Footer -->
