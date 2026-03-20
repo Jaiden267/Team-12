@@ -289,3 +289,21 @@ function renderCartPreview(){
     el.addEventListener('mouseleave', hidePreview);
   });
 })();
+
+const passwordInput = document.querySelector('input[name="new_password"]');
+const hint = document.getElementById('passwordHint');
+
+if (passwordInput) {
+    passwordInput.addEventListener('input', () => {
+        const value = passwordInput.value;
+
+        const strongPassword = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W]).{8,}$/;
+
+        if (!strongPassword.test(value)) {
+            hint.textContent = "Password must have 8+ chars, uppercase, lowercase, number, special char";
+        } else {
+            hint.textContent = "Strong password ✔";
+            hint.style.color = "green";
+        }
+    });
+}
