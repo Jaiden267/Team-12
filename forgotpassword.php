@@ -223,12 +223,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <div class="form-group">
       <input type="password" name="new_password" placeholder="New Password" required>
-      <span class="toggle-password" onclick="togglePassword(this)">👁️</span>
   </div>
 
   <div class="form-group">
       <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-       <span class="toggle-password" onclick="togglePassword(this)">👁️</span>
   </div>
 
   <p id="passwordHint" style="font-size:12px;"></p>
