@@ -307,3 +307,15 @@ if (passwordInput) {
         }
     });
 }
+
+function togglePassword(icon) {
+    const input = icon.previousElementSibling;
+
+    if (input.type === "password") {
+        input.type = "text";
+        icon.textContent = "🙈"; // or "👁️‍🗨️"
+    } else {
+        input.type = "password";
+        icon.textContent = "👁️";
+    }
+}
