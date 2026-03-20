@@ -170,12 +170,13 @@ require_once 'db_connect.php';
           <div class="form-group">
               <input type="email" name="email" placeholder="Email Address" required>
           </div>
-           <div class="form-group">
-              <input type="password" name="confirm_password" placeholder="Confirm New Password" required>
-          </div>
           <div class="form-group">
               <input type="password" name="new_password" placeholder="New Password" required>
           </div>
+           <div class="form-group">
+              <input type="password" name="confirm_password" placeholder="Confirm New Password" required>
+          </div>
+          
 
 
           <button type="submit" class="submitbtn">Reset Password</button>
