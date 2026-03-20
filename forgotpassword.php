@@ -1,6 +1,56 @@
 <?php
 session_start();
 require_once 'db_connect.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $email = trim($_POST['email']);
+    $new_password = $_POST['new_password'];
+    $confirm_password = $_POST['confirm_password'];
+
+    
+    $stmt = $conn->prepare("SELECT password FROM users WHERE email=?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 0) {
+        echo "<script>alert('Email not found');</script>";
+    } else {
+
+        $user = $result->fetch_assoc();
+        $old_password = $user['password'];
+
+        
+        if ($new_password !== $confirm_password) {
+            echo "<script>alert('Passwords do not match');</script>";
+        }
+
+        
+        elseif (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W]).{8,}$/", $new_password)) {
+            echo "<script>alert('Password must be 8+ chars, include uppercase, lowercase, number, special char');</script>";
+        }
+
+       
+        elseif (password_verify($new_password, $old_password)) {
+            echo "<script>alert('New password cannot be the same as old password');</script>";
+        }
+
+        else {
+            
+            $hashed = password_hash($new_password, PASSWORD_DEFAULT);
+
+            $update = $conn->prepare("UPDATE users SET password=? WHERE email=?");
+            $update->bind_param("ss", $hashed, $email);
+
+            if ($update->execute()) {
+                echo "<script>alert('Password updated successfully'); window.location.href='signin.php';</script>";
+            } else {
+                echo "<script>alert('Error updating password');</script>";
+            }
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -166,13 +216,23 @@ require_once 'db_connect.php';
     <div class="contact-form">
       <h3>Reset Your Password</h3>
 
-      <form method="POST" action="forgotpassword_process.php">
-        <div class="form-group">
-          <input type="email" name="email" placeholder="Email Address" required>
-        </div>
+      <form method="POST">
+  <div class="form-group">
+      <input type="email" name="email" placeholder="Email Address" required>
+  </div>
 
-        <button type="submit" class="submitbtn">Send Reset Link</button>
-      </form>
+  <div class="form-group">
+      <input type="password" name="new_password" placeholder="New Password" required>
+  </div>
+
+  <div class="form-group">
+      <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+  </div>
+
+  <p id="passwordHint" style="font-size:12px;"></p>
+
+  <button type="submit" class="submitbtn">Reset Password</button>
+</form>
     </div>
   </div>
 </section>
