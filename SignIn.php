@@ -169,7 +169,7 @@ require_once 'db_connect.php';
                Customer
             </a>
 
-            <a href="admin_signin.php"
+            <a href="admin/login.php"
                style="padding:10px 18px; text-decoration:none; background:#f5f5f5; color:#000; font-size:14px;">
                Admin
             </a>
