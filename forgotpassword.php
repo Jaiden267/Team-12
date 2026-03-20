@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirm_password = $_POST['confirm_password'];
 
     
-    $stmt = $conn->prepare("SELECT password FROM users WHERE email=?");
+    $stmt = $conn->prepare("SELECT password_hash FROM users WHERE email=?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
 
         $user = $result->fetch_assoc();
-        $old_password = $user['password'];
+        $old_password = $user['password_hash'];
 
         
         if ($new_password !== $confirm_password) {
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             $hashed = password_hash($new_password, PASSWORD_DEFAULT);
 
-            $update = $conn->prepare("UPDATE users SET password=? WHERE email=?");
+            $update = $conn->prepare("UPDATE users SET password_hash=? WHERE email=?");
             $update->bind_param("ss", $hashed, $email);
 
             if ($update->execute()) {
