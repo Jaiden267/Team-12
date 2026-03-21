@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'db_connect.php';
-if (isset($_GET['id'])) 
+if (isset($_GET['id'])){
     $product_id = intval($_GET['id']);
     $plswork = $conn->prepare("SELECT products.*, image_url FROM products LEFT JOIN product_images ON products.product_id = product_images.product_id WHERE products.product_id = ?");
     $plswork->bind_param("i", $product_id);
@@ -12,14 +12,32 @@ if (isset($_GET['id']))
     $plswork2->bind_param("i", $product_id);
     $plswork2->execute();
     $var_result = $plswork2->get_result();
-    
     $variants = [];
     while ($row = $var_result->fetch_assoc()) {
         $variants[] = $row;
     }
     $start_price = !empty($variants) ? $variants[0]['additional_price'] : $product['base_price'];
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
+      if (isset($_SESSION['user_id'])) {
+        $u_id = $_SESSION['user_id'];
+        $rating = intval($_POST['rating']);
+        $comment = trim($_POST['comment']);
+        $review_stmt = $conn->prepare("INSERT INTO reviews (user_id, product_id, rating, comment) VALUES (?, ?, ?, ?)");
+        $review_stmt->bind_param("iiis", $u_id, $product_id, $rating, $comment);
+        if ($review_stmt->execute()) {
+          echo "<script>alert('Review submitted!'); window.location.href='indproduct.php?id=$product_id';</script>";
+        }
+        }
+    }
+        $get_reviews = $conn->prepare("SELECT r.*, u.first_name FROM reviews r JOIN users u ON r.user_id = u.user_id WHERE r.product_id = ? ORDER BY r.created_at DESC");
+        $get_reviews->bind_param("i", $product_id);
+        $get_reviews->execute();
+        $reviews_res = $get_reviews->get_result();
+        $reviews = $reviews_res->fetch_all(MYSQLI_ASSOC);
+        $avg_rating = 0;
+        if (count($reviews) > 0) {
+          $avg_rating = round(array_sum(array_column($reviews, 'rating')) / count($reviews), 1);
+          }
 }
 ?>
 <!DOCTYPE html>
@@ -180,6 +198,16 @@ if (isset($_GET['id'])) {
     <div id="single-product-box-content">
       <h1 id="single-product-title"><?= htmlspecialchars($product['name']); ?></h1>
       <p id="single-product-price">£<?= number_format($start_price, 2); ?></p>
+      <div style="margin-top: -9px; margin-bottom: 13px;">
+        <div style="margin-bottom: 15px;">
+          <button id="favbttn" class="icon-btn" style="display: inline-flex; align-items: center; gap: 9px; border: 1px solid var(--line); padding: 7px 18px; border-radius: 1000px; font-size: 15px; font-weight: 610;">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9-8.5S5 2 8.5 5.5L12 9l3.5-3.5C19 2 25 7 21 12.5S12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+            </div>
+        <span style="color: #f39c12; font-size: 1.2rem;">
+          <?= str_repeat('★', floor($avg_rating)) . str_repeat('☆', 5 - floor($avg_rating)); ?>
+          </span>
+          <span style="font-size: 0.9rem; color: #777; margin-left: 5px;">(<?= count($reviews) ?> reviews)</span>
+          </div>
       <p class="single-product-text"><?= !empty($product['description']) ? nl2br(htmlspecialchars($product['description'])) : 'No description available.'; ?></p>
 <?php if(!empty($variants)): ?>
       <div style="margin-top: 20px;">
@@ -224,6 +252,52 @@ if (isset($_GET['id'])) {
 </div>
   </div>
 </div>
+<div class="container" style="margin-top: 55px; padding-top: 38px; border-top: 1px solid #eee; margin-bottom: 75px;">
+  <div class="reviewb">
+    <?php if(isset($_SESSION['user_id'])): ?>
+      <h3 style="margin-bottom: 25px; font-size: 1.4rem;">Review this Product&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;</h3>
+      <form method="POST">
+        <label style="display:block; margin-bottom: 8px; font-weight: 600;">Rating:</label>
+        <div class="starf">
+          <input type="radio" id="star5" name="rating" value="5" required /><label for="star5"></label>
+          <input type="radio" id="star4" name="rating" value="4" /><label for="star4"></label>
+          <input type="radio" id="star3" name="rating" value="3" /><label for="star3"></label>
+          <input type="radio" id="star2" name="rating" value="2" /><label for="star2"></label>
+          <input type="radio" id="star1" name="rating" value="1" /><label for="star1"></label>
+          </div>
+          <div style="margin-bottom: 20px;">
+            <label style="display:block; margin-bottom: 8px; font-weight: 600;">Review:</label>
+            <textarea name="comment" class="tspace" required placeholder="What did you think of this product?"></textarea>
+            </div>
+            <button type="submit" name="submit_review" class="single-product-cart-btn" style="width: auto; padding: 12px 40px;">Post Review</button></form>
+            <?php else: ?><p style="text-align: center; color: #666;">You must be logged in to review.&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;</p>
+              <?php endif; ?>
+              </div>
+              <div class="reviews-display-area">
+                <p style="font-size: 19px; margin-bottom: 25px; font-weight: 600;">
+                  Customer Reviews: </p>
+                  <?php if(count($reviews) > 0): ?>
+                    <div class="reviews-list">
+                      <?php foreach($reviews as $r): ?>
+                        <div style="padding: 25px 0; border-bottom: 1px solid #f0f0f0;">
+                          <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                              <span style="font-weight: 700; font-size: 19px; display: block;"><?= htmlspecialchars($r['first_name']) ?></span>
+                              <span style="font-size: 0.85rem; color: #999;"><?= date('F j, Y', strtotime($r['created_at'])) ?></span>
+                              </div>
+                              <span style="color: #f39c12; font-size: 19px;">
+                                <?= str_repeat('★', $r['rating']) . str_repeat('☆', 5 - $r['rating']) ?>
+                                </span>
+                                </div>
+                                <p style="margin-top: 14px; line-height: 1.7; color: #444;"><?= nl2br(htmlspecialchars($r['comment'])) ?></p>
+                                </div>
+                                <?php endforeach; ?>
+                                </div>
+                                <?php else: ?>
+                                  <p style="color: #999; font-style: italic;">No reviews for this product yet.</p>
+                                  <?php endif; ?>
+                                  </div>
+                                  </div>
 <script>
   const sizeDropdown = document.getElementById('sizeSelect');
   const priceText = document.getElementById('single-product-price');
@@ -246,34 +320,38 @@ if (isset($_GET['id'])) {
     });
   }
   </script>
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
         <h5>Support</h5>
-        <a href="#">Help</a>
-        <a href="#">Delivery</a>
-        <a href="#">Returns</a>
+        <a href="help.php">Help</a>
+        <a href="delivery.php">Delivery</a>
+        <a href="returns.php">Returns</a>
         <a href="contact.php">Contact Us</a>
       </div>
       <div>
         <h5>About</h5>
         <a href="aboutus.php">About Us</a>
-        <a href="#">Company</a>
-        <a href="#">Sustainability</a>
-        <a href="#">Careers</a>
+        <a href="company.php">Company</a>
+        <a href="sustainability.php">Sustainability</a>
+        <a href="careers.php">Careers</a>
       </div>
       <div>
         <h5>Legal</h5>
-        <a href="#">Terms</a>
-        <a href="#">Privacy</a>
-        <a href="#">Cookies</a>
+        <a href="terms.php">Terms</a>
+        <a href="privacy.php">Privacy</a>
+        <a href="cookies.php">Cookies</a>
       </div>
     </div>
     <div class="container footer-bottom">
+      
       <span>© <span id="year"></span> Lunare Clothing</span>
     </div>
   </footer>
+
   <script src="app.js"></script>
+ 
   <script>
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -317,9 +395,32 @@ if (isset($_GET['id'])) {
         }
 
         saveCart(cart);
-        alert(`Added ${qty} × <?= htmlspecialchars($product['name']); ?> (Size: ${sizeName}) to cart.`);
-    });
-});
+        alert(`Added ${qty} × <?= htmlspecialchars($product['name']); ?> (Size: ${sizeName}) to cart.`); });
+
+        const favbttn = document.getElementById("favbttn");
+        if (favbttn) {
+          favbttn.addEventListener("click", function(e) {
+            e.preventDefault();
+            const sizeDropdown = document.getElementById("sizeSelect");
+            const variantId = sizeDropdown.value;
+            fetch('favprocess.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: `variant_id=${variantId}`})
+              .then(response => response.json())
+              .then(data => {
+                if (data.status === 'success') {
+                  favbttn.querySelector('svg path').setAttribute('fill', 'currentColor');
+                  alert("Favourited Item");
+                  } else if (data.status === 'unauthorized') {
+                    alert("Please log in to save a Favourite.");
+                    window.location.href = "signin.php";
+                    } else if (data.status === 'exists') {
+                      alert("This product is already in your Favourites");}})
+                      });
+                      }
+                      });
 </script>
+ <script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
 </body>
 </html>
