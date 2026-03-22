@@ -2,18 +2,28 @@
 session_start();
 require_once 'db_connect.php';
 $sort = $_GET['sort'] ?? 'default';
+$category_filter = $_GET['category'] ?? 'all';
+$where_clause = "WHERE (product_images.is_main = 1 OR product_images.is_main IS NULL)";
 $order_query = "ORDER BY products.product_id ASC";
-if ($sort == 'price_low') {
+if ($sort == 'price_lowtohigh') {
     $order_query = "ORDER BY products.base_price ASC";
-    } elseif ($sort == 'price_high') {
+    } elseif ($sort == 'price_hightolow') {
         $order_query = "ORDER BY products.base_price DESC";
-        } elseif ($sort == 'name_az') {
+        } elseif ($sort == 'name_atoz') {
             $order_query = "ORDER BY products.name ASC";
-            } elseif ($sort == 'name_za') {
+            } elseif ($sort == 'name_ztoa') {
                 $order_query = "ORDER BY products.name DESC";
                 }
-                $result = $conn->query("SELECT products.*, image_url FROM products LEFT JOIN product_images ON products.product_id = product_images.product_id WHERE (product_images.is_main = 1 OR product_images.is_main IS NULL) $order_query");
+                if ($category_filter !== 'all') {
+                  $cat_id = intval($category_filter);
+                  if ($cat_id > 0) {
+                    $where_clause .= " AND products.category_id = $cat_id";
+                    }
+                    }
+
+                $result = $conn->query("SELECT products.*, image_url FROM products LEFT JOIN product_images ON products.product_id = product_images.product_id $where_clause $order_query");
                 $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price FROM product_variants WHERE product_id = ?");
+                $categories_query = $conn->query("SELECT * FROM categories ORDER BY name ASC");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +49,7 @@ if ($sort == 'price_low') {
                         </div>
                         </div>
                         </div>
- <header class="site-header">
+<header class="site-header">
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
@@ -78,12 +88,12 @@ if ($sort == 'price_low') {
               <div class="mega-col">
                 <h4>Highlights</h4>
                 <a href="womensshirts.php">New in Women</a>
-                <a href="womenactivewear.php">Bestseller</a>
+                <a href="womensknitwear.php">Bestseller</a>
                 
               </div>
               <div class="mega-col">
                 <h4>Activewear</h4>
-                <a href="womenactivewear.php">All Activewear</a>
+                <a href="womanactivewear.php">All Activewear</a>
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
@@ -105,7 +115,7 @@ if ($sort == 'price_low') {
               <div class="mega-col">
                 <h4>Kids</h4>
                 <a href="kidstshirts.php">T-Shirts</a>
-                <a href="kidstshirts.php">Clothing</a>
+                <a href="kidsclothing.php">Clothing</a>
               </div>
             </div>
           </li>
@@ -150,15 +160,28 @@ if ($sort == 'price_low') {
     <div class="page-header">
         <div class="container" style="display:flex; justify-content:space-between; align-items:center; padding: 20px 0;">
             <h1>All Products</h1>
-            <form method="GET" action="allproducts.php" id="sortForm">
-                <label style="font-size:14px; font-weight:600;">Sort By: </label>
-                <select name="sort" class="select" onchange="document.getElementById('sortForm').submit();">
-                    <option value="default" <?= $sort == 'default' ? 'selected' : '' ?>>Default</option>
-                    <option value="price_low" <?= $sort == 'price_low' ? 'selected' : '' ?>>Price - Low to High</option>
-                    <option value="price_high" <?= $sort == 'price_high' ? 'selected' : '' ?>>Price - High to Low</option>
-                    <option value="name_az" <?= $sort == 'name_az' ? 'selected' : '' ?>>A to Z</option>
-                    <option value="name_za" <?= $sort == 'name_za' ? 'selected' : '' ?>>Z to A</option>
-                    </select>
+            <form method="GET" action="allproducts.php" id="sortForm" style="display: flex; gap: 20px; align-items: center;">
+              <div>
+                <label style="font-size:14px; font-weight:600;">Category: </label>
+                <select name="category" class="select" onchange="document.getElementById('sortForm').submit();">
+                  <option value="all" <?= $category_filter == 'all' ? 'selected' : '' ?>>All Categories</option>
+                  <?php while($category = $categories_query->fetch_assoc()): ?>
+                    <option value="<?= $category['category_id']; ?>" <?= $category_filter == strval($category['category_id']) ? 'selected' : '' ?>>
+                      <?= htmlspecialchars($category['name']); ?>
+                      </option>
+                      <?php endwhile; ?>
+                      </select>
+                      </div>
+                      <div>
+                        <label style="font-size:14px; font-weight:600;">Sort By: </label>
+                        <select name="sort" class="select" onchange="document.getElementById('sortForm').submit();">
+                          <option value="default" <?= $sort == 'default' ? 'selected' : '' ?>>Default</option>
+                          <option value="price_lowtohigh" <?= $sort == 'price_lowtohigh' ? 'selected' : '' ?>>Price - Low to High</option>
+                          <option value="price_hightolow" <?= $sort == 'price_hightolow' ? 'selected' : '' ?>>Price - High to Low</option>
+                          <option value="name_atoz" <?= $sort == 'name_atoz' ? 'selected' : '' ?>>A to Z</option>
+                          <option value="name_ztoa" <?= $sort == 'name_ztoa' ? 'selected' : '' ?>>Z to A</option>
+                          </select>
+                          </div>       
                     </form>
                     </div>
                     </div>
@@ -214,7 +237,7 @@ if ($sort == 'price_low') {
       <div>
         <h5>Support</h5>
         <a href="delivery.php">Delivery</a>
-        <a href="contact.php">Let Us Know How We Did</a>
+        <a href="returns.php">Returns</a>
         <a href="contact.php">Contact Us</a>
       </div>
       <div>
@@ -250,7 +273,6 @@ if ($sort == 'price_low') {
                 });
                 </script>
                 <script src="app.js"></script>
-                <script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
                 </body>
 </html>
 
