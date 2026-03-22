@@ -5,10 +5,11 @@ require_once 'db_connect.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lunare Clothing — Sustainability</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lunare Clothing — Returns</title>
+
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -139,67 +140,57 @@ require_once 'db_connect.php';
     </div>
   </header>
 
+
 <main>
-  <section class="sustainability-page">
-    <div class="container">
-      <div class="sustainability-header">
-        <h1>Sustainability</h1>
-        <p class="subtitle">Our commitment to a better future through responsible fashion</p>
-      </div>
+<section class="aboutusmainbuild">
+  <div class="aboutusmaintext">
+    <div class="aboutusheader">
+      <h1>Sustainability</h1>
+     <p class="subtitle">Creating clothing responsibly for the future</p>
 
-      <div class="sustainability-section">
-        <h2>Our Approach</h2>
-        <p>
-          At Lunare Clothing, we believe fashion should not come at the expense of the planet.
-          We are committed to making better choices across our materials, production, packaging,
-          and delivery processes.
-        </p>
-        <p>
-          Sustainability is a journey for us, and we continue to improve how we operate to reduce
-          our environmental impact while still delivering high-quality clothing.
-        </p>
-      </div>
 
-      <div class="sustainability-grid">
-        <div class="sustainability-card">
-          <h3>Responsible Materials</h3>
-          <p>We aim to source fabrics and materials more thoughtfully to reduce waste and support better practices.</p>
-        </div>
-
-        <div class="sustainability-card">
-          <h3>Lower Waste</h3>
-          <p>We work to minimise production waste and encourage efficient stock management across our operations.</p>
-        </div>
-
-        <div class="sustainability-card">
-          <h3>Better Packaging</h3>
-          <p>We are exploring packaging solutions that use less material and are easier to recycle.</p>
-        </div>
-      </div>
-
-      <div class="sustainability-section">
-        <h2>Our Goals</h2>
-        <p>
-          Our long-term goal is to make Lunare a more sustainable fashion brand by improving supply
-          chains, reducing waste, and increasing transparency around how our products are made.
-        </p>
-        <p>
-          We are focused on creating products that last longer, perform better, and support more
-          conscious shopping habits.
-        </p>
-      </div>
-
-      <div class="sustainability-section">
-        <h2>Looking Forward</h2>
-        <p>
-          Sustainability is not a finished task — it is an ongoing responsibility. We will continue
-          to learn, adapt, and make improvements that help build a better future for our customers,
-          our communities, and the environment.
-        </p>
-      </div>
+     <img src="https://static.vecteezy.com/system/resources/previews/017/306/579/original/esg-sustainability-concept-illustration-vector.jpg" 
+alt="Sustainability illustration"
+style="width:100%; max-width:900px; border-radius:12px; margin:25px 0;">
     </div>
-  </section>
+
+    <div class="ourjourneycontent">
+      <h2>Our Commitment</h2>
+      <p>
+        At Lunare Clothing, sustainability plays an important role in how we approach fashion and ecommerce. 
+        As a brand created through a university project, we recognise the responsibility that clothing companies 
+        have in reducing environmental impact and promoting responsible production methods.
+      </p>
+
+      <p>
+        Our goal is to explore ways clothing brands can operate more sustainably while still delivering 
+        high-quality products and modern designs. Through this project we focus on learning how ethical 
+        sourcing, responsible production, and efficient distribution can contribute to a better future 
+        for the fashion industry.
+      </p>
+    </div>
+
+    <div class="ourjourneycontent">
+      <h2>Looking Forward</h2>
+      <p>
+        Lunare Clothing aims to demonstrate how modern ecommerce brands can integrate sustainability into 
+        their long-term vision. While this project is currently part of a university course, it represents 
+        the values we believe future clothing brands should prioritise responsibility, transparency, 
+        and innovation.
+      </p>
+
+      <p>
+        By researching sustainable materials, responsible manufacturing practices, and environmentally 
+        conscious logistics, we aim to understand how clothing brands can evolve to meet the expectations 
+        of modern consumers while protecting the planet.
+      </p>
+
+      
+
+  </div>
+</section>
 </main>
+
 
 <footer class="site-footer">
     <div class="container footer-grid">
@@ -229,5 +220,6 @@ require_once 'db_connect.php';
 </footer>
 
 <script src="app.js"></script>
+<script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
 </body>
 </html>
