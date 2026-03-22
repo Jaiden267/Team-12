@@ -25,7 +25,7 @@ require_once 'db_connect.php';
             <a href="contact.php" class="link">Contact Us</a>
 
             <?php if(isset($_SESSION['user_id'])): ?>
-                <span class="link">Hello, <?= htmlspecialchars($_SESSION['first_name']); ?></span>
+                <a href="accounts.php"><span class="link">Hello <?= htmlspecialchars($_SESSION['first_name']); ?></span></a>
                 <a href="logout.php" class="link">Logout</a>
             <?php else: ?>
                 <a href="register.php" class="link">Register</a>
@@ -192,7 +192,7 @@ require_once 'db_connect.php';
       <div>
         <h5>Support</h5>
         <a href="delivery.php">Delivery</a>
-        <a href="returns.php">Returns</a>
+        <a href="contact.php">Let Us Know How We Did</a>
         <a href="contact.php">Contact Us</a>
       </div>
       <div>
