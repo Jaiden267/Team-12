@@ -8,7 +8,7 @@ require_once 'db_connect.php';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <title>Lunare Clothing — Home</title>
+  <title>Lunare Clothing — Sign In</title>
 
   <link rel="stylesheet" href="styles.css" />
 </head>
