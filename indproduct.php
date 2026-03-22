@@ -187,7 +187,7 @@ if (isset($_GET['id'])){
     <div id="single-product-box-content">
       <h1 id="single-product-title"><?= htmlspecialchars($product['name']); ?></h1>
       <p id="single-product-price">£<?= number_format($start_price, 2); ?></p>
-      <div style="margin-top: -9px; margin-bottom: 13px;">
+      <div style="margin-top: 14px; margin-bottom: 13px;">
         <div style="margin-bottom: 15px;">
           <button id="favbttn" class="icon-btn" style="display: inline-flex; align-items: center; gap: 9px; border: 1px solid var(--line); padding: 7px 18px; border-radius: 1000px; font-size: 15px; font-weight: 610;">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9-8.5S5 2 8.5 5.5L12 9l3.5-3.5C19 2 25 7 21 12.5S12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
