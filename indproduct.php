@@ -73,7 +73,7 @@ if (isset($_GET['id'])){
     </div>
 </div>
 
- <header class="site-header">
+   <header class="site-header">
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
@@ -112,12 +112,12 @@ if (isset($_GET['id'])){
               <div class="mega-col">
                 <h4>Highlights</h4>
                 <a href="womensshirts.php">New in Women</a>
-                <a href="womenactivewear.php">Bestseller</a>
+                <a href="womensknitwear.php">Bestseller</a>
                 
               </div>
               <div class="mega-col">
                 <h4>Activewear</h4>
-                <a href="womenactivewear.php">All Activewear</a>
+                <a href="womanactivewear.php">All Activewear</a>
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
@@ -139,7 +139,7 @@ if (isset($_GET['id'])){
               <div class="mega-col">
                 <h4>Kids</h4>
                 <a href="kidstshirts.php">T-Shirts</a>
-                <a href="kidstshirts.php">Clothing</a>
+                <a href="kidsclothing.php">Clothing</a>
               </div>
             </div>
           </li>
@@ -187,7 +187,7 @@ if (isset($_GET['id'])){
     <div id="single-product-box-content">
       <h1 id="single-product-title"><?= htmlspecialchars($product['name']); ?></h1>
       <p id="single-product-price">£<?= number_format($start_price, 2); ?></p>
-      <div style="margin-top: 14px; margin-bottom: 13px;">
+      <div style="margin-top: -9px; margin-bottom: 13px;">
         <div style="margin-bottom: 15px;">
           <button id="favbttn" class="icon-btn" style="display: inline-flex; align-items: center; gap: 9px; border: 1px solid var(--line); padding: 7px 18px; border-radius: 1000px; font-size: 15px; font-weight: 610;">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9-8.5S5 2 8.5 5.5L12 9l3.5-3.5C19 2 25 7 21 12.5S12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
@@ -235,7 +235,9 @@ if (isset($_GET['id'])){
         </span>
         </div>
     <div style="width: 100%;">
-        <button class="single-product-cart-btn">Add to Cart</button>
+        <button id="addToCartBtn" class="single-product-cart-btn"
+        <?php if($initial_qty == 0) echo 'disabled style="background-color: #ccc; cursor: not-allowed;"'; ?>>
+        <?php echo ($initial_qty == 0) ? 'Out of Stock' : 'Add to Cart'; ?></button>
             </div>
     </div>
 </div>
@@ -291,6 +293,7 @@ if (isset($_GET['id'])){
   const sizeDropdown = document.getElementById('sizeSelect');
   const priceText = document.getElementById('single-product-price');
   const stockText = document.getElementById('stockDisplay');
+  const addToCartBtn = document.getElementById('addToCartBtn');
   if(sizeDropdown && priceText && stockText){
     sizeDropdown.addEventListener('change', function() {
         const selectedOption = this.options[this.selectedIndex];
@@ -300,11 +303,23 @@ if (isset($_GET['id'])){
         let label = "";
         if (qty === 0) {
           label = "Out of Stock: ";
-          } else if (qty < 10) {
+          if(addToCartBtn) {
+            addToCartBtn.disabled = true;
+            addToCartBtn.textContent = "Out of Stock";
+            addToCartBtn.style.backgroundColor = "#ccc";
+            addToCartBtn.style.cursor = "not-allowed";}
+                                }
+          else { if (qty < 10) {
             label = "Low Stock: ";
             } else {
               label = "In Stock: ";
               }
+              if(addToCartBtn) {
+                addToCartBtn.disabled = false;
+                addToCartBtn.textContent = "Add to Cart";
+                addToCartBtn.style.backgroundColor = "black";
+              stockText.textContent = label + qty;
+              addToCartBtn.style.cursor = "pointer"; } }
               stockText.textContent = label + qty;
     });
   }
