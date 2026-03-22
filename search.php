@@ -45,7 +45,7 @@ if ($result->num_rows === 1) {
         </div>
     </div>
 </div>
-<header class="site-header">
+ <header class="site-header">
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
@@ -84,12 +84,12 @@ if ($result->num_rows === 1) {
               <div class="mega-col">
                 <h4>Highlights</h4>
                 <a href="womensshirts.php">New in Women</a>
-                <a href="womensknitwear.php">Bestseller</a>
+                <a href="womenactivewear.php">Bestseller</a>
                 
               </div>
               <div class="mega-col">
                 <h4>Activewear</h4>
-                <a href="womanactivewear.php">All Activewear</a>
+                <a href="womenactivewear.php">All Activewear</a>
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
@@ -111,7 +111,7 @@ if ($result->num_rows === 1) {
               <div class="mega-col">
                 <h4>Kids</h4>
                 <a href="kidstshirts.php">T-Shirts</a>
-                <a href="kidsclothing.php">Clothing</a>
+                <a href="kidstshirts.php">Clothing</a>
               </div>
             </div>
           </li>
@@ -209,7 +209,7 @@ if ($result->num_rows === 1) {
       <div>
         <h5>Support</h5>
         <a href="delivery.php">Delivery</a>
-        <a href="returns.php">Returns</a>
+        <a href="contact.php">Let Us Know How We Did</a>
         <a href="contact.php">Contact Us</a>
       </div>
       <div>
@@ -232,6 +232,7 @@ if ($result->num_rows === 1) {
 </footer>
 
 <script src="app.js"></script>
+<script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.grid-size-select').forEach(select => {

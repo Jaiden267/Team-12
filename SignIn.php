@@ -74,12 +74,12 @@ require_once 'db_connect.php';
               <div class="mega-col">
                 <h4>Highlights</h4>
                 <a href="womensshirts.php">New in Women</a>
-                <a href="womensknitwear.php">Bestseller</a>
+                <a href="womenactivewear.php">Bestseller</a>
                 
               </div>
               <div class="mega-col">
                 <h4>Activewear</h4>
-                <a href="womanactivewear.php">All Activewear</a>
+                <a href="womenactivewear.php">All Activewear</a>
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
@@ -101,7 +101,7 @@ require_once 'db_connect.php';
               <div class="mega-col">
                 <h4>Kids</h4>
                 <a href="kidstshirts.php">T-Shirts</a>
-                <a href="kidsclothing.php">Clothing</a>
+                <a href="kidstshirts.php">Clothing</a>
               </div>
             </div>
           </li>
@@ -174,7 +174,7 @@ require_once 'db_connect.php';
               <input type="password" name="password" placeholder="Password" required>
           </div>
 
-          <a class="forgot-password" href="#">Forgot your password?</a>
+          <a class="forgot-password" href="forgotpassword.php">Forgot your password?</a>
 
           <button type="submit" class="submitbtn">Sign In</button>
 
@@ -194,7 +194,7 @@ require_once 'db_connect.php';
       <div>
         <h5>Support</h5>
         <a href="delivery.php">Delivery</a>
-        <a href="returns.php">Returns</a>
+        <a href="contact.php">Let Us Know How We Did</a>
         <a href="contact.php">Contact Us</a>
       </div>
       <div>
@@ -216,6 +216,7 @@ require_once 'db_connect.php';
     </div>
 </footer>
 <script src="app.js"></script>
+<script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
 </body>
 </html>
 
