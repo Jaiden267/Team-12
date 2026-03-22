@@ -36,7 +36,7 @@ if ($is_logged_in) {
         </div>
     </div>
 </div>
- <header class="site-header">
+   <header class="site-header">
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
@@ -75,12 +75,12 @@ if ($is_logged_in) {
               <div class="mega-col">
                 <h4>Highlights</h4>
                 <a href="womensshirts.php">New in Women</a>
-                <a href="womenactivewear.php">Bestseller</a>
+                <a href="womensknitwear.php">Bestseller</a>
                 
               </div>
               <div class="mega-col">
                 <h4>Activewear</h4>
-                <a href="womenactivewear.php">All Activewear</a>
+                <a href="womanactivewear.php">All Activewear</a>
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
@@ -102,7 +102,7 @@ if ($is_logged_in) {
               <div class="mega-col">
                 <h4>Kids</h4>
                 <a href="kidstshirts.php">T-Shirts</a>
-                <a href="kidstshirts.php">Clothing</a>
+                <a href="kidsclothing.php">Clothing</a>
               </div>
             </div>
           </li>
@@ -159,8 +159,12 @@ if ($is_logged_in) {
                     $variants = $var_res->fetch_all(MYSQLI_ASSOC);
                     $initial_price = !empty($variants) ? $variants[0]['additional_price'] : $p['base_price'];
                 ?>
-                   <article class="product-card">
-                    <a href="indproduct.php?id=<?= $p['product_id']; ?>">
+                   <article class="product-card" style="position: relative;" id="fav-card-<?= $p['product_id']; ?>">
+                    <button class="remove-fav-btn" data-pid="<?= $p['product_id']; ?>" style="position: absolute; top: 12px; right: 12px; background: white; border: 1px solid var(--line); border-radius: 50%; padding: 7px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); z-index: 10;">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                      <path d="M12 21s-7-4.5-9-8.5S5 2 8.5 5.5L12 9l3.5-3.5C19 2 25 7 21 12.5S12 21 12 21z" fill="black" stroke="black" stroke-width="2"/>
+                      </svg></button>
+                      <a href="indproduct.php?id=<?= $p['product_id']; ?>">
                         <img class="product-img" src="<?= htmlspecialchars($p['image_url']); ?>" alt="<?= htmlspecialchars($p['name']);?>">
                         </a>
                         <a href="indproduct.php?id=<?= $p['product_id']; ?>" style="text-decoration: none; color: inherit;">
@@ -200,7 +204,7 @@ if ($is_logged_in) {
       <div>
         <h5>Support</h5>
         <a href="delivery.php">Delivery</a>
-        <a href="contact.php">Let Us Know How We Did</a>
+        <a href="contact.php">contact.php">Let Us Know How We Did</a>
         <a href="contact.php">Contact Us</a>
       </div>
       <div>
@@ -253,7 +257,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 size: sizeName,
                 qty: qty
             };
-
             const cart = loadCart(); 
             const existing = cart.find(i => i.sku === item.sku && i.size === item.size);
             if (existing) existing.qty += qty; else cart.push(item);
@@ -262,10 +265,23 @@ document.addEventListener("DOMContentLoaded", () => {
             alert(`Added ${qty} × ${item.name} (Size: ${sizeName}) to cart.`);
         });
     });
+    document.querySelectorAll(".remove-fav-btn").forEach(btn => {
+      btn.addEventListener("click", function(e) {
+        e.preventDefault();
+        const pid = this.dataset.pid;
+        fetch('removethefavouriteprocess.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: `product_id=${pid}`})
+          .then(response => response.json())
+          .then(data => {
+            if (data.status === 'success') {
+              const card = document.getElementById("fav-card-" + pid);
+              if (card) card.remove();
+              } }); }); });
     const yr = document.getElementById("year");
     if(yr) yr.textContent = new Date().getFullYear();
 });
 </script>
-<script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
 </body>
 </html>
