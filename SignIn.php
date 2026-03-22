@@ -8,7 +8,7 @@ require_once 'db_connect.php';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <title>Lunare Clothing — Sign In</title>
+  <title>Lunare Clothing — Home</title>
 
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -150,7 +150,21 @@ require_once 'db_connect.php';
 
       <div class="contact-form">
         <h3>Welcome Back</h3>
+       <div style="display:flex; justify-content:center; margin-bottom:20px;">
+          <div style="display:flex; border:1px solid #ddd; border-radius:6px; overflow:hidden;">
 
+            <a href="signin.php"
+               style="padding:10px 18px; text-decoration:none; background:#000; color:#fff; font-size:14px;">
+               Customer
+            </a>
+
+            <a href="admin/login.php"
+               style="padding:10px 18px; text-decoration:none; background:#f5f5f5; color:#000; font-size:14px;">
+               Admin
+            </a>
+
+          </div>
+        </div>
         <form method="POST" action="login_process.php">
           <div class="form-group">
               <input type="email" name="email" placeholder="Email Address" required>
@@ -160,7 +174,7 @@ require_once 'db_connect.php';
               <input type="password" name="password" placeholder="Password" required>
           </div>
 
-          <a class="forgot-password" href="forgotpassword.php">Forgot your password?</a>
+          <a class="forgot-password" href="#">Forgot your password?</a>
 
           <button type="submit" class="submitbtn">Sign In</button>
 
@@ -175,7 +189,7 @@ require_once 'db_connect.php';
     </div>
   </section>
 
-  <footer class="site-footer">
+<footer class="site-footer">
     <div class="container footer-grid">
       <div>
         <h5>Support</h5>
@@ -201,9 +215,7 @@ require_once 'db_connect.php';
       <span>© <span id="year"></span> Lunare Clothing</span>
     </div>
 </footer>
-
-  <script src="app.js"></script>
-  <script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
+<script src="app.js"></script>
 </body>
 </html>
 
