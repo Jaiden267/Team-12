@@ -36,7 +36,7 @@ if ($is_logged_in) {
         </div>
     </div>
 </div>
-   <header class="site-header">
+ <header class="site-header">
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
@@ -75,12 +75,12 @@ if ($is_logged_in) {
               <div class="mega-col">
                 <h4>Highlights</h4>
                 <a href="womensshirts.php">New in Women</a>
-                <a href="womensknitwear.php">Bestseller</a>
+                <a href="womenactivewear.php">Bestseller</a>
                 
               </div>
               <div class="mega-col">
                 <h4>Activewear</h4>
-                <a href="womanactivewear.php">All Activewear</a>
+                <a href="womenactivewear.php">All Activewear</a>
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
@@ -102,7 +102,7 @@ if ($is_logged_in) {
               <div class="mega-col">
                 <h4>Kids</h4>
                 <a href="kidstshirts.php">T-Shirts</a>
-                <a href="kidsclothing.php">Clothing</a>
+                <a href="kidstshirts.php">Clothing</a>
               </div>
             </div>
           </li>
@@ -204,7 +204,7 @@ if ($is_logged_in) {
       <div>
         <h5>Support</h5>
         <a href="delivery.php">Delivery</a>
-        <a href="contact.php">contact.php">Let Us Know How We Did</a>
+        <a href="contact.php">Let Us Know How We Did</a>
         <a href="contact.php">Contact Us</a>
       </div>
       <div>
