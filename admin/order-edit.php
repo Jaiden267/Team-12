@@ -31,6 +31,7 @@ if (isset($_POST['edit_order'])) {
                 <option value="pending" <?php echo $order['payment_status'] == 'pending' ? 'selected' : ''; ?>>Pending</option>
                 <option value="paid" <?php echo $order['payment_status'] == 'paid' ? 'selected' : ''; ?>>Paid</option>
                 <option value="failed" <?php echo $order['payment_status'] == 'failed' ? 'selected' : ''; ?>>Failed</option>
+                <option value="shipped" <?php echo $order['payment_status'] == 'shipped' ? 'selected' : ''; ?>>Shipped</option>
             </select>
         </div>
         <input type="submit" name="edit_order" value="Update Order" class="btn btn-primary" style="margin-top: 20px;">
