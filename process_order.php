@@ -54,7 +54,11 @@ $itemStmt = $conn->prepare("
     INSERT INTO order_items (order_id, product_sku, product_name, price, quantity)
     VALUES (?, ?, ?, ?, ?)
 ");
-
+$stockStmt = $conn->prepare("
+UPDATE stock s
+JOIN product_variants pv ON s.variant_id = pv.variant_id
+SET s.quantity = s.quantity - ?
+WHERE pv.product_id = ? AND pv.attribute_value = ?");
 foreach ($cart as $item) {
     $itemStmt->bind_param(
         "issdi",
@@ -65,18 +69,17 @@ foreach ($cart as $item) {
         $item['qty']
     );
     $itemStmt->execute();
+    $stockStmt->bind_param("iis", $item['qty'], $item['sku'], $item['size']);
+    $stockStmt->execute();
 }
-
 $to = "lunare.clothing@mail.com";
 $subject = "New Order #$order_id";
-
 $message  = "New order received:\n\n";
 $message .= "Name: $billing_name\n";
 $message .= "Email: $billing_email\n";
 $message .= "Phone: $billing_phone\n";
 $message .= "Address: $address1, $address2, $city, $postcode, $country\n\n";
 $message .= "Order Items:\n";
-
 foreach ($cart as $item) {
     $message .= "{$item['name']} x {$item['qty']} (£{$item['price']})\n";
 }
