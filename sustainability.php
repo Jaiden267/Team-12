@@ -7,7 +7,7 @@ require_once 'db_connect.php';
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lunare Clothing — Returns</title>
+<title>Lunare Clothing — Sustainability</title>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -32,7 +32,7 @@ require_once 'db_connect.php';
   </div>
 </div>
 
-<header class="site-header">
+ <header class="site-header">
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
@@ -71,12 +71,12 @@ require_once 'db_connect.php';
               <div class="mega-col">
                 <h4>Highlights</h4>
                 <a href="womensshirts.php">New in Women</a>
-                <a href="womensknitwear.php">Bestseller</a>
+                <a href="womenactivewear.php">Bestseller</a>
                 
               </div>
               <div class="mega-col">
                 <h4>Activewear</h4>
-                <a href="womanactivewear.php">All Activewear</a>
+                <a href="womenactivewear.php">All Activewear</a>
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
@@ -98,7 +98,7 @@ require_once 'db_connect.php';
               <div class="mega-col">
                 <h4>Kids</h4>
                 <a href="kidstshirts.php">T-Shirts</a>
-                <a href="kidsclothing.php">Clothing</a>
+                <a href="kidstshirts.php">Clothing</a>
               </div>
             </div>
           </li>
@@ -139,7 +139,6 @@ require_once 'db_connect.php';
       </div>
     </div>
   </header>
-
 
 <main>
 <section class="aboutusmainbuild">
@@ -197,7 +196,7 @@ style="width:100%; max-width:900px; border-radius:12px; margin:25px 0;">
       <div>
         <h5>Support</h5>
         <a href="delivery.php">Delivery</a>
-        <a href="returns.php">Returns</a>
+        <a href="contact.php">Let Us Know How We Did</a>
         <a href="contact.php">Contact Us</a>
       </div>
       <div>
