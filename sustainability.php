@@ -1,49 +1,36 @@
 <?php
 session_start();
 require_once 'db_connect.php';
-$sort = $_GET['sort'] ?? 'default';
-$order_query = "ORDER BY products.product_id ASC";
-if ($sort == 'price_low') {
-  $order_query = "ORDER BY products.base_price ASC";
-  } elseif ($sort == 'price_high') {
-    $order_query = "ORDER BY products.base_price DESC";
-    } elseif ($sort == 'name_az') {
-      $order_query = "ORDER BY products.name ASC";
-      } elseif ($sort == 'name_za') {
-        $order_query = "ORDER BY products.name DESC";}
-$result = $conn->query("SELECT products.*, image_url FROM products LEFT JOIN product_images ON products.product_id = product_images.product_id WHERE category_id = 7 AND (product_images.is_main = 1 OR product_images.is_main IS NULL) $order_query");
-$plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price FROM product_variants WHERE product_id = ?");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-  <title>Lunare Clothing — Womens Knitwear</title>
-
+  <title>Lunare Clothing — Sustainability</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
- <div class="utility-strip">
-    <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
-        
-        
-        <span>FREE DELIVERY & RETURNS</span>
 
-        
-        <div style="display:flex; gap:15px; align-items:center;">
-            <a href="contact.php" class="link">Contact Us</a>
-            <?php if(isset($_SESSION['user_id'])): ?>
-                <span class="link">Hello, <?= htmlspecialchars($_SESSION['first_name']); ?></span>
-                <a href="logout.php" class="link">Logout</a>
-            <?php else: ?>
-                <a href="register.php" class="link">Register</a>
-                <a href="signin.php" class="link">Sign In</a>
-            <?php endif; ?>
-            </div>
+<body>
+
+<div class="utility-strip">
+  <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+    <span>FREE DELIVERY & RETURNS</span>
+
+    <div style="display:flex; gap:15px; align-items:center;">
+      <a href="contact.php" class="link">Contact Us</a>
+
+      <?php if(isset($_SESSION['user_id'])): ?>
+        <span class="link">Hello, <?= htmlspecialchars($_SESSION['first_name']); ?></span>
+        <a href="logout.php" class="link">Logout</a>
+      <?php else: ?>
+        <a href="register.php" class="link">Register</a>
+        <a href="signin.php" class="link">Sign In</a>
+      <?php endif; ?>
     </div>
+  </div>
 </div>
+
 <header class="site-header">
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
@@ -151,65 +138,69 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
       </div>
     </div>
   </header>
-  <div class="page-header">
-    <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
-      <h1>Womens — Knitwear</h1>
-      <form method="GET" action="womensknitwear.php" id="sortForm">
-        <label style="font-size:14px; font-weight:600;">Sort By: </label>
-        <select name="sort" class="select" onchange="document.getElementById('sortForm').submit();">
-          <option value="default" <?= $sort == 'default' ? 'selected' : '' ?>>Default</option>
-          <option value="price_low" <?= $sort == 'price_low' ? 'selected' : '' ?>>Price - Low to High</option>
-          <option value="price_high" <?= $sort == 'price_high' ? 'selected' : '' ?>>Price - High to Low</option>
-          <option value="name_az" <?= $sort == 'name_az' ? 'selected' : '' ?>>A to Z</option>
-          <option value="name_za" <?= $sort == 'name_za' ? 'selected' : '' ?>>Z to A</option>
-          </select>
-          </form>
-          </div></div>
-  <section class="products">
+
+<main>
+  <section class="sustainability-page">
     <div class="container">
-<div class="product-grid">
-  <?php while($row = $result->fetch_assoc()): 
-$productid = $row['product_id'];
-    $plswork2->bind_param("i", $productid);
-    $plswork2->execute();
-    $vresult = $plswork2->get_result();
-    $variants = [];
-    while($v = $vresult->fetch_assoc()) {
-        $variants[] = $v;}
-        $current_price = !empty($variants) ? $variants[0]['additional_price'] : $row['base_price']; ?>
-        <article class="product-card">
-          <a href="indproduct.php?id=<?= $row['product_id']; ?>">
-            <img class="product-img" src="<?= htmlspecialchars($row['image_url']); ?>" alt="<?= htmlspecialchars($row['name']);?>"></a>
-            <a href="indproduct.php?id=<?= $row['product_id']; ?>" style="text-decoration: none; color: inherit;">
-              <h3 class="product-name"><?= htmlspecialchars($row['name']);?></h3></a>
-              <div class="product-price" id="price-display-<?= $row['product_id']; ?>">£<?= number_format($current_price, 2); ?></div>
-              <form class="opts add-to-cart-form"
-              data-sku="<?= $row['product_id'];?>"
-              data-name="<?= htmlspecialchars($row['name']);?>"
-              data-price="<?= $current_price;?>"
-              data-image="<?= htmlspecialchars($row['image_url']); ?>">
-              <div class="row">
-                <label for="size-<?=$row['product_id'];?>">Size:</label>
-                <select id="size-<?=$row['product_id'];?>" class="select grid-size-select" name="size" data-product-id="<?= $row['product_id']; ?>">
-                  <?php if(!empty($variants)): ?>
-                    <?php foreach($variants as $var): ?>
-                      <option value="<?= $var['variant_id']; ?>"
-                      data-price="<?= $var['additional_price']; ?>">
-                      <?= htmlspecialchars($var['attribute_value']); ?>
-                      </option>
-                      <?php endforeach; ?>
-                      <?php endif; ?>
-                      </select>
-                      <label for="qty-<?= $row['product_id'];?>">Qty:</label>
-                      <input id="qty-<?= $row['product_id'];?>" class="qty" type="number" name="qty" value="1" min="1" max="5" />
-                      </div>
-                      <button class="add-btn" type="submit">Add to Cart</button>
-                      </form>
-                      </article>
-                      <?php endwhile; ?>
-                      </div>
-</div>
+      <div class="sustainability-header">
+        <h1>Sustainability</h1>
+        <p class="subtitle">Our commitment to a better future through responsible fashion</p>
+      </div>
+
+      <div class="sustainability-section">
+        <h2>Our Approach</h2>
+        <p>
+          At Lunare Clothing, we believe fashion should not come at the expense of the planet.
+          We are committed to making better choices across our materials, production, packaging,
+          and delivery processes.
+        </p>
+        <p>
+          Sustainability is a journey for us, and we continue to improve how we operate to reduce
+          our environmental impact while still delivering high-quality clothing.
+        </p>
+      </div>
+
+      <div class="sustainability-grid">
+        <div class="sustainability-card">
+          <h3>Responsible Materials</h3>
+          <p>We aim to source fabrics and materials more thoughtfully to reduce waste and support better practices.</p>
+        </div>
+
+        <div class="sustainability-card">
+          <h3>Lower Waste</h3>
+          <p>We work to minimise production waste and encourage efficient stock management across our operations.</p>
+        </div>
+
+        <div class="sustainability-card">
+          <h3>Better Packaging</h3>
+          <p>We are exploring packaging solutions that use less material and are easier to recycle.</p>
+        </div>
+      </div>
+
+      <div class="sustainability-section">
+        <h2>Our Goals</h2>
+        <p>
+          Our long-term goal is to make Lunare a more sustainable fashion brand by improving supply
+          chains, reducing waste, and increasing transparency around how our products are made.
+        </p>
+        <p>
+          We are focused on creating products that last longer, perform better, and support more
+          conscious shopping habits.
+        </p>
+      </div>
+
+      <div class="sustainability-section">
+        <h2>Looking Forward</h2>
+        <p>
+          Sustainability is not a finished task — it is an ongoing responsibility. We will continue
+          to learn, adapt, and make improvements that help build a better future for our customers,
+          our communities, and the environment.
+        </p>
+      </div>
+    </div>
   </section>
+</main>
+
 <footer class="site-footer">
     <div class="container footer-grid">
       <div>
@@ -236,20 +227,7 @@ $productid = $row['product_id'];
       <span>© <span id="year"></span> Lunare Clothing</span>
     </div>
 </footer>
-<script>
-const workWorks = document.querySelectorAll('.grid-size-select');
-workWorks.forEach(select => {
-  select.addEventListener('change', function() {
-    const productID = this.getAttribute('data-product-id');
-    const selectedOption = this.options[this.selectedIndex];
-    const newPrice = selectedOption.getAttribute('data-price');
-    const priceDisplay = document.getElementById('price-display-' + productID);
-    if (priceDisplay) {
-      priceDisplay.innerText = '£' + parseFloat(newPrice).toFixed(2);
-    }
-  })
-})
-</script>
+
 <script src="app.js"></script>
 </body>
 </html>

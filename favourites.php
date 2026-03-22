@@ -17,7 +17,7 @@ if ($is_logged_in) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Favourites — Lunare Clothing</title>
+  <title>Lunare Clothing — Favourites</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -54,12 +54,12 @@ if ($is_logged_in) {
             <div class="mega" id="mega-men" role="dialog" aria-label="Men menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="#">New in Men</a>
-                <a href="#">Bestseller</a>
+                <a href="menstrousers.php">New in Men</a>
+                <a href="menssocks.php">Bestseller</a>
               </div>
               <div class="mega-col">
                 <h4>Shoes</h4>
-                <a href="#">All Shoes</a>
+                <a href="menshoes.php">All Shoes</a>
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
@@ -74,14 +74,13 @@ if ($is_logged_in) {
             <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="#">New in Women</a>
-                <a href="#">Bestseller</a>
+                <a href="womensshirts.php">New in Women</a>
+                <a href="womensknitwear.php">Bestseller</a>
                 
               </div>
               <div class="mega-col">
-                <h4>Shoes</h4>
-                <a href="#">All Shoes</a>
-
+                <h4>Activewear</h4>
+                <a href="womanactivewear.php">All Activewear</a>
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
@@ -97,18 +96,16 @@ if ($is_logged_in) {
             <div class="mega" id="mega-kids" role="dialog" aria-label="Kids menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="#">New for Kids</a>
-                <a href="#">Bestseller</a>
+                <a href="kidstshirts.php">New for Kids</a>
+                <a href="kidstshirts.php">Bestseller</a>
               </div>
               <div class="mega-col">
                 <h4>Kids</h4>
                 <a href="kidstshirts.php">T-Shirts</a>
-                <a href="#">Clothing</a>
+                <a href="kidsclothing.php">Clothing</a>
               </div>
             </div>
           </li>
-
-          <li><a href="#" class="nav-link sale">Sale</a></li>
         </ul>
       </nav>
       <div class="actions">
@@ -142,7 +139,7 @@ if ($is_logged_in) {
           <input type="search" id="q" placeholder="Search" aria-label="Search" />
           <button type="submit" class="btn">Search</button>
         </form>
-        <p class="search-hint">Try “Joggers” or “Tracksuits”.</p>
+        <p class="search-hint">Try “Shirts” or “Trousers”.</p>
       </div>
     </div>
   </header>
@@ -202,7 +199,6 @@ if ($is_logged_in) {
     <div class="container footer-grid">
       <div>
         <h5>Support</h5>
-        <a href="help.php">Help</a>
         <a href="delivery.php">Delivery</a>
         <a href="returns.php">Returns</a>
         <a href="contact.php">Contact Us</a>
