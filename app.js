@@ -289,3 +289,5 @@ function renderCartPreview(){
     el.addEventListener('mouseleave', hidePreview);
   });
 })();
+
+

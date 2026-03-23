@@ -1,0 +1,283 @@
+<?php
+session_start();
+require_once 'db_connect.php';
+$sort = $_GET['sort'] ?? 'default';
+$category_filter = $_GET['category'] ?? 'all';
+$where_clause = "WHERE (product_images.is_main = 1 OR product_images.is_main IS NULL)";
+$order_query = "ORDER BY products.product_id ASC";
+if ($sort == 'price_lowtohigh') {
+    $order_query = "ORDER BY products.base_price ASC";
+    } elseif ($sort == 'price_hightolow') {
+        $order_query = "ORDER BY products.base_price DESC";
+        } elseif ($sort == 'name_atoz') {
+            $order_query = "ORDER BY products.name ASC";
+            } elseif ($sort == 'name_ztoa') {
+                $order_query = "ORDER BY products.name DESC";
+                }
+                if ($category_filter !== 'all') {
+                  $cat_id = intval($category_filter);
+                  if ($cat_id > 0) {
+                    $where_clause .= " AND products.category_id = $cat_id";
+                    }
+                    }
+
+                $result = $conn->query("SELECT products.*, image_url FROM products LEFT JOIN product_images ON products.product_id = product_images.product_id $where_clause $order_query");
+                $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price FROM product_variants WHERE product_id = ?");
+                $categories_query = $conn->query("SELECT * FROM categories ORDER BY name ASC");
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lunare Clothing — All Products</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="utility-strip">
+        <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+            <span>FREE DELIVERY & RETURNS</span>
+            <div style="display:flex; gap:15px; align-items:center;">
+                <a href="contact.php" class="link">Contact Us</a>
+                <?php if(isset($_SESSION['user_id'])): ?>
+                     <a href="accounts.php"><span class="link">Hello <?= htmlspecialchars($_SESSION['first_name']); ?></span></a>
+                    <a href="logout.php" class="link">Logout</a>
+                    <?php else: ?>
+                        <a href="register.php" class="link">Register</a>
+                        <a href="signin.php" class="link">Sign In</a>
+                        <?php endif; ?>
+                        </div>
+                        </div>
+                        </div>
+ <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
+        <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
+        <span class="wordmark">LUNARE CLOTHING</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
+        <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+          <span class="sr-only">Toggle menu</span>
+        </button>
+        <ul class="menu">
+          <li><a href="allproducts.php" class="nav-link">All Products</a></li>
+          <li class="has-mega">
+            <button class="nav-link" data-menu="men" aria-expanded="false">Men</button>
+            <div class="mega" id="mega-men" role="dialog" aria-label="Men menu">
+              <div class="mega-col">
+                <h4>Highlights</h4>
+                <a href="menstrousers.php">New in Men</a>
+                <a href="menssocks.php">Bestseller</a>
+              </div>
+              <div class="mega-col">
+                <h4>Shoes</h4>
+                <a href="menshoes.php">All Shoes</a>
+              </div>
+              <div class="mega-col">
+                <h4>Clothing</h4>
+                <a href="menstrousers.php">Trousers</a>
+                <a href="mensshorts.php">Shorts</a>
+                <a href="menssocks.php">Socks</a>
+              </div>
+            </div>
+          </li>
+          <li class="has-mega">
+            <button class="nav-link" data-menu="women" aria-expanded="false">Women</button>
+            <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
+              <div class="mega-col">
+                <h4>Highlights</h4>
+                <a href="womensshirts.php">New in Women</a>
+                <a href="womenactivewear.php">Bestseller</a>
+                
+              </div>
+              <div class="mega-col">
+                <h4>Activewear</h4>
+                <a href="womenactivewear.php">All Activewear</a>
+              </div>
+              <div class="mega-col">
+                <h4>Clothing</h4>
+                <a href="womenscoats.php">Coats</a>
+                <a href="womensshirts.php">Shirts</a>
+                <a href="womensknitwear.php">Knitwear</a>
+                <a href="womenactivewear.php">Activewear</a>
+              </div>
+            </div>
+          </li>
+          <li class="has-mega">
+            <button class="nav-link" data-menu="kids" aria-expanded="false">Kids</button>
+            <div class="mega" id="mega-kids" role="dialog" aria-label="Kids menu">
+              <div class="mega-col">
+                <h4>Highlights</h4>
+                <a href="kidstshirts.php">New for Kids</a>
+                <a href="kidstshirts.php">Bestseller</a>
+              </div>
+              <div class="mega-col">
+                <h4>Kids</h4>
+                <a href="kidstshirts.php">T-Shirts</a>
+                <a href="kidstshirts.php">Clothing</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="actions">
+        <button id="searchToggle" class="icon-btn" aria-expanded="false" aria-controls="searchBar" title="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="2"/><line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
+        </button>
+        <a href="favourites.php" class="icon-btn" title="Favourites">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9-8.5S5 2 8.5 5.5L12 9l3.5-3.5C19 2 25 7 21 12.5S12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </a>
+        <button id="cartButton" class="icon-btn" title="Bag">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a3 3 0 1 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </button>
+
+        <span id="cartCount" class="muted"></span>
+        
+        <div id="cartPreview" class="cart-preview">
+          <div id="cartPreviewItems"></div>
+
+        <div class="cart-preview-total">
+          Total: <span id="cartPreviewTotal">£0.00</span>
+        </div>
+
+            <a href="cart.php" class="btn">View Basket</a>
+        </div>
+      </div>
+    </div>
+    <div id="searchBar" class="searchbar" hidden>
+      <div class="container">
+        <form id="searchForm" role="search" aria-label="Site search">
+          <input type="search" id="q" placeholder="Search" aria-label="Search" />
+          <button type="submit" class="btn">Search</button>
+        </form>
+        <p class="search-hint">Try “Shirts” or “Trousers”.</p>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="page-header">
+        <div class="container" style="display:flex; justify-content:space-between; align-items:center; padding: 20px 0;">
+            <h1>All Products</h1>
+            <form method="GET" action="allproducts.php" id="sortForm" style="display: flex; gap: 20px; align-items: center;">
+              <div>
+                <label style="font-size:14px; font-weight:600;">Category: </label>
+                <select name="category" class="select" onchange="document.getElementById('sortForm').submit();">
+                  <option value="all" <?= $category_filter == 'all' ? 'selected' : '' ?>>All Categories</option>
+                  <?php while($category = $categories_query->fetch_assoc()): ?>
+                    <option value="<?= $category['category_id']; ?>" <?= $category_filter == strval($category['category_id']) ? 'selected' : '' ?>>
+                      <?= htmlspecialchars($category['name']); ?>
+                      </option>
+                      <?php endwhile; ?>
+                      </select>
+                      </div>
+                      <div>
+                        <label style="font-size:14px; font-weight:600;">Sort By: </label>
+                        <select name="sort" class="select" onchange="document.getElementById('sortForm').submit();">
+                          <option value="default" <?= $sort == 'default' ? 'selected' : '' ?>>Default</option>
+                          <option value="price_lowtohigh" <?= $sort == 'price_lowtohigh' ? 'selected' : '' ?>>Price - Low to High</option>
+                          <option value="price_hightolow" <?= $sort == 'price_hightolow' ? 'selected' : '' ?>>Price - High to Low</option>
+                          <option value="name_atoz" <?= $sort == 'name_atoz' ? 'selected' : '' ?>>A to Z</option>
+                          <option value="name_ztoa" <?= $sort == 'name_ztoa' ? 'selected' : '' ?>>Z to A</option>
+                          </select>
+                          </div>       
+                    </form>
+                    </div>
+                    </div>
+    <section class="products">
+        <div class="container">
+            <div class="product-grid">
+                <?php while($row = $result->fetch_assoc()): 
+                $productid = $row['product_id'];
+                $plswork2->bind_param("i", $productid);
+                $plswork2->execute();
+                $vresult = $plswork2->get_result();
+                $variants = [];
+                while($v = $vresult->fetch_assoc()) { $variants[] = $v; }
+                $current_price = !empty($variants) ? $variants[0]['additional_price'] : $row['base_price']; 
+                ?>
+                <article class="product-card">
+                    <a href="indproduct.php?id=<?= $row['product_id']; ?>">
+                        <img class="product-img" src="<?= htmlspecialchars($row['image_url']); ?>" alt="<?= htmlspecialchars($row['name']);?>">
+                        </a>
+                        <a href="indproduct.php?id=<?= $row['product_id']; ?>" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name"><?= htmlspecialchars($row['name']);?></h3>
+                            </a>
+                            <div class="product-price" id="price-display-<?= $row['product_id']; ?>">£<?= number_format($current_price, 2); ?></div>
+                            <form class="opts add-to-cart-form"
+                            data-sku="<?= $row['product_id'];?>"
+                            data-name="<?= htmlspecialchars($row['name']);?>"
+                            data-price="<?= $current_price;?>"
+                            data-image="<?= htmlspecialchars($row['image_url']); ?>">
+                            <div class="row">
+                                <label for="size-<?=$row['product_id'];?>">Size:</label>
+                                <select id="size-<?=$row['product_id'];?>" class="select grid-size-select" name="size" data-product-id="<?= $row['product_id']; ?>">
+                                    <?php if(!empty($variants)): ?>
+                                        <?php foreach($variants as $var): ?>
+                                            <option value="<?= $var['variant_id']; ?>" data-price="<?= $var['additional_price']; ?>">
+                                                <?= htmlspecialchars($var['attribute_value']); ?>
+                                                </option>
+                                                <?php endforeach; ?>
+                                                <?php endif; ?>
+                                                </select>
+                                                <label for="qty-<?= $row['product_id'];?>">Qty:</label>
+                                                <input id="qty-<?= $row['product_id'];?>" class="qty" type="number" name="qty" value="1" min="1" max="5" />
+                                                </div>
+                                                <button class="add-btn" type="submit">Add to Cart</button>
+                                                </form>
+                                                </article>
+                                                <?php endwhile; ?>
+                                                </div>
+                                                </div>
+                                                </section>
+                                                </main>
+<footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h5>Support</h5>
+        <a href="delivery.php">Delivery</a>
+        <a href="contact.php">Let Us Know How We Did</a>
+        <a href="contact.php">Contact Us</a>
+      </div>
+      <div>
+        <h5>About</h5>
+        <a href="aboutus.php">About Us</a>
+        <a href="company.php">Company</a>
+        <a href="sustainability.php">Sustainability</a>
+        <a href="careers.php">Careers</a>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <a href="terms.php">Terms</a>
+        <a href="privacy.php">Privacy</a>
+        <a href="cookies.php">Cookies</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="year"></span> Lunare Clothing</span>
+    </div>
+</footer>
+  <script>
+    const workWorks = document.querySelectorAll('.grid-size-select');
+    workWorks.forEach(select => {
+        select.addEventListener('change', function() {
+            const productID = this.getAttribute('data-product-id');
+            const selectedOption = this.options[this.selectedIndex];
+            const newPrice = selectedOption.getAttribute('data-price');
+            const priceDisplay = document.getElementById('price-display-' + productID);
+            if (priceDisplay) {
+                priceDisplay.innerText = '£' + parseFloat(newPrice).toFixed(2);
+                }
+                });
+                });
+                </script>
+                <script src="app.js"></script>
+                </body>
+</html>
+
+                    
+                                    
+
+
+    

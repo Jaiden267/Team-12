@@ -1,7 +1,17 @@
 <?php
 session_start();
 require_once 'db_connect.php';
-$result = $conn->query("SELECT products.*, image_url FROM products LEFT JOIN product_images ON products.product_id = product_images.product_id WHERE category_id = 4");
+$sort = $_GET['sort'] ?? 'default';
+$order_query = "ORDER BY products.product_id ASC";
+if ($sort == 'price_low') {
+  $order_query = "ORDER BY products.base_price ASC";
+  } elseif ($sort == 'price_high') {
+    $order_query = "ORDER BY products.base_price DESC";
+    } elseif ($sort == 'name_az') {
+      $order_query = "ORDER BY products.name ASC";
+      } elseif ($sort == 'name_za') {
+        $order_query = "ORDER BY products.name DESC";}
+$result = $conn->query("SELECT products.*, image_url FROM products LEFT JOIN product_images ON products.product_id = product_images.product_id WHERE category_id = 4 AND (product_images.is_main = 1 OR product_images.is_main IS NULL) $order_query");
 $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price FROM product_variants WHERE product_id = ?");
 ?>
 <!DOCTYPE html>
@@ -10,7 +20,7 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <title>Lunare Clothing — Home</title>
+  <title>Lunare Clothing — Men's Shorts</title>
 
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -26,7 +36,7 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
             <a href="contact.php" class="link">Contact Us</a>
 
             <?php if(isset($_SESSION['user_id'])): ?>
-                <span class="link">Hello, <?= htmlspecialchars($_SESSION['first_name']); ?></span>
+                 <a href="accounts.php"><span class="link">Hello <?= htmlspecialchars($_SESSION['first_name']); ?></span></a>
                 <a href="logout.php" class="link">Logout</a>
             <?php else: ?>
                 <a href="register.php" class="link">Register</a>
@@ -37,35 +47,30 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
     </div>
 </div>
 
-  <header class="site-header">
+ <header class="site-header">
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
-        
         <span class="wordmark">LUNARE CLOTHING</span>
       </a>
-
       <nav class="primary-nav" aria-label="Primary">
-        
         <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu">
           <span></span><span></span><span></span>
           <span class="sr-only">Toggle menu</span>
         </button>
-
         <ul class="menu">
-          <li><a href="#" class="nav-link">New</a></li>
-
+          <li><a href="allproducts.php" class="nav-link">All Products</a></li>
           <li class="has-mega">
             <button class="nav-link" data-menu="men" aria-expanded="false">Men</button>
             <div class="mega" id="mega-men" role="dialog" aria-label="Men menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="#">New in Men</a>
-                <a href="#">Bestseller</a>
+                <a href="menstrousers.php">New in Men</a>
+                <a href="menssocks.php">Bestseller</a>
               </div>
               <div class="mega-col">
                 <h4>Shoes</h4>
-                <a href="#">All Shoes</a>
+                <a href="menshoes.php">All Shoes</a>
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
@@ -80,14 +85,13 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
             <div class="mega" id="mega-women" role="dialog" aria-label="Women menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a href="#">New in Women</a>
-                <a href="#">Bestseller</a>
+                <a href="womensshirts.php">New in Women</a>
+                <a href="womenactivewear.php">Bestseller</a>
                 
               </div>
               <div class="mega-col">
-                <h4>Shoes</h4>
-                <a href="#">All Shoes</a>
-
+                <h4>Activewear</h4>
+                <a href="womenactivewear.php">All Activewear</a>
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
@@ -98,34 +102,32 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
               </div>
             </div>
           </li>
-
           <li class="has-mega">
             <button class="nav-link" data-menu="kids" aria-expanded="false">Kids</button>
             <div class="mega" id="mega-kids" role="dialog" aria-label="Kids menu">
               <div class="mega-col">
                 <h4>Highlights</h4>
-                <a> New for Kids</a>
-                <a>Bestseller</a>
+                <a href="kidstshirts.php">New for Kids</a>
+                <a href="kidstshirts.php">Bestseller</a>
               </div>
               <div class="mega-col">
                 <h4>Kids</h4>
                 <a href="kidstshirts.php">T-Shirts</a>
-                <a>Clothing</a>
+                <a href="kidstshirts.php">Clothing</a>
               </div>
             </div>
           </li>
-
-          <li><a href="#" class="nav-link sale">Sale</a></li>
         </ul>
       </nav>
       <div class="actions">
         <button id="searchToggle" class="icon-btn" aria-expanded="false" aria-controls="searchBar" title="Search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="2"/><line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2"/></svg>
         </button>
-        <button class="icon-btn" title="Favourites">
+        <a href="favourites.php" class="icon-btn" title="Favourites">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-9-8.5S5 2 8.5 5.5L12 9l3.5-3.5C19 2 25 7 21 12.5S12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-        </button>
+        </a>
         <button id="cartButton" class="icon-btn" title="Bag">
+
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a3 3 0 1 1 6 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
         </button>
 
@@ -142,20 +144,30 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
         </div>
       </div>
     </div>
-
     <div id="searchBar" class="searchbar" hidden>
       <div class="container">
         <form id="searchForm" role="search" aria-label="Site search">
           <input type="search" id="q" placeholder="Search" aria-label="Search" />
           <button type="submit" class="btn">Search</button>
         </form>
-        <p class="search-hint">Try “Joggers” or “Tracksuits”.</p>
+        <p class="search-hint">Try “Shirts” or “Trousers”.</p>
       </div>
     </div>
   </header>
-
-
-  <div class="page-header"><div class="container"><h1>Mens — Shorts</h1></div></div>
+  <div class="page-header">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+      <h1>Mens — Shorts</h1>
+      <form method="GET" action="mensshorts.php" id="sortForm">
+        <label style="font-size:14px; font-weight:600;">Sort By: </label>
+        <select name="sort" class="select" onchange="document.getElementById('sortForm').submit();">
+          <option value="default" <?= $sort == 'default' ? 'selected' : '' ?>>Default</option>
+          <option value="price_low" <?= $sort == 'price_low' ? 'selected' : '' ?>>Price - Low to High</option>
+          <option value="price_high" <?= $sort == 'price_high' ? 'selected' : '' ?>>Price - High to Low</option>
+          <option value="name_az" <?= $sort == 'name_az' ? 'selected' : '' ?>>A to Z</option>
+          <option value="name_za" <?= $sort == 'name_za' ? 'selected' : '' ?>>Z to A</option>
+          </select>
+          </form>
+          </div></div>
   <section class="products">
     <div class="container">
 <div class="product-grid">
@@ -201,33 +213,32 @@ $productid = $row['product_id'];
                       </div>
 </div>
   </section>
-  <footer class="site-footer">
+<footer class="site-footer">
     <div class="container footer-grid">
       <div>
         <h5>Support</h5>
-        <a href="#">Help</a>
-        <a href="#">Delivery</a>
-        <a href="#">Returns</a>
+        <a href="delivery.php">Delivery</a>
+        <a href="contact.php">Let Us Know How We Did</a>
         <a href="contact.php">Contact Us</a>
       </div>
       <div>
         <h5>About</h5>
         <a href="aboutus.php">About Us</a>
-        <a href="#">Company</a>
-        <a href="#">Sustainability</a>
-        <a href="#">Careers</a>
+        <a href="company.php">Company</a>
+        <a href="sustainability.php">Sustainability</a>
+        <a href="careers.php">Careers</a>
       </div>
       <div>
         <h5>Legal</h5>
-        <a href="#">Terms</a>
-        <a href="#">Privacy</a>
-        <a href="#">Cookies</a>
+        <a href="terms.php">Terms</a>
+        <a href="privacy.php">Privacy</a>
+        <a href="cookies.php">Cookies</a>
       </div>
     </div>
     <div class="container footer-bottom">
       <span>© <span id="year"></span> Lunare Clothing</span>
     </div>
-  </footer>
+</footer>
 <script>
 const workWorks = document.querySelectorAll('.grid-size-select');
 workWorks.forEach(select => {
@@ -243,5 +254,6 @@ workWorks.forEach(select => {
 })
 </script>
 <script src="app.js"></script>
+<script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
 </body>
 </html>
