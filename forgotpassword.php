@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="contact.php" class="link">Contact Us</a>
 
             <?php if(isset($_SESSION['user_id'])): ?>
-                <span class="link"> <a href="account.php"> Hello, <?= htmlspecialchars($_SESSION['first_name']); ?></a></span>
+                 <a href="accounts.php"><span class="link">Hello <?= htmlspecialchars($_SESSION['first_name']); ?></span></a>
                 <a href="logout.php" class="link">Logout</a>
             <?php else: ?>
                 <a href="register.php" class="link">Register</a>
@@ -254,7 +254,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </footer>
 
-  <!-- Link with javascript file -->
+  
   <script src="app.js"></script>
   <script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
 </body>

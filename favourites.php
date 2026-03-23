@@ -27,7 +27,7 @@ if ($is_logged_in) {
         <div style="display:flex; gap:15px; align-items:center;">
             <a href="contact.php" class="link">Contact Us</a>
             <?php if(isset($_SESSION['user_id'])): ?>
-                <span class="link">Hello, <?= htmlspecialchars($_SESSION['first_name']); ?></span>
+                 <a href="accounts.php"><span class="link">Hello <?= htmlspecialchars($_SESSION['first_name']); ?></span></a>
                 <a href="logout.php" class="link">Logout</a>
             <?php else: ?>
                 <a href="register.php" class="link">Register</a>
@@ -283,5 +283,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if(yr) yr.textContent = new Date().getFullYear();
 });
 </script>
+<script src="//code.tidio.co/t2metx8c6fo4wq7w8lvxrczj0m32nwmk.js" async></script>
 </body>
 </html>

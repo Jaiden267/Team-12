@@ -36,7 +36,7 @@ $plswork2 = $conn->prepare("SELECT variant_id, attribute_value, additional_price
             <a href="contact.php" class="link">Contact Us</a>
 
             <?php if(isset($_SESSION['user_id'])): ?>
-                <span class="link">Hello, <?= htmlspecialchars($_SESSION['first_name']); ?></span>
+                <a href="accounts.php"><span class="link">Hello <?= htmlspecialchars($_SESSION['first_name']); ?></span></a>
                 <a href="logout.php" class="link">Logout</a>
             <?php else: ?>
                 <a href="register.php" class="link">Register</a>

@@ -40,7 +40,7 @@ if ($sort == 'price_lowtohigh') {
             <div style="display:flex; gap:15px; align-items:center;">
                 <a href="contact.php" class="link">Contact Us</a>
                 <?php if(isset($_SESSION['user_id'])): ?>
-                    <span class="link">Hello, <?= htmlspecialchars($_SESSION['first_name']); ?></span>
+                     <a href="accounts.php"><span class="link">Hello <?= htmlspecialchars($_SESSION['first_name']); ?></span></a>
                     <a href="logout.php" class="link">Logout</a>
                     <?php else: ?>
                         <a href="register.php" class="link">Register</a>
@@ -49,7 +49,7 @@ if ($sort == 'price_lowtohigh') {
                         </div>
                         </div>
                         </div>
-<header class="site-header">
+ <header class="site-header">
     <div class="container header-inner">
       <a href="index.php" class="brand" aria-label="Lunare Clothing Home"> 
         <img src="assets/lunare_logo.png" alt="Lunare Clothing logo" class="brand-img">
@@ -88,12 +88,12 @@ if ($sort == 'price_lowtohigh') {
               <div class="mega-col">
                 <h4>Highlights</h4>
                 <a href="womensshirts.php">New in Women</a>
-                <a href="womensknitwear.php">Bestseller</a>
+                <a href="womenactivewear.php">Bestseller</a>
                 
               </div>
               <div class="mega-col">
                 <h4>Activewear</h4>
-                <a href="womanactivewear.php">All Activewear</a>
+                <a href="womenactivewear.php">All Activewear</a>
               </div>
               <div class="mega-col">
                 <h4>Clothing</h4>
@@ -115,7 +115,7 @@ if ($sort == 'price_lowtohigh') {
               <div class="mega-col">
                 <h4>Kids</h4>
                 <a href="kidstshirts.php">T-Shirts</a>
-                <a href="kidsclothing.php">Clothing</a>
+                <a href="kidstshirts.php">Clothing</a>
               </div>
             </div>
           </li>
@@ -237,7 +237,7 @@ if ($sort == 'price_lowtohigh') {
       <div>
         <h5>Support</h5>
         <a href="delivery.php">Delivery</a>
-        <a href="returns.php">Returns</a>
+        <a href="contact.php">Let Us Know How We Did</a>
         <a href="contact.php">Contact Us</a>
       </div>
       <div>

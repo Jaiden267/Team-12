@@ -1,5 +1,7 @@
 <?php
+
 include '../db_connect.php';
+
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
     mysqli_query($conn, "DELETE FROM stock WHERE variant_id IN (SELECT variant_id FROM product_variants WHERE product_id = $id)");
